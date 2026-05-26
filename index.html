@@ -680,7 +680,7 @@
       margin-bottom: .6rem
     }
 
-    .trial-step h4 {
+    .trial-step .step-headline {
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
       color: var(--brown-dark);
@@ -831,7 +831,7 @@
       gap: 1.2rem;
     }
 
-    .calc-row {
+    .calc-grid .calc-row {
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
@@ -1741,7 +1741,7 @@
         <p class="hero-desc">Straight from our desi gau shaala to your kitchen. Pure A2 milk, creamy curd, rich bilona
           ghee and chilled buttermilk — the old Rajasthani way, with zero adulteration and zero compromise.</p>
         <div class="hero-btns">
-          <a class="btn-primary" onclick="redirectToFreeTrialForm()">🎁 Try Free — 3 Litres</a>
+          <a class="btn-primary" onclick="redirectToFreeTrialForm()">🎁 Try Free — 2 Days</a>
           <a class="btn-outline" href="#order">Order Now</a>
         </div>
 
@@ -1788,7 +1788,6 @@
             Fat Content: 4.5–5.5% natural fat<br>
             Collected: 4 AM every day<br>
             Delivered: Before 7 AM at your door<br>
-            Packaging: Steel vessel or sealed pouch
           </div>
           <div class="product-price">₹70 / litre <span class="badge-pure">A2 Milk</span></div>
         </div>
@@ -1836,7 +1835,6 @@
             Traditional wood-fire bilona method<br>
             25 litres milk → 1 kg ghee<br>
             Shelf life: 12 months (no refrigeration)<br>
-            Packaging: Glass jar or tin
           </div>
           <div class="product-price">₹900 / 500g <span class="badge-pure">Bilona</span></div>
         </div>
@@ -1853,7 +1851,7 @@
         farm-to-table batch.</p>
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-val">4.5%</div>
+          <div class="metric-val">4%</div>
           <h4>Natural Fat Content</h4>
           <p>Pure structural fat directly from our grass-fed Gir cows. No artificial standardization processing handled.
           </p>
@@ -1863,11 +1861,11 @@
           <h4>SNF Parameters</h4>
           <p>Solids-Not-Fat index ensuring rich protein, calcium, and essential micro-nutrient thickness values.</p>
         </div>
-        <div class="metric-card">
+        <!-- <div class="metric-card">
           <div class="metric-val">0%</div>
           <h4>Water / Preservatives</h4>
           <p>Zero water added. Zero milk powder reconstitution. Pure raw freshness delivered uninterrupted.</p>
-        </div>
+        </div> -->
         <div class="metric-card">
           <div class="metric-val">5°C to 7°C</div>
           <h4>Chilling Temperature</h4>
@@ -1880,38 +1878,37 @@
   <section id="trial">
     <div class="sec-inner">
       <p class="section-label">Try Before You Subscribe</p>
-      <h2 class="section-title">Free 3-Litre Trial Period</h2>
-      <p class="section-sub">Not sure yet? We understand. Try any of our products completely free — 3 litres per product
-        — and taste the difference yourself before committing to a subscription.</p>
+      <h2 class="section-title">Free 2-Day Trial Period</h2>
+      <p class="section-sub">Not sure yet? We understand. Try any of our products completely free — for 2 days — and taste the difference yourself before committing to a subscription.</p>
 
       <div class="trial-intro">
         <div>
           <div class="trial-steps">
             <div class="trial-step">
               <div class="ts-icon">📲</div>
-              <h4>Step 1 — Choose</h4>
-              <p>Pick any product you want to try — milk, curd, buttermilk or ghee (250g for ghee trial).</p>
+              <div class="step-headline">Step 1 — Choose</div>
+              <p>Pick any product you want to try — milk, curd, buttermilk or ghee (75g for ghee trial).</p>
             </div>
             <div class="trial-step">
               <div class="ts-icon">📦</div>
-              <h4>Step 2 — We Deliver</h4>
-              <p>We deliver 3 litres of your chosen product to your door in Beawar — absolutely free, no charges.</p>
+              <div class="step-headline">Step 2 — We Deliver</div>
+              <p>We deliver your chosen product to your door in Beawar — absolutely free for 2 days, no charges.</p>
             </div>
             <div class="trial-step">
               <div class="ts-icon">😋</div>
-              <h4>Step 3 — Taste It</h4>
-              <p>Use it in your kitchen for 2–3 days. Cook with it, drink it, compare it with what you use today.</p>
+              <div class="step-headline">Step 3 — Taste It</div>
+              <p>Use it in your kitchen for 2 days. Cook with it, drink it, compare it with what you use today.</p>
             </div>
             <div class="trial-step">
               <div class="ts-icon">✅</div>
-              <h4>Step 4 — Subscribe</h4>
+              <div class="step-headline">Step 4 — Subscribe</div>
               <p>If you love it (and you will!), choose a subscription plan that suits your family's needs.</p>
             </div>
           </div>
         </div>
         <div class="trial-highlight">
           <p class="sub-label">Free Trial Offer</p>
-          <div class="big-num">3L</div>
+          <div class="big-num">2 Days</div>
           <p>Free trial of any product<br>delivered to your door<br>No payment required<br><br><strong
               style="color:var(--gold-light)">One trial per household</strong><br><span
               style="font-size:.8rem;opacity:.6">Beawar city delivery only</span></p>
@@ -1925,7 +1922,7 @@
           <div class="tp-info">
             <h5>Fresh Cow Milk</h5>
             <p>Pure A2 desi cow milk</p>
-            <span class="tp-free">3 Litres FREE</span>
+            <span class="tp-free">2 Days FREE Trial</span>
           </div>
         </div>
         <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Homemade Curd')">
@@ -1933,7 +1930,7 @@
           <div class="tp-info">
             <h5>Homemade Curd</h5>
             <p>Thick probiotic dahi</p>
-            <span class="tp-free">3 Kg FREE</span>
+            <span class="tp-free">2 Days FREE Trial</span>
           </div>
         </div>
         <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Fresh Buttermilk')">
@@ -1941,7 +1938,7 @@
           <div class="tp-info">
             <h5>Fresh Buttermilk</h5>
             <p>Spiced Rajasthani chaas</p>
-            <span class="tp-free">3 Litres FREE</span>
+            <span class="tp-free">2 Days FREE Trial</span>
           </div>
         </div>
         <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Bilona Ghee')">
@@ -1949,7 +1946,7 @@
           <div class="tp-info">
             <h5>Bilona Ghee</h5>
             <p>Pure wood-fire ghee</p>
-            <span class="tp-free">250g FREE</span>
+            <span class="tp-free">75gm FREE Sample</span>
           </div>
         </div>
       </div>
@@ -2040,7 +2037,7 @@
             <li>Morning + evening delivery</li>
             <li>Unlimited curd on demand</li>
             <li>1 litre buttermilk daily</li>
-            <li>250g bilona ghee every month FREE</li>
+            <li>75g bilona ghee every month FREE</li>
             <li>Dedicated delivery person</li>
             <li>Pause anytime, no limit</li>
             <li>Festival special gifts</li>
@@ -2065,7 +2062,7 @@
           </div>
           <div class="policy-item">
             <h5>💰 Payment</h5>
-            <p>Monthly advance payment via UPI (GPay, PhonePe, Paytm) or cash. Receipt shared on WhatsApp.</p>
+            <p>Monthly postpaid billing. Invoice generated on the 1st of every month based on your actual deliveries, payable via UPI or cash.</p>
           </div>
           <div class="policy-item">
             <h5>🔁 Plan Change</h5>
@@ -2189,7 +2186,7 @@
         </div>
         <div class="team-card">
           <div class="team-avatar" style="background:linear-gradient(135deg,#85B7EB,#185FA5)">DB</div>
-          <div class="team-badge commander-badge">⚔️ Sponsor</div>
+          <div class="team-badge commander-badge">⚔️ Mentor</div>
           <h3>Commander D S Bhati</h3>
           <p>The strategic commander of MilkyRoots. D S Bhati leads operations with military discipline and precision,
             ensuring the farm and delivery network runs like clockwork every day.</p>
@@ -2208,9 +2205,8 @@
   <section class="faq-sec">
     <div class="sec-inner">
       <p class="section-label">Common Doubts</p>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <p class="section-sub">Have questions about delivery patterns, packaging options, or trial terms? Find answers
-        below.</p>
+      <h2 class="section-title">Frequently Asked Questions</h2> 
+      <p class="section-sub">Have questions about delivery patterns, packaging options, or trial terms? Find answers below.</p>
       <div class="faq-wrapper">
         <div class="faq-item">
           <div class="faq-header" onclick="toggleFaq(this)">Do I need to give my own container (पतेली)? <span
@@ -2226,10 +2222,10 @@
             WhatsApp before 9:00 PM the previous evening. No amount will be charged for that specific day.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-header" onclick="toggleFaq(this)">Is the 3-Litre Trial really 100% free? <span
+          <div class="faq-header" onclick="toggleFaq(this)">Is the Free Trial really 100% free? <span
               class="faq-icon">▼</span></div>
           <div class="faq-content">Absolutely! There are no hidden fees, delivery costs, or structural commitments. We
-            give you 3 litres over 3 consecutive days so you can test the quality in your family tea and kitchen.</div>
+            give you a completely free 2-day trial so you can test the quality in your family tea and kitchen.</div>
         </div>
       </div>
     </div>
@@ -2300,7 +2296,7 @@
             <span class="contact-item-icon">🗺️</span>
             <div>
               <h5>Delivery Areas</h5>
-              <p>Subhash Nagar, Gandhi Colony, Rani Bazaar, Civil Lines, Model Town &amp; all of Beawar city</p>
+              <p>Fatehpuriya 2nd Poonam Vihar</p>
             </div>
           </div>
           <div class="contact-item">
@@ -2326,7 +2322,7 @@
               <option value="Homemade Curd">Homemade Curd – ₹80/kg</option>
               <option value="Fresh Buttermilk">Fresh Buttermilk – ₹30/500ml</option>
               <option value="Pure Bilona Ghee">Pure Bilona Ghee – ₹900/500g</option>
-              <option value="FREE Trial">🎁 FREE Trial – 3 Litres (First Time)</option>
+              <option value="FREE Trial">🎁 FREE Trial – 2 Days (First Time)</option>
               <option value="Basic Subscription">Basic Subscription – ₹2,100/month</option>
               <option value="Family Subscription">Family Subscription – ₹3,800/month</option>
               <option value="Premium Subscription">Premium Subscription – ₹6,500/month</option>
@@ -2336,7 +2332,7 @@
               <option id="opt-q1" value="500 ml – One Time">500 ml – One Time</option>
               <option id="opt-q2" value="1 Litre – One Time">1 Litre – One Time</option>
               <option id="opt-q3" value="2 Litres – One Time">2 Litres – One Time</option>
-              <option id="opt-qtrial" value="3 Litres – Free Trial">3 Litres – Free Trial</option>
+              <option id="opt-qtrial" value="2 Days – Free Trial">2 Days – Free Trial</option>
               <option id="opt-q4" value="1 Litre – Daily Subscription">1 Litre – Daily Subscription</option>
               <option id="opt-q5" value="2 Litres – Daily Subscription">2 Litres – Daily Subscription</option>
               <option id="opt-q6" value="3 Litres – Daily Subscription">3 Litres – Daily Subscription</option>
@@ -2379,7 +2375,7 @@
     const tickerUpdates = [
       "Ramesh Agarwal from Gandhi Colony just renewed their Family Plan subscription! 🎉",
       "Morning milking completed at 4:12 AM today. All parameters verified pure! 🥛",
-      "Priya Mehta from Rani Bazaar claimed their Free 3L Trial! 🎁",
+      "Priya Mehta from Rani Bazaar claimed their Free 2-Day Trial! 🎁",
       "Fresh batch of traditional Bilona Ghee has finished wood-fire cooking! ✨"
     ];
     let tickerIndex = 0;
@@ -2443,7 +2439,7 @@
 
       document.getElementById('calc-total').innerText = "₹" + totalCost.toLocaleString('en-IN');
 
-      const waMessage = `Namaste MilkyRoots! I want to book a Custom Plan:\n🥛 Milk: ${milkLiters}L Daily\n🍶 Curd: ${curdKg}kg Weekly\n🥤 Buttermilk: ${chaasPacks} Packs Weekly\nEstimated Cost: ₹${totalCost}/month. Please confirm!`;
+      const waMessage = `Namaste MilkyRoots! I want to book a Custom Postpaid Plan:\n🥛 Milk: ${milkLiters}L Daily\n🍶 Curd: ${curdKg}kg Weekly\n🥤 Buttermilk: ${chaasPacks} Packs Weekly\nEstimated Monthly Usage: ₹${totalCost}. Please confirm!`;
       document.getElementById('calc-wa-btn').href = "https://api.whatsapp.com/send?phone=918949553581&text=" + encodeURIComponent(waMessage);
     }
 
@@ -2456,7 +2452,7 @@
       var pSelect = document.getElementById('ord-product');
       pSelect.value = 'FREE Trial';
       handleProductChange();
-      document.getElementById('ord-msg').value = "Interested in claiming a Free 3-Litre Trial.";
+      document.getElementById('ord-msg').value = "Interested in claiming a Free 2-Day Trial.";
       var orderSection = document.getElementById('order');
       if (orderSection) { orderSection.scrollIntoView({ behavior: 'smooth' }); }
     }
@@ -2466,9 +2462,9 @@
       var qtySelect = document.getElementById('ord-qty');
 
       if (productSelect.value === 'FREE Trial') {
-        qtySelect.value = '3 Litres – Free Trial';
+        qtySelect.value = '2 Days – Free Trial';
         for (var i = 0; i < qtySelect.options.length; i++) {
-          if (qtySelect.options[i].value !== '3 Litres – Free Trial') {
+          if (qtySelect.options[i].value !== '2 Days – Free Trial') {
             qtySelect.options[i].disabled = true;
           }
         }
@@ -2476,7 +2472,7 @@
         for (var i = 0; i < qtySelect.options.length; i++) {
           qtySelect.options[i].disabled = false;
         }
-        if (qtySelect.value === '3 Litres – Free Trial') { qtySelect.value = ""; }
+        if (qtySelect.value === '2 Days – Free Trial') { qtySelect.value = ""; }
         document.getElementById('opt-qtrial').disabled = true;
       }
     }
