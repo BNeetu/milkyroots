@@ -1,0 +1,2534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐄 MilkyRoots – Pure Cow Dairy, Beawar, Rajasthan</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --cream: #FFF8EC;
+      --warm-white: #FFFDF8;
+      --gold: #C8860A;
+      --gold-light: #F5C842;
+      --brown: #6B3A1F;
+      --brown-dark: #3E1F0A;
+      --green: #2E6B3A;
+      --green-light: #E8F5EA;
+      --text: #2C1A08;
+      --text-muted: #7A5C3A;
+      --border: rgba(200, 134, 10, 0.2);
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(107, 58, 31, 0.10);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--warm-white);
+      color: var(--text);
+      overflow-x: hidden;
+      font-size: 16px
+    }
+
+    /* ── HAMBURGER NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(255, 248, 236, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--brown);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 700
+    }
+
+    .logo-img {
+      height: 48px;
+      width: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background-color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--gold)
+    }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 50px;
+      transition: background .2s !important
+    }
+
+    .nav-cta:hover {
+      background: var(--brown) !important
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--brown);
+      border-radius: 2px;
+      transition: .3s
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 248, 236, 0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 5vw;
+      z-index: 199;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 12px 0;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+      margin-top: 8px;
+      background: var(--gold);
+      color: #fff;
+      text-align: center;
+      border-radius: 50px;
+      padding: 12px;
+      letter-spacing: 0.08em
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFF3D6 0%, #FFF8EC 45%, #E8F5D0 100%);
+      display: flex;
+      align-items: center;
+      padding: 90px 5vw 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 72% 28%, rgba(245, 200, 66, .13) 0%, transparent 55%),
+        radial-gradient(circle at 18% 78%, rgba(46, 107, 58, .08) 0%, transparent 48%)
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .hero-content {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(46, 107, 58, .2)
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.12;
+      color: var(--brown-dark);
+      margin-bottom: 1rem
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      max-width: 500px
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .04em;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 18px rgba(200, 134, 10, .32);
+      white-space: nowrap;
+      cursor: pointer
+    }
+
+    .btn-primary:hover {
+      background: var(--brown);
+      transform: translateY(-2px)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brown);
+      padding: 13px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .04em;
+      border: 2px solid var(--brown);
+      transition: all .2s;
+      white-space: nowrap
+    }
+
+    .btn-outline:hover {
+      background: var(--brown);
+      color: #fff
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap
+    }
+
+    .hero-stat h3 {
+      font-size: 1.7rem;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      line-height: 1
+    }
+
+    .hero-stat p {
+      font-size: .75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 3px
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative
+    }
+
+    .hero-card-stack {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .5rem .9rem;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--brown);
+      box-shadow: var(--shadow);
+      white-space: nowrap
+    }
+
+    .ft1 {
+      top: 10%;
+      right: -5%;
+      animation: float1 3s ease-in-out infinite
+    }
+
+    .ft2 {
+      bottom: 15%;
+      left: -8%;
+      animation: float1 3.5s ease-in-out infinite reverse
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    /* ── LIVE NOTIFICATION TICKER ── */
+    .live-ticker {
+      background: var(--green-light);
+      color: var(--green);
+      text-align: center;
+      padding: 0.6rem 5vw;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(46, 107, 58, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── AREA CHECKER FEATURE ── */
+    .area-checker-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .checker-flex {
+      display: flex;
+      gap: 10px;
+      margin-top: 0.8rem;
+    }
+
+    .checker-flex input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+
+    .checker-flex button {
+      background: var(--brown);
+      color: #fff;
+      border: none;
+      padding: 0 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .checker-flex button:hover {
+      background: var(--gold);
+    }
+
+    #checker-result {
+      margin-top: 0.8rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    /* ── COMMON SECTION ── */
+    section {
+      padding: 72px 5vw
+    }
+
+    .sec-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .4rem
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--brown-dark);
+      margin-bottom: .8rem
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      font-weight: 300;
+      max-width: 560px;
+      margin-bottom: 2.5rem
+    }
+
+    /* ── PRODUCTS ── */
+    #products {
+      background: var(--cream)
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem
+    }
+
+    .product-card {
+      background: var(--warm-white);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .product-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(107, 58, 31, .12)
+    }
+
+    .product-card:hover::after {
+      transform: scaleX(1)
+    }
+
+    .product-emoji {
+      font-size: 3.2rem;
+      margin-bottom: .8rem;
+      display: block
+    }
+
+    .product-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--brown-dark);
+      margin-bottom: .25rem
+    }
+
+    .product-card .hindi {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-bottom: .7rem
+    }
+
+    .product-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      margin-bottom: 1rem
+    }
+
+    .product-details {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      margin-bottom: 1rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.8
+    }
+
+    .product-details strong {
+      color: var(--brown);
+      display: block;
+      margin-bottom: .2rem;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .06em
+    }
+
+    .product-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      border-top: 1px solid var(--border);
+      padding-top: .9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .badge-pure {
+      background: var(--green-light);
+      color: var(--green);
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 50px;
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    /* ── QUALITY METRICS DASHBOARD ── */
+    .metrics-sec {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding-top: 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .metric-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .metric-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-card h4 {
+      font-size: 1rem;
+      color: var(--brown-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── TRIAL PERIOD ── */
+    #trial {
+      background: linear-gradient(135deg, #FFFDF0 0%, var(--cream) 100%)
+    }
+
+    .trial-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem
+    }
+
+    .trial-highlight {
+      background: var(--brown-dark);
+      color: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center
+    }
+
+    .trial-highlight .big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--gold-light);
+      line-height: 1
+    }
+
+    .trial-highlight p {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .75);
+      margin-top: .5rem;
+      line-height: 1.6
+    }
+
+    .trial-highlight .sub-label {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(245, 200, 66, .7);
+      margin-bottom: .3rem
+    }
+
+    .trial-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem
+    }
+
+    .trial-step {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: box-shadow .2s
+    }
+
+    .trial-step:hover {
+      box-shadow: var(--shadow)
+    }
+
+    .trial-step .ts-icon {
+      font-size: 2.2rem;
+      margin-bottom: .6rem
+    }
+
+    .trial-step h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--brown-dark);
+      margin-bottom: .4rem
+    }
+
+    .trial-step p {
+      font-size: .83rem;
+      color: var(--text-muted);
+      line-height: 1.65
+    }
+
+    .trial-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem
+    }
+
+    .trial-product-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform .2s, box-shadow .2s
+    }
+
+    .trial-product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow)
+    }
+
+    .tp-emoji {
+      font-size: 2.2rem;
+      flex-shrink: 0
+    }
+
+    .tp-info h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--brown-dark);
+      margin-bottom: .2rem
+    }
+
+    .tp-info p {
+      font-size: .8rem;
+      color: var(--text-muted)
+    }
+
+    .tp-info .tp-free {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-top: .3rem;
+      display: inline-block
+    }
+
+    .trial-cta-box {
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+      color: #fff
+    }
+
+    .trial-cta-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: .5rem
+    }
+
+    .trial-cta-box p {
+      font-size: .9rem;
+      opacity: .9;
+      margin-bottom: 1.2rem;
+      line-height: 1.6
+    }
+
+    .btn-white {
+      background: #fff;
+      color: var(--gold);
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .04em;
+      transition: all .2s;
+      display: inline-block;
+      cursor: pointer
+    }
+
+    .btn-white:hover {
+      background: var(--brown-dark);
+      color: #fff
+    }
+
+    /* ── SUBSCRIPTION ── */
+    #subscription {
+      background: var(--brown-dark);
+      color: #fff
+    }
+
+    #subscription .section-title {
+      color: var(--gold-light)
+    }
+
+    #subscription .section-label {
+      color: rgba(245, 200, 66, .7)
+    }
+
+    #subscription .section-sub {
+      color: rgba(255, 255, 255, .65)
+    }
+
+    .calc-container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .calc-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .calc-sliders {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .calc-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .calc-row label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .calc-row label span {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .calc-row input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold-light);
+      cursor: pointer;
+    }
+
+    .calc-result-box {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px dashed rgba(245, 200, 66, 0.3);
+    }
+
+    .calc-result-box h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .calc-total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      margin: 0.5rem 0;
+    }
+
+    .btn-calc-wa {
+      display: inline-block;
+      background: var(--gold-light);
+      color: var(--brown-dark);
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-calc-wa:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 3rem
+    }
+
+    .sub-card {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: background .25s, transform .25s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .sub-card:hover {
+      background: rgba(255, 255, 255, .12);
+      transform: translateY(-4px)
+    }
+
+    .sub-card.popular {
+      border: 2px solid var(--gold-light);
+      background: rgba(245, 200, 66, .08)
+    }
+
+    .sub-popular-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--gold);
+      color: #fff;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: .06em
+    }
+
+    .sub-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      margin-bottom: .3rem
+    }
+
+    .sub-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: .5rem 0;
+      font-family: 'Playfair Display', serif
+    }
+
+    .sub-price span {
+      font-size: .9rem;
+      font-weight: 400;
+      opacity: .6
+    }
+
+    .sub-card ul {
+      list-style: none;
+      margin: 1rem 0 1.4rem
+    }
+
+    .sub-card ul li {
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .75);
+      padding: .35rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      line-height: 1.5
+    }
+
+    .sub-card ul li::before {
+      content: '✓';
+      color: var(--gold-light);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    .sub-card ul li:last-child {
+      border-bottom: none
+    }
+
+    .btn-sub {
+      display: block;
+      text-align: center;
+      background: var(--gold);
+      color: #fff;
+      padding: 11px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      transition: background .2s
+    }
+
+    .btn-sub:hover {
+      background: var(--gold-light);
+      color: var(--brown-dark)
+    }
+
+    .sub-card.popular .btn-sub {
+      background: var(--gold-light);
+      color: var(--brown-dark)
+    }
+
+    .sub-card.popular .btn-sub:hover {
+      background: #fff
+    }
+
+    .sub-policy {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      padding: 2rem
+    }
+
+    .sub-policy h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem
+    }
+
+    .policy-item {
+      background: rgba(255, 255, 255, .05);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem
+    }
+
+    .policy-item h5 {
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gold-light);
+      margin-bottom: .4rem;
+      font-weight: 700
+    }
+
+    .policy-item p {
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .65);
+      line-height: 1.65
+    }
+
+    /* ── WHY US ── */
+    #why {
+      background: var(--brown-dark);
+      color: #fff
+    }
+
+    #why .section-title {
+      color: var(--gold-light)
+    }
+
+    #why .section-sub {
+      color: rgba(255, 255, 255, .65)
+    }
+
+    #why .section-label {
+      color: rgba(245, 200, 66, .7)
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem
+    }
+
+    .why-item {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: background .2s
+    }
+
+    .why-item:hover {
+      background: rgba(255, 255, 255, .11)
+    }
+
+    .why-icon {
+      font-size: 2.6rem;
+      margin-bottom: .8rem;
+      display: block
+    }
+
+    .why-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      margin-bottom: .5rem
+    }
+
+    .why-item p {
+      font-size: .86rem;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.7
+    }
+
+    /* ── PROCESS ── */
+    #process {
+      background: var(--warm-white)
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0
+    }
+
+    .step {
+      padding: 1.8rem 1.5rem;
+      border-right: 1px solid var(--border);
+      position: relative
+    }
+
+    .step:last-child {
+      border-right: none
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: var(--gold);
+      opacity: .15;
+      position: absolute;
+      top: .8rem;
+      right: 1.2rem;
+      font-weight: 700;
+      line-height: 1
+    }
+
+    .step-icon {
+      font-size: 1.9rem;
+      margin-bottom: .7rem;
+      display: block
+    }
+
+    .step h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--brown-dark);
+      margin-bottom: .4rem
+    }
+
+    .step p {
+      font-size: .85rem;
+      color: var(--text-muted);
+      line-height: 1.7
+    }
+
+    /* ── TEAM ── */
+    #team {
+      background: var(--cream)
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem
+    }
+
+    .team-card {
+      background: var(--warm-white);
+      border-radius: var(--radius);
+      padding: 1.5rem 1rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform .25s, box-shadow .25s
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow)
+    }
+
+    .founder-card {
+      border: 2px solid var(--gold);
+      background: linear-gradient(160deg, #FFFDF0, var(--cream))
+    }
+
+    .team-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 1rem;
+      font-family: 'Playfair Display', serif
+    }
+
+    .team-badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: .7rem
+    }
+
+    .founder-badge {
+      background: #FFF3CC;
+      color: #8A5A00;
+      border: 1px solid #E6C44A
+    }
+
+    .cofounder-badge {
+      background: #E8F5EA;
+      color: #2E6B3A;
+      border: 1px solid rgba(46, 107, 58, .25)
+    }
+
+    .sponsor-badge {
+      background: #FBEAF0;
+      color: #993556;
+      border: 1px solid #ED93B1
+    }
+
+    .marketing-badge {
+      background: #FFF4E6;
+      color: #D97706;
+      border: 1px solid #FCD34D
+    }
+
+    .cow-icon-small {
+      height: 24px;
+      width: 24px;
+      object-fit: cover;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 5px;
+      border: 1px solid var(--gold);
+    }
+
+    .commander-badge {
+      background: #E6F1FB;
+      color: #185FA5;
+      border: 1px solid #85B7EB
+    }
+
+    .team-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--brown-dark);
+      margin-bottom: .5rem
+    }
+
+    .team-card p {
+      font-size: .86rem;
+      color: var(--text-muted);
+      line-height: 1.7
+    }
+
+    /* NEW FEATURE: FAQ ACCORDION STYLE */
+    .faq-sec {
+      background: var(--warm-white);
+      border-top: 1px solid var(--border)
+    }
+
+    .faq-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.2s
+    }
+
+    .faq-header {
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--brown-dark);
+      font-size: 1rem;
+      user-select: none
+    }
+
+    .faq-header:hover {
+      background: var(--cream)
+    }
+
+    .faq-icon {
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+      color: var(--gold)
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      padding: 0 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7
+    }
+
+    .faq-item.active .faq-content {
+      padding: 0 1.2rem 1.2rem 1.2rem;
+      max-height: 200px
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg)
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      background: var(--warm-white)
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.3rem
+    }
+
+    .testi-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      border: 1px solid var(--border)
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: .7rem;
+      letter-spacing: 2px
+    }
+
+    .testi-card p {
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: .9rem;
+      font-style: italic
+    }
+
+    .testi-author {
+      font-weight: 700;
+      color: var(--brown);
+      font-size: .88rem
+    }
+
+    .testi-loc {
+      font-size: .78rem;
+      color: var(--text-muted);
+      margin-top: 2px
+    }
+
+    /* ── ORDER ── */
+    #order {
+      background: linear-gradient(135deg, var(--brown-dark) 0%, #6B3A1F 100%)
+    }
+
+    #order .section-title {
+      color: var(--gold-light)
+    }
+
+    #order .section-sub {
+      color: rgba(255, 255, 255, .65)
+    }
+
+    #order .section-label {
+      color: rgba(245, 200, 66, .7)
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start
+    }
+
+    .contact-info {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .contact-item {
+      display: flex;
+      gap: .9rem;
+      margin-bottom: 1.3rem;
+      align-items: flex-start
+    }
+
+    .contact-item-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .contact-item h5 {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gold-light);
+      margin-bottom: .2rem
+    }
+
+    .contact-item p {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .72);
+      line-height: 1.65
+    }
+
+    .order-form {
+      display: flex;
+      flex-direction: column;
+      gap: .9rem
+    }
+
+    .order-form input,
+    .order-form select,
+    .order-form textarea {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 10px;
+      padding: 12px 15px;
+      color: #fff;
+      font-size: .92rem;
+      font-family: 'Lato', sans-serif;
+      outline: none;
+      transition: border-color .2s;
+      width: 100%
+    }
+
+    .order-form input::placeholder,
+    .order-form textarea::placeholder {
+      color: rgba(255, 255, 255, .4)
+    }
+
+    .order-form input:focus,
+    .order-form select:focus,
+    .order-form textarea:focus {
+      border-color: var(--gold-light)
+    }
+
+    .order-form select option {
+      background: #3E1F0A;
+      color: #fff
+    }
+
+    .order-form textarea {
+      resize: none;
+      height: 85px
+    }
+
+    .order-form button {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .05em;
+      transition: background .2s;
+      width: 100%;
+      font-family: 'Lato', sans-serif
+    }
+
+    .order-form button:hover {
+      background: var(--gold-light);
+      color: var(--brown-dark)
+    }
+
+    .order-form input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1)
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A0D04;
+      color: rgba(255, 255, 255, .45);
+      text-align: center;
+      padding: 2.5rem 5vw;
+      font-size: .85rem;
+      line-height: 2
+    }
+
+    footer strong {
+      color: var(--gold-light)
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, .4);
+      text-decoration: none;
+      font-size: .8rem;
+      transition: color .2s
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light)
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: #25D366;
+      color: #fff;
+      font-size: 1.7rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 22px rgba(37, 211, 102, .4);
+      transition: transform .2s, box-shadow .2s
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, .5)
+    }
+
+    .ornament {
+      text-align: center;
+      font-size: 1.3rem;
+      opacity: .22;
+      letter-spacing: .5rem;
+      padding: .8rem 0
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .hero-inner {
+        grid-template-columns: 1fr
+      }
+
+      .hero-visual {
+        display: none
+      }
+
+      .trial-intro {
+        grid-template-columns: 1fr
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem
+      }
+
+      .step {
+        border-right: none;
+        border-bottom: 1px solid var(--border)
+      }
+
+      .step:last-child {
+        border-bottom: none
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-links {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      section {
+        padding: 56px 4vw
+      }
+
+      nav {
+        padding: 0 4vw
+      }
+
+      .hero {
+        padding: 80px 4vw 50px
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .btn-primary,
+      .btn-outline {
+        text-align: center;
+        width: fit-content
+      }
+    }
+
+    @media(max-width:480px) {
+      .hero h1 {
+        font-size: 2.1rem
+      }
+
+      .hero-stats {
+        gap: 1.2rem
+      }
+
+      .hero-stat h3 {
+        font-size: 1.4rem
+      }
+
+      section {
+        padding: 48px 4vw
+      }
+
+      .sub-grid {
+        grid-template-columns: 1fr
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr
+      }
+
+      .trial-products {
+        grid-template-columns: 1fr
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .policy-grid {
+        grid-template-columns: 1fr
+      }
+
+      footer {
+        font-size: .78rem
+      }
+
+      .wa-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 18px;
+        right: 18px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="live-ticker">
+    ✨ <span id="ticker-text">Loading latest farm delivery updates...</span>
+  </div>
+
+  <a class="wa-float"
+    href="https://api.whatsapp.com/send?phone=918949553581&text=Namaste!%20Main%20MilkyRoots%20se%20order%20karna%20chahta%20hoon."
+    target="_blank" title="Chat on WhatsApp">💬</a>
+
+  <nav>
+    <a class="nav-logo" href="#">
+      <img src="gir.jpg" alt="MilkyRoots Logo" class="logo-img">
+      MilkyRoots
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#trial">Free Trial</a></li>
+      <li><a href="#subscription">Subscribe</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#order" class="nav-cta">Order Now</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#products" onclick="toggleMenu()">Products</a>
+    <a href="#trial" onclick="toggleMenu()">Free Trial</a>
+    <a href="#subscription" onclick="toggleMenu()">Subscribe</a>
+    <a href="#team" onclick="toggleMenu()">Our Team</a>
+    <a href="#order" onclick="toggleMenu()">Order Now</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">🌿 100% Pure Desi Cow Dairy — Beawar, Rajasthan</span>
+        <h1>Farm Fresh.<br><em>Pure &amp; Natural.</em><br>Delivered Daily.</h1>
+        <p class="hero-desc">Straight from our desi gau shaala to your kitchen. Pure A2 milk, creamy curd, rich bilona
+          ghee and chilled buttermilk — the old Rajasthani way, with zero adulteration and zero compromise.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" onclick="redirectToFreeTrialForm()">🎁 Try Free — 3 Litres</a>
+          <a class="btn-outline" href="#order">Order Now</a>
+        </div>
+
+        <div class="area-checker-box">
+          <label
+            style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">📍
+            Check Delivery to Your Area:</label>
+          <div class="checker-flex">
+            <input type="text" id="area-input" placeholder="Enter your neighborhood in Beawar (e.g. Subhash Nagar)..."
+              onkeyup="checkAreaInput()">
+            <button onclick="btnCheckArea()">Check</button>
+          </div>
+          <div id="checker-result"></div>
+        </div>
+
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <img src="gir.jpg" alt="Gir Cow"
+            style="width:100%; border-radius:20px; margin-bottom:1rem; box-shadow:var(--shadow); border: 2px solid var(--gold);">
+          <div class="floating-tag ft1">🥛 Fresh Milk Daily</div>
+          <div class="floating-tag ft2">✅ Zero Adulteration</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="sec-inner">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Our Pure Dairy Products</h2>
+      <p class="section-sub">Every product is made from the milk of our own desi Gir cows, raised naturally on green
+        fodder — no hormones, no preservatives, no shortcuts.</p>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <span class="product-emoji">🥛</span>
+          <h3>Fresh Cow Milk</h3>
+          <p class="hindi">ताजा गाय का दूध</p>
+          <p>Pure A2 milk from our desi Gir cows — full of natural fat, vitamins and minerals. Collected fresh every
+            morning and evening by our trained gawalas.</p>
+          <div class="product-details">
+            <strong>Product Details</strong>
+            Fat Content: 4.5–5.5% natural fat<br>
+            Collected: 4 AM every day<br>
+            Delivered: Before 7 AM at your door<br>
+            Packaging: Steel vessel or sealed pouch
+          </div>
+          <div class="product-price">₹70 / litre <span class="badge-pure">A2 Milk</span></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-emoji">🍶</span>
+          <h3>Homemade Curd</h3>
+          <p class="hindi">घर का दही</p>
+          <p>Thick, creamy dahi set overnight from whole cow milk. Rich in natural probiotics — great for digestion,
+            immunity and taste. Just like your daadi made it.</p>
+          <div class="product-details">
+            <strong>Product Details</strong>
+            Set overnight using natural culture<br>
+            No preservatives or thickeners<br>
+            Available: Daily morning delivery<br>
+            Best before: 2 days from delivery
+          </div>
+          <div class="product-price">₹80 / kg <span class="badge-pure">Probiotic</span></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-emoji">🥤</span>
+          <h3>Fresh Buttermilk</h3>
+          <p class="hindi">ताजा छाछ (मट्ठा)</p>
+          <p>The classic Rajasthani chaas — chilled, naturally spiced with jeera and fresh pudina. The best summer drink
+            straight from the matka, just like our ancestors enjoyed.</p>
+          <div class="product-details">
+            <strong>Product Details</strong>
+            Made from fresh curd daily<br>
+            Seasoned with jeera &amp; mint<br>
+            Available: Morning &amp; evening<br>
+            Best consumed same day
+          </div>
+          <div class="product-price">₹30 / 500ml <span class="badge-pure">Seasonal</span></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-emoji">✨</span>
+          <h3>Pure Bilona Ghee</h3>
+          <p class="hindi">बिलोना गाय का घी</p>
+          <p>Made using the ancient bilona method — curd is hand-churned into butter, then slow-cooked over wood fire
+            into golden, nutty, aromatic ghee. No shortcuts, ever.</p>
+          <div class="product-details">
+            <strong>Product Details</strong>
+            Traditional wood-fire bilona method<br>
+            25 litres milk → 1 kg ghee<br>
+            Shelf life: 12 months (no refrigeration)<br>
+            Packaging: Glass jar or tin
+          </div>
+          <div class="product-price">₹900 / 500g <span class="badge-pure">Bilona</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="metrics-sec">
+    <div class="sec-inner">
+      <p class="section-label">Real-time Quality Log</p>
+      <h2 class="section-title">Today's Purity Metrics</h2>
+      <p class="section-sub">We test every batch before distribution. Here are the parameters for our current
+        farm-to-table batch.</p>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-val">4.5%</div>
+          <h4>Natural Fat Content</h4>
+          <p>Pure structural fat directly from our grass-fed Gir cows. No artificial standardization processing handled.
+          </p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">8</div>
+          <h4>SNF Parameters</h4>
+          <p>Solids-Not-Fat index ensuring rich protein, calcium, and essential micro-nutrient thickness values.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">0%</div>
+          <h4>Water / Preservatives</h4>
+          <p>Zero water added. Zero milk powder reconstitution. Pure raw freshness delivered uninterrupted.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">5°C to 7°C</div>
+          <h4>Chilling Temperature</h4>
+          <p>Chilled immediately post-milking to secure hygiene and maintain freshness baseline standards natively.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trial">
+    <div class="sec-inner">
+      <p class="section-label">Try Before You Subscribe</p>
+      <h2 class="section-title">Free 3-Litre Trial Period</h2>
+      <p class="section-sub">Not sure yet? We understand. Try any of our products completely free — 3 litres per product
+        — and taste the difference yourself before committing to a subscription.</p>
+
+      <div class="trial-intro">
+        <div>
+          <div class="trial-steps">
+            <div class="trial-step">
+              <div class="ts-icon">📲</div>
+              <h4>Step 1 — Choose</h4>
+              <p>Pick any product you want to try — milk, curd, buttermilk or ghee (250g for ghee trial).</p>
+            </div>
+            <div class="trial-step">
+              <div class="ts-icon">📦</div>
+              <h4>Step 2 — We Deliver</h4>
+              <p>We deliver 3 litres of your chosen product to your door in Beawar — absolutely free, no charges.</p>
+            </div>
+            <div class="trial-step">
+              <div class="ts-icon">😋</div>
+              <h4>Step 3 — Taste It</h4>
+              <p>Use it in your kitchen for 2–3 days. Cook with it, drink it, compare it with what you use today.</p>
+            </div>
+            <div class="trial-step">
+              <div class="ts-icon">✅</div>
+              <h4>Step 4 — Subscribe</h4>
+              <p>If you love it (and you will!), choose a subscription plan that suits your family's needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="trial-highlight">
+          <p class="sub-label">Free Trial Offer</p>
+          <div class="big-num">3L</div>
+          <p>Free trial of any product<br>delivered to your door<br>No payment required<br><br><strong
+              style="color:var(--gold-light)">One trial per household</strong><br><span
+              style="font-size:.8rem;opacity:.6">Beawar city delivery only</span></p>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-bottom:1rem">Choose Your Trial Product</p>
+      <div class="trial-products">
+        <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Fresh Cow Milk')">
+          <span class="tp-emoji">🥛</span>
+          <div class="tp-info">
+            <h5>Fresh Cow Milk</h5>
+            <p>Pure A2 desi cow milk</p>
+            <span class="tp-free">3 Litres FREE</span>
+          </div>
+        </div>
+        <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Homemade Curd')">
+          <span class="tp-emoji">🍶</span>
+          <div class="tp-info">
+            <h5>Homemade Curd</h5>
+            <p>Thick probiotic dahi</p>
+            <span class="tp-free">3 Kg FREE</span>
+          </div>
+        </div>
+        <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Fresh Buttermilk')">
+          <span class="tp-emoji">🥤</span>
+          <div class="tp-info">
+            <h5>Fresh Buttermilk</h5>
+            <p>Spiced Rajasthani chaas</p>
+            <span class="tp-free">3 Litres FREE</span>
+          </div>
+        </div>
+        <div class="trial-product-card" style="cursor:pointer;" onclick="selectTrialProduct('Bilona Ghee')">
+          <span class="tp-emoji">✨</span>
+          <div class="tp-info">
+            <h5>Bilona Ghee</h5>
+            <p>Pure wood-fire ghee</p>
+            <span class="tp-free">250g FREE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trial-cta-box">
+        <h3>🎁 Claim Your Free Trial Now</h3>
+        <p>WhatsApp us your name, address and which product you want to try.<br>We will deliver your free trial within
+          24 hours — no payment, no commitment.</p>
+        <a class="btn-white" onclick="redirectToFreeTrialForm()">💬 WhatsApp for Free Trial</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="subscription">
+    <div class="sec-inner">
+      <p class="section-label">Subscription Plans</p>
+      <h2 class="section-title">Choose Your Plan</h2>
+      <p class="section-sub">Save money, never run out of fresh dairy. Our subscription plans are flexible — pause,
+        change or cancel anytime. No lock-in.</p>
+
+      <div class="calc-container">
+        <h3 class="calc-title">📊 Build Your Custom Monthly Plan</h3>
+        <div class="calc-grid">
+          <div class="calc-sliders">
+            <div class="calc-row">
+              <label>Daily Milk (Litres): <span id="lbl-milk">1 L</span></label>
+              <input type="range" id="calc-milk" min="0" max="10" step="0.5" value="1" oninput="updateCalculator()">
+            </div>
+            <div class="calc-row">
+              <label>Weekly Curd (kg): <span id="lbl-curd">1 kg</span></label>
+              <input type="range" id="calc-curd" min="0" max="5" step="0.5" value="1" oninput="updateCalculator()">
+            </div>
+            <div class="calc-row">
+              <label>Weekly Buttermilk (500ml packs): <span id="lbl-chaas">2 Packs</span></label>
+              <input type="range" id="calc-chaas" min="0" max="14" step="1" value="2" oninput="updateCalculator()">
+            </div>
+          </div>
+          <div class="calc-result-box">
+            <h4>Estimated Budget</h4>
+            <div class="calc-total-price" id="calc-total">₹2,740</div>
+            <span style="font-size:0.75rem; opacity:0.6; display:block; margin-bottom:0.4rem;">Per Month (30
+              Days)</span>
+            <a class="btn-calc-wa" id="calc-wa-btn" href="#" target="_blank">Book Custom Plan</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-grid">
+        <div class="sub-card">
+          <h3>Basic</h3>
+          <div class="sub-price">₹2,100 <span>/ month</span></div>
+          <ul>
+            <li>1 litre fresh milk daily</li>
+            <li>Morning delivery before 7 AM</li>
+            <li>500g curd twice a week</li>
+            <li>WhatsApp order management</li>
+            <li>Pause up to 5 days/month</li>
+            <li>No lock-in period</li>
+          </ul>
+          <a class="btn-sub"
+            href="https://api.whatsapp.com/send?phone=918949553581&text=Namaste!%20Mujhe%20MilkyRoots%20BASIC%20Subscription%20leni%20hai."
+            target="_blank">Get Basic Plan</a>
+        </div>
+
+        <div class="sub-card popular">
+          <span class="sub-popular-badge">Most Popular</span>
+          <h3>Family</h3>
+          <div class="sub-price">₹3,800 <span>/ month</span></div>
+          <ul>
+            <li>2 litres fresh milk daily</li>
+            <li>Morning delivery before 7 AM</li>
+            <li>1 kg curd three times a week</li>
+            <li>500ml buttermilk twice a week</li>
+            <li>100g ghee every month FREE</li>
+            <li>Priority delivery + support</li>
+            <li>Pause up to 10 days/month</li>
+          </ul>
+          <a class="btn-sub"
+            href="https://api.whatsapp.com/send?phone=918949553581&text=Namaste!%20Mujhe%20MilkyRoots%20FAMILY%20Subscription%20leni%20hai."
+            target="_blank">Get Family Plan</a>
+        </div>
+
+        <div class="sub-card">
+          <h3>Premium</h3>
+          <div class="sub-price">₹6,500 <span>/ month</span></div>
+          <ul>
+            <li>3 litres fresh milk daily</li>
+            <li>Morning + evening delivery</li>
+            <li>Unlimited curd on demand</li>
+            <li>1 litre buttermilk daily</li>
+            <li>250g bilona ghee every month FREE</li>
+            <li>Dedicated delivery person</li>
+            <li>Pause anytime, no limit</li>
+            <li>Festival special gifts</li>
+          </ul>
+          <a class="btn-sub"
+            href="https://api.whatsapp.com/send?phone=918949553581&text=Namaste!%20Mujhe%20MilkyRoots%20PREMIUM%20Subscription%20leni%20hai."
+            target="_blank">Get Premium Plan</a>
+        </div>
+      </div>
+
+      <div class="sub-policy">
+        <h3>📋 Subscription Policy</h3>
+        <div class="policy-grid">
+          <div class="policy-item">
+            <h5>🔄 Cancellation</h5>
+            <p>Cancel anytime with 48 hours notice via WhatsApp. No cancellation fee, no questions asked.</p>
+          </div>
+          <div class="policy-item">
+            <h5>⏸️ Pause / Vacation</h5>
+            <p>Going out of town? Pause your subscription for up to 30 days per year. Just WhatsApp us 24 hours before.
+            </p>
+          </div>
+          <div class="policy-item">
+            <h5>💰 Payment</h5>
+            <p>Monthly advance payment via UPI (GPay, PhonePe, Paytm) or cash. Receipt shared on WhatsApp.</p>
+          </div>
+          <div class="policy-item">
+            <h5>🔁 Plan Change</h5>
+            <p>Upgrade or downgrade your plan anytime. Changes take effect from the next billing cycle.</p>
+          </div>
+          <div class="policy-item">
+            <h5>🚚 Missed Delivery</h5>
+            <p>If we miss a delivery due to our fault, we will compensate with extra quantity the next day. Guaranteed.
+            </p>
+          </div>
+          <div class="policy-item">
+            <h5>✅ Quality Guarantee</h5>
+            <p>Not satisfied with quality? We will replace the product same day or refund that day's amount — no
+              argument.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="sec-inner">
+      <p class="section-label">Our Promise</p>
+      <h2 class="section-title">Why Choose MilkyRoots?</h2>
+      <p class="section-sub">We are not just a dairy — we are a family tradition of pure, ethical and healthy food from
+        the heart of Rajasthan.</p>
+      <div class="why-grid">
+        <div class="why-item"><span class="why-icon"><img src="gir.jpg" alt="Cow"
+              style="height:45px; width:45px; border-radius:50%; object-fit:cover; border:1px solid var(--gold);"></span>
+          <h4>Desi Gir Cows</h4>
+          <p>Our cows are pure Indian Gir breed — raised free-range on natural fodder with no artificial growth hormones
+            or antibiotics.</p>
+        </div>
+        <div class="why-item"><span class="why-icon">🌿</span>
+          <h4>Zero Adulteration</h4>
+          <p>No water, no powder, no chemicals. What you get is exactly what comes from our cow — nothing added, nothing
+            removed.</p>
+        </div>
+        <div class="why-item"><span class="why-icon">🚴</span>
+          <h4>Daily Home Delivery</h4>
+          <p>Fresh milk delivered every morning across Beawar before 7 AM — rain or shine, festival or working day, no
+            excuses.</p>
+        </div>
+        <div class="why-item"><span class="why-icon">💚</span>
+          <h4>Ethical &amp; Humane</h4>
+          <p>Our cows are never mistreated. They graze freely, eat natural fodder and live in clean shelters. Happy cows
+            = healthiest milk.</p>
+        </div>
+        <div class="why-item"><span class="why-icon">🏆</span>
+          <h4>Trusted in Beawar</h4>
+          <p>Over 500 families in Beawar have switched to MilkyRoots. Our repeat customer rate is above 95% — because
+            quality speaks.</p>
+        </div>
+        <div class="why-item"><span class="why-icon">📲</span>
+          <h4>Easy WhatsApp Orders</h4>
+          <p>No app needed. Order, modify or cancel directly on WhatsApp. Simple, fast and always personal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="sec-inner">
+      <p class="section-label">Farm to Table</p>
+      <h2 class="section-title">How We Do It</h2>
+      <p class="section-sub">Our process is simple, ancient and completely transparent. No factory. No shortcuts. Just
+        pure dairy, the right way.</p>
+      <div class="ornament">✦ ✦ ✦</div>
+      <div class="process-steps">
+        <div class="step"><span class="step-num">01</span><span class="step-icon">🌅</span>
+          <h4>4 AM Milking</h4>
+          <p>Cows are milked fresh at 4 AM daily in hygienic conditions by our experienced gawalas with clean hands and
+            clean vessels.</p>
+        </div>
+        <div class="step"><span class="step-num">02</span><span class="step-icon">🧪</span>
+          <h4>Quality Check</h4>
+          <p>Every batch is tested for purity, fat content and freshness. Any batch that doesn't pass is not delivered —
+            period.</p>
+        </div>
+        <div class="step"><span class="step-num">03</span><span class="step-icon">📦</span>
+          <h4>Hygienic Packing</h4>
+          <p>Milk is sealed in clean food-grade pouches or delivered in sanitised steel vessels on request.</p>
+        </div>
+        <div class="step"><span class="step-num">04</span><span class="step-icon">🛵</span>
+          <h4>Home Delivery</h4>
+          <p>Your order reaches your door by 6:30–7:00 AM — fresh, cold and ready for your morning chai or breakfast.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="sec-inner">
+      <p class="section-label">The People Behind MilkyRoots</p>
+      <h2 class="section-title">Our Family, Our Strength</h2>
+      <p class="section-sub">MilkyRoots is built on trust, tradition and family values. Meet the people who make it all
+        happen — every single day, rain or shine.</p>
+      <div class="team-grid">
+        <div class="team-card founder-card">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#F5C842,#C8860A)">AB</div>
+          <div class="team-badge founder-badge">👑 Founder &amp; Owner</div>
+          <h3>Arjun Singh Bhati</h3>
+          <p>The visionary behind MilkyRoots. Arjun Singh Bhati started this dairy with one mission — to bring 100%
+            pure, unadulterated cow milk to every home in Beawar. His dedication to quality and ethics is the soul of
+            MilkyRoots.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#5DCAA5,#0F6E56)">LB</div>
+          <div class="team-badge cofounder-badge">🤝 Co-Founder</div>
+          <h3>Laxman Singh Bhati</h3>
+          <p>The backbone of daily operations. Laxman Singh Bhati ensures that every litre of milk delivered meets the
+            highest standards of freshness and purity from farm to your doorstep, every single morning.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#ED93B1,#993556)">NB</div>
+          <div class="team-badge sponsor-badge">💛 Sponsor</div>
+          <h3>Neetu Bhati</h3>
+          <p>The driving force and key sponsor of MilkyRoots. Neetu Bhati's belief in the vision of pure, ethical dairy
+            has been instrumental in building and growing what MilkyRoots is today.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#85B7EB,#185FA5)">DB</div>
+          <div class="team-badge commander-badge">⚔️ Sponsor</div>
+          <h3>Commander D S Bhati</h3>
+          <p>The strategic commander of MilkyRoots. D S Bhati leads operations with military discipline and precision,
+            ensuring the farm and delivery network runs like clockwork every day.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#FCD34D,#D97706)">YS</div>
+          <div class="team-badge marketing-badge">📢 Marketing Manager</div>
+          <h3>Yuvraj Singh Bhati</h3>
+          <p>The creative mind behind our brand's growth. Yuvraj Singh Bhati focuses on connecting MilkyRoots with more
+            families in Beawar, ensuring our message of purity and tradition reaches everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-sec">
+    <div class="sec-inner">
+      <p class="section-label">Common Doubts</p>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Have questions about delivery patterns, packaging options, or trial terms? Find answers
+        below.</p>
+      <div class="faq-wrapper">
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">Do I need to give my own container (पतेली)? <span
+              class="faq-icon">▼</span></div>
+          <div class="faq-content">Yes, you can leave a clean steel vessel outside your door every night, and our
+            delivery person will pour the milk cleanly into it. Alternatively, we can deliver it sealed safely in
+            food-grade pouches.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">What is the cutoff time to pause morning delivery? <span
+              class="faq-icon">▼</span></div>
+          <div class="faq-content">If you are traveling or don't need milk tomorrow morning, simply message us on
+            WhatsApp before 9:00 PM the previous evening. No amount will be charged for that specific day.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">Is the 3-Litre Trial really 100% free? <span
+              class="faq-icon">▼</span></div>
+          <div class="faq-content">Absolutely! There are no hidden fees, delivery costs, or structural commitments. We
+            give you 3 litres over 3 consecutive days so you can test the quality in your family tea and kitchen.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="sec-inner">
+      <p class="section-label">Customer Love</p>
+      <h2 class="section-title">What Beawar Says</h2>
+      <p class="section-sub">500+ families in Beawar trust us for their daily dairy needs. Here is what they say about
+        MilkyRoots.</p>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>"Inka ghee khaya toh purana zamana yaad aa gaya. Bilkul asli smell aur taste — market ka ghee ab pasand hi
+            nahi aata. Puri family khush hai!"</p>
+          <div class="testi-author">Sunita Sharma</div>
+          <div class="testi-loc">📍 Subhash Nagar, Beawar</div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>"Daily subah 6:30 baje milk aa jaata hai. Kabhi bhi late nahi hua. Dahi bhi bahut thick aur tasty hoti hai.
+            Trial liya tha — ab 6 mahine se subscription hai!"</p>
+          <div class="testi-author">Ramesh Agarwal</div>
+          <div class="testi-loc">📍 Gandhi Colony, Beawar</div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>"Free trial se shuruaat ki. Ek baar taste kiya toh switch karne mein ek second nahi laga. Chaas garamion
+            mein life saver hai — bilkul ghar jaisi!"</p>
+          <div class="testi-author">Priya Mehta</div>
+          <div class="testi-loc">📍 Rani Bazaar, Beawar</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="sec-inner">
+      <p class="section-label">Place Your Order</p>
+      <h2 class="section-title">Get Fresh Dairy Today</h2>
+      <p class="section-sub">Call us, WhatsApp us or fill the form — and fresh dairy will be at your door tomorrow
+        morning.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-item-icon">📞</span>
+            <div>
+              <h5>Call / WhatsApp</h5>
+              <p>+91 89495 53581<br>+91 96363 20075<br><small style="opacity:.6">Available 6 AM – 9 PM daily</small></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">📍</span>
+            <div>
+              <h5>Our Dairy Farm</h5>
+              <p>MilkyRoots,<br>Beawar – 305 901, Rajasthan</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">🕐</span>
+            <div>
+              <h5>Delivery Timings</h5>
+              <p>Morning: 5:30 AM – 7:00 AM<br>Evening Milk: 5:30 PM – 7:00 PM</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">🗺️</span>
+            <div>
+              <h5>Delivery Areas</h5>
+              <p>Subhash Nagar, Gandhi Colony, Rani Bazaar, Civil Lines, Model Town &amp; all of Beawar city</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">💳</span>
+            <div>
+              <h5>Payment Methods</h5>
+              <p>Cash · GPay · PhonePe · Paytm<br><small style="opacity:.6">UPI: milkyroots@upi (update as
+                  needed)</small></p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="order-form">
+            <input id="ord-name" type="text" placeholder="Your Full Name" />
+            <input id="ord-phone" type="tel" placeholder="Your Mobile Number" />
+            <input id="ord-addr" type="text" placeholder="Delivery Address in Beawar" />
+
+            <input id="ord-date" type="date" title="Select Preferred Delivery Start Date" />
+
+            <select id="ord-product" onchange="handleProductChange()">
+              <option value="" disabled selected>Select Product</option>
+              <option value="Fresh Cow Milk">Fresh Cow Milk – ₹70/litre</option>
+              <option value="Homemade Curd">Homemade Curd – ₹80/kg</option>
+              <option value="Fresh Buttermilk">Fresh Buttermilk – ₹30/500ml</option>
+              <option value="Pure Bilona Ghee">Pure Bilona Ghee – ₹900/500g</option>
+              <option value="FREE Trial">🎁 FREE Trial – 3 Litres (First Time)</option>
+              <option value="Basic Subscription">Basic Subscription – ₹2,100/month</option>
+              <option value="Family Subscription">Family Subscription – ₹3,800/month</option>
+              <option value="Premium Subscription">Premium Subscription – ₹6,500/month</option>
+            </select>
+            <select id="ord-qty">
+              <option value="" disabled selected>Quantity / Plan</option>
+              <option id="opt-q1" value="500 ml – One Time">500 ml – One Time</option>
+              <option id="opt-q2" value="1 Litre – One Time">1 Litre – One Time</option>
+              <option id="opt-q3" value="2 Litres – One Time">2 Litres – One Time</option>
+              <option id="opt-qtrial" value="3 Litres – Free Trial">3 Litres – Free Trial</option>
+              <option id="opt-q4" value="1 Litre – Daily Subscription">1 Litre – Daily Subscription</option>
+              <option id="opt-q5" value="2 Litres – Daily Subscription">2 Litres – Daily Subscription</option>
+              <option id="opt-q6" value="3 Litres – Daily Subscription">3 Litres – Daily Subscription</option>
+            </select>
+            <textarea id="ord-msg"
+              placeholder="Any special request, container preference or timing details…"></textarea>
+            <button onclick="placeOrder()"><img src="gir.jpg" alt="Cow" class="cow-icon-small"> Place Order on
+              WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong><img src="gir.jpg" alt="Cow" class="cow-icon-small"> MilkyRoots</strong> — Pure Cow Dairy, Beawar,
+    Rajasthan<br>
+    <div class="footer-links">
+      <a href="#products">Products</a>
+      <a href="#trial">Free Trial</a>
+      <a href="#subscription">Subscribe</a>
+      <a href="#why">Why Us</a>
+      <a href="#team">Our Team</a>
+      <a href="#order">Order</a>
+    </div>
+    📞 +91 89495 53581 &nbsp;|&nbsp; 📞 +91 96363 20075<br>
+    <span style="font-size:.78rem;opacity:.4">Made with ❤️ in Beawar · © 2026 MilkyRoots. All rights reserved.</span>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var m = document.getElementById('mobileMenu');
+      m.classList.toggle('open');
+    }
+
+    // Global active areas list baseline arrays
+    const serviceAreas = ["subhash nagar", "gandhi colony", "rani bazaar", "civil lines", "model town"];
+
+    // NEW LOGIC: LIVE TICKER UPDATE MECHANISM
+    const tickerUpdates = [
+      "Ramesh Agarwal from Gandhi Colony just renewed their Family Plan subscription! 🎉",
+      "Morning milking completed at 4:12 AM today. All parameters verified pure! 🥛",
+      "Priya Mehta from Rani Bazaar claimed their Free 3L Trial! 🎁",
+      "Fresh batch of traditional Bilona Ghee has finished wood-fire cooking! ✨"
+    ];
+    let tickerIndex = 0;
+    function cycleTicker() {
+      const textEl = document.getElementById('ticker-text');
+      if (textEl) {
+        textEl.innerText = tickerUpdates[tickerIndex];
+        tickerIndex = (tickerIndex + 1) % tickerUpdates.length;
+      }
+    }
+    setInterval(cycleTicker, 4000);
+
+    // NEW LOGIC: AREA INPUT VALIDATOR ENGINE
+    function checkAreaInput() {
+      const input = document.getElementById('area-input').value.toLowerCase().trim();
+      const res = document.getElementById('checker-result');
+      if (!input) { res.innerText = ""; return; }
+
+      let match = serviceAreas.some(area => input.includes(area) || area.includes(input));
+      if (match) {
+        res.style.color = "var(--green)";
+        res.innerText = "🟢 Yes! We deliver to your area daily before 7:00 AM.";
+      } else {
+        res.style.color = "var(--gold)";
+        res.innerText = "🟡 Area unverified. Click check to ask via custom farm delivery route review.";
+      }
+    }
+
+    function btnCheckArea() {
+      const input = document.getElementById('area-input').value.trim();
+      if (!input) { alert("Please type your neighborhood name first."); return; }
+      window.open(`https://api.whatsapp.com/send?phone=918949553581&text=Namaste!%20Kya%20MilkyRoots%20dairy%20delivery%20${encodeURIComponent(input)}%20mein%20available%20hai%3F`);
+    }
+
+    // Set Minimum Order Date Restriction to Tomorrow
+    window.addEventListener('DOMContentLoaded', function () {
+      const dateInput = document.getElementById('ord-date');
+      if (dateInput) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().split('T')[0];
+      }
+      cycleTicker();
+      updateCalculator();
+    });
+
+    // CUSTOM BUDGET CALCULATOR FUNCTION
+    function updateCalculator() {
+      const milkLiters = parseFloat(document.getElementById('calc-milk').value);
+      const curdKg = parseFloat(document.getElementById('calc-curd').value);
+      const chaasPacks = parseInt(document.getElementById('calc-chaas').value);
+
+      document.getElementById('lbl-milk').innerText = milkLiters + " L";
+      document.getElementById('lbl-curd').innerText = curdKg + " kg";
+      document.getElementById('lbl-chaas').innerText = chaasPacks + " Packs";
+
+      const milkCost = milkLiters * 70 * 30;
+      const curdCost = curdKg * 80 * 4;
+      const chaasCost = chaasPacks * 30 * 4;
+      const totalCost = milkCost + curdCost + chaasCost;
+
+      document.getElementById('calc-total').innerText = "₹" + totalCost.toLocaleString('en-IN');
+
+      const waMessage = `Namaste MilkyRoots! I want to book a Custom Plan:\n🥛 Milk: ${milkLiters}L Daily\n🍶 Curd: ${curdKg}kg Weekly\n🥤 Buttermilk: ${chaasPacks} Packs Weekly\nEstimated Cost: ₹${totalCost}/month. Please confirm!`;
+      document.getElementById('calc-wa-btn').href = "https://api.whatsapp.com/send?phone=918949553581&text=" + encodeURIComponent(waMessage);
+    }
+
+    function toggleFaq(header) {
+      const item = header.parentElement;
+      item.classList.toggle('active');
+    }
+
+    function redirectToFreeTrialForm() {
+      var pSelect = document.getElementById('ord-product');
+      pSelect.value = 'FREE Trial';
+      handleProductChange();
+      document.getElementById('ord-msg').value = "Interested in claiming a Free 3-Litre Trial.";
+      var orderSection = document.getElementById('order');
+      if (orderSection) { orderSection.scrollIntoView({ behavior: 'smooth' }); }
+    }
+
+    function handleProductChange() {
+      var productSelect = document.getElementById('ord-product');
+      var qtySelect = document.getElementById('ord-qty');
+
+      if (productSelect.value === 'FREE Trial') {
+        qtySelect.value = '3 Litres – Free Trial';
+        for (var i = 0; i < qtySelect.options.length; i++) {
+          if (qtySelect.options[i].value !== '3 Litres – Free Trial') {
+            qtySelect.options[i].disabled = true;
+          }
+        }
+      } else {
+        for (var i = 0; i < qtySelect.options.length; i++) {
+          qtySelect.options[i].disabled = false;
+        }
+        if (qtySelect.value === '3 Litres – Free Trial') { qtySelect.value = ""; }
+        document.getElementById('opt-qtrial').disabled = true;
+      }
+    }
+
+    function selectTrialProduct(prodName) {
+      var pSelect = document.getElementById('ord-product');
+      pSelect.value = 'FREE Trial';
+      handleProductChange();
+      document.getElementById('ord-msg').value = "Interested in Trial Product variant: " + prodName;
+      var orderSection = document.getElementById('order');
+      if (orderSection) { orderSection.scrollIntoView({ behavior: 'smooth' }); }
+    }
+
+    function placeOrder() {
+      var name = document.getElementById('ord-name').value.trim();
+      var phone = document.getElementById('ord-phone').value.trim();
+      var address = document.getElementById('ord-addr').value.trim();
+      var date = document.getElementById('ord-date').value;
+      var product = document.getElementById('ord-product').value;
+      var qty = document.getElementById('ord-qty').value;
+      var msg = document.getElementById('ord-msg').value.trim();
+
+      if (!name || !phone || !address || !product || !qty || !date) {
+        alert('कृपया सभी जानकारी और तारीख भरें\nPlease fill all fields including Start Date before ordering.');
+        return;
+      }
+
+      var text = '🐄 *नया ऑर्डर – MilkyRoots, Beawar*' +
+        '\n\n👤 *Name:* ' + name +
+        '\n📞 *Mobile:* ' + phone +
+        '\n📍 *Address:* ' + address +
+        '\n📅 *Start Date:* ' + date +
+        '\n🛒 *Product:* ' + product +
+        '\n📦 *Quantity/Plan:* ' + qty +
+        (msg ? '\n💬 *Message:* ' + msg : '') +
+        '\n\n✅ Kripya is order ko confirm karein. Dhanyavaad! 🙏';
+
+      var encoded = encodeURIComponent(text);
+      var waURL = 'https://api.whatsapp.com/send?phone=918949553581&text=' + encoded;
+      var a = document.createElement('a');
+      a.href = waURL; a.target = '_blank'; a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+
+    document.addEventListener('click', function (e) {
+      var menu = document.getElementById('mobileMenu');
+      var ham = document.querySelector('.hamburger');
+      if (menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+
+</html>
