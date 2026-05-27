@@ -422,6 +422,7 @@ footer strong{color:var(--gold-light)}
   .contact-grid{grid-template-columns:1fr;gap:2.5rem}
   .reviews-container{grid-template-columns:1fr !important}
   .why-grid{grid-template-columns:repeat(3, 1fr)}
+  .health-grid{grid-template-columns:1fr;gap:2rem}
 }
 @media(max-width:768px){
   section{padding:50px 4vw}
@@ -435,6 +436,7 @@ footer strong{color:var(--gold-light)}
   .step{border-right:none;border-bottom:1px solid var(--border)}
   .step:last-child{border-bottom:none}
   .trial-intro{grid-template-columns:1fr}
+  .health-points{grid-template-columns:1fr}
 }
 @media(max-width:767px){
   .about-main{grid-template-columns:1fr;gap:2rem;text-align:center}
@@ -455,6 +457,7 @@ footer strong{color:var(--gold-light)}
   .testi-grid{grid-template-columns:1fr}
   .hero-stats{gap:1.5rem}
   .hero-stat h3{font-size:1.5rem}
+  .hero-badge{font-size:.7rem;padding:4px 10px}
 }
 @media(max-width:400px){
   .hero h1{font-size:1.9rem}
@@ -478,9 +481,9 @@ nav{top:42px}
 }
 @media(max-width:400px){
   nav{top:72px}
-  .mobile-menu{top:128px}
-  .loyalty-banner{top:128px}
-  .hero{padding-top:200px}
+  .mobile-menu{top:136px}
+  .loyalty-banner{top:136px}
+  .hero{padding-top:230px}
 }
 </style>
 </head>
@@ -1353,7 +1356,7 @@ document.getElementById('confirmRev').addEventListener('click', function() {
     <h2 class="section-title">Health Benefits of Our Milk</h2>
     <p class="section-sub">Our pure desi cow milk is not just delicious — it is scientifically better for your body. Here's what makes MilkyRoots unique.</p>
     <div class="health-grid">
-      <div>
+      <div class="table-wrapper">
         <table class="compare-table">
           <thead>
             <tr>
