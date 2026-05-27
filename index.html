@@ -406,7 +406,8 @@ footer strong{color:var(--gold-light)}
 
 /* ── FAQ ── */
 #faq{background:#F4FAFF}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:start}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.faq-col{display:flex;flex-direction:column;gap:1.2rem}
 .faq-item{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s;height:fit-content}
 .faq-item:hover{box-shadow:var(--shadow)}
 .faq-q{padding:1.1rem 1.3rem;font-weight:700;font-size:.92rem;color:var(--brown-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none}
@@ -1366,33 +1367,38 @@ document.getElementById('confirmRev').addEventListener('click', function() {
     <h2 class="section-title">Frequently Asked Questions</h2>
     <p class="section-sub">Everything you want to know about MilkyRoots — answered honestly.</p>
     <div class="faq-grid">
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Is your milk really pure? How can I trust it?</div>
-        <div class="faq-a">Yes — 100%. Our cows are raised on our own farm in Beawar. Milking starts at 4 AM, quality-checked for fat and purity, and delivered to you (we will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur). We have zero tolerance for water mixing or adulteration. You can visit our farm anytime — we welcome it!</div>
+      <div class="faq-col">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Is your milk really pure? How can I trust it?</div>
+          <div class="faq-a">Yes — 100%. Our cows are raised on our own farm in Beawar. Milking starts at 4 AM, quality-checked for fat and purity, and delivered to you (we will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur). We have zero tolerance for water mixing or adulteration. You can visit our farm anytime — we welcome it!</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Can I try before subscribing?</div>
+          <div class="faq-a">Absolutely! We offer a FREE 2-day trial (2 litres) of any product — milk, curd, buttermilk or ghee (50gm). No payment required. Just WhatsApp us and we will deliver your trial within 24 hours.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">What payment methods do you accept?</div>
+          <div class="faq-a">We accept Cash, GPay, PhonePe and Paytm. Monthly subscription payments are made in advance. We send a WhatsApp receipt immediately after every payment.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Why is your ghee more expensive than market ghee?</div>
+          <div class="faq-a">Our bilona ghee is made the traditional way — it takes 25 litres of pure desi cow milk to make just 1 kg of ghee. It is hand-churned, slow-cooked over wood fire and contains zero additives. Market ghee is made from cream or buffalo milk using shortcuts. You are paying for real, pure, ancient-method ghee.</div>
+        </div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">How do I place an order or start a subscription?</div>
-        <div class="faq-a">Simply WhatsApp us at +91 89495 53581 with your name, address, and what you need. Or use the Order form on this page. Our team will reach out to you at the earliest to confirm your order, and we will begin delivery the next morning.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Can I try before subscribing?</div>
-        <div class="faq-a">Absolutely! We offer a FREE 2-day trial (2 litres) of any product — milk, curd, buttermilk or ghee (50gm). No payment required. Just WhatsApp us and we will deliver your trial within 24 hours.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Can I pause my subscription when I travel?</div>
-        <div class="faq-a">Yes! Just WhatsApp us 24 hours before and we will pause your delivery. You can pause up to 30 days per year on any plan. No charges during the pause period.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">What payment methods do you accept?</div>
-        <div class="faq-a">We accept Cash, GPay, PhonePe and Paytm. Monthly subscription payments are made in advance. We send a WhatsApp receipt immediately after every payment.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Do you deliver outside Beawar city?</div>
-        <div class="faq-a">Free Home Delivery available across the entire Beawar Municipal Area.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Why is your ghee more expensive than market ghee?</div>
-        <div class="faq-a">Our bilona ghee is made the traditional way — it takes 25 litres of pure desi cow milk to make just 1 kg of ghee. It is hand-churned, slow-cooked over wood fire and contains zero additives. Market ghee is made from cream or buffalo milk using shortcuts. You are paying for real, pure, ancient-method ghee.</div>
+
+      <div class="faq-col">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">How do I place an order or start a subscription?</div>
+          <div class="faq-a">Simply WhatsApp us at +91 89495 53581 with your name, address, and what you need. Or use the Order form on this page. Our team will reach out to you at the earliest to confirm your order, and we will begin delivery the next morning.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Can I pause my subscription when I travel?</div>
+          <div class="faq-a">Yes! Just WhatsApp us 24 hours before and we will pause your delivery. You can pause up to 30 days per year on any plan. No charges during the pause period.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Do you deliver outside Beawar city?</div>
+          <div class="faq-a">Free Home Delivery available across the entire Beawar Municipal Area.</div>
+        </div>
       </div>
     </div>
 
