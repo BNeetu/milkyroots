@@ -419,7 +419,8 @@ nav{top:42px}
 @media(max-width:992px){
   .nav-links{display:none}
   .hamburger{display:flex}
-  .hero{padding-top:120px;min-height:auto}
+  .hero{padding-top:120px;min-height:auto !important;display:block !important;background:var(--warm-white) !important}
+  .hero::before{display:none}
   .hero-inner{grid-template-columns:1fr;text-align:center}
   .hero-desc{margin:0 auto 2rem}
   .hero-btns{justify-content:center}
@@ -435,7 +436,7 @@ nav{top:42px}
   nav{top:54px}
   .mobile-menu{top:118px}
   .loyalty-banner{top:118px}
-  .hero{padding-top:200px}
+  .hero{padding-top:160px !important}
   .hero h1{font-size:2.8rem}
   .promo-banner{font-size:0.75rem;padding:8px 10px;gap:8px}
   .loyalty-banner{font-size:0.8rem;padding:10px}
@@ -447,7 +448,7 @@ nav{top:42px}
   .step:last-child{border-bottom:none}
   .trial-intro{grid-template-columns:1fr}
   .health-points{grid-template-columns:1fr}
-  .slideshow{min-height:350px}
+  .slideshow{min-height:auto !important;aspect-ratio:1/1 !important}
 }
 @media(max-width:767px){
   .about-main{grid-template-columns:1fr;gap:2rem;text-align:center}
@@ -474,14 +475,13 @@ nav{top:42px}
   nav{top:72px}
   .mobile-menu{top:136px}
   .loyalty-banner{top:136px}
-  .hero{padding-top:260px}
+  .hero{padding-top:190px !important}
   .hero h1{font-size:1.9rem}
   .promo-banner{flex-direction:column;gap:4px;font-size:0.7rem}
   .logo-text span:first-child{font-size:0.95rem}
   .nav-logo .logo-img{width:36px;height:36px}
   .nav-logo .logo-img svg{width:22px;height:22px}
   nav{height:56px}
-  .slideshow{min-height:300px}
 }
 </style>
 </head>
