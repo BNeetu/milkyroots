@@ -144,7 +144,7 @@ section{padding:72px 5vw}
 /* ── PRODUCTS ── */
 #products{background:var(--cream)}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem}
-.product-card{background:var(--warm-white);border-radius:var(--radius);padding:1.8rem;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.product-card{background:var(--warm-white);border-radius:var(--radius);padding:1.8rem;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .product-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-light),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .product-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(107,58,31,.12)}
 .product-card:hover::after{transform:scaleX(1)}
@@ -154,7 +154,7 @@ section{padding:72px 5vw}
 .product-card p{font-size:.9rem;color:var(--text-muted);line-height:1.72;margin-bottom:1rem}
 .product-details{background:var(--cream);border-radius:10px;padding:.8rem 1rem;margin-bottom:1rem;font-size:.82rem;color:var(--text-muted);line-height:1.8}
 .product-details strong{color:var(--brown);display:block;margin-bottom:.2rem;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
-.product-price{font-size:1.05rem;font-weight:700;color:var(--gold);border-top:1px solid var(--border);padding-top:.9rem;display:flex;justify-content:space-between;align-items:center}
+.product-price{font-size:1.05rem;font-weight:700;color:var(--gold);border-top:1px solid var(--border);padding-top:.9rem;display:flex;justify-content:space-between;align-items:center;margin-top:auto}
 .badge-pure{background:var(--green-light);color:var(--green);font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:50px;letter-spacing:.06em;text-transform:uppercase}
 
 /* ── TRIAL PERIOD ── */
@@ -406,8 +406,8 @@ footer strong{color:var(--gold-light)}
 
 /* ── FAQ ── */
 #faq{background:#F4FAFF}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
-.faq-item{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:start}
+.faq-item{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s;height:fit-content}
 .faq-item:hover{box-shadow:var(--shadow)}
 .faq-q{padding:1.1rem 1.3rem;font-weight:700;font-size:.92rem;color:var(--brown-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none}
 .faq-q::after{content:'﹢';font-size:1.3rem;color:var(--gold);flex-shrink:0;transition:.3s}
@@ -674,7 +674,7 @@ nav{top:42px}
           25 litres milk → 1 kg ghee.<br>
           Shelf life: 12 months (no refrigeration).
         </div>
-        <div class="product-price">₹900 / 500g <span class="badge-pure">Bilona</span></div>
+        <div class="product-price">₹900 / 500gm <span class="badge-pure">Bilona</span></div>
       </div>
 
     </div>
@@ -778,7 +778,7 @@ nav{top:42px}
         <ul>
           <li>1 litre fresh milk daily</li>
           <li>Efforts are made to deliver milk before 7 am</li>
-          <li>500g curd twice a week</li>
+          <li>500gm curd twice a week</li>
           <li>WhatsApp order management</li>
           <li>Pause up to 5 days/month</li>
           <li>No lock-in period</li>
@@ -841,11 +841,11 @@ nav{top:42px}
         </div>
         <div class="policy-item">
           <h5>🚚 Missed Delivery</h5>
-          <p>If we miss a delivery due to our fault, we will compensate with extra quantity the next day. Guaranteed.</p>
+          <p>In the rare event of a missed delivery due to our oversight, we remain committed to your satisfaction and will proactively compensate you with extra quantity in your following delivery.</p>
         </div>
         <div class="policy-item">
           <h5>✅ Quality Guarantee</h5>
-          <p>Not satisfied with quality? We will replace the product same day or refund that day's amount — no argument.</p>
+          <p>At MilkyRoots, we ensure the highest standards. If our product doesn't meet your expectations, reach out to our customer support team for an immediate review and resolution.</p>
         </div>
       </div>
     </div>
@@ -1372,15 +1372,11 @@ document.getElementById('confirmRev').addEventListener('click', function() {
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">How do I place an order or start a subscription?</div>
-        <div class="faq-a">Simply WhatsApp us at +91 89495 53581 with your name, address and what you need. Or use the Order form on this page. We will confirm your order within 1 hour and start delivery from the next morning.</div>
+        <div class="faq-a">Simply WhatsApp us at +91 89495 53581 with your name, address, and what you need. Or use the Order form on this page. Our team will reach out to you at the earliest to confirm your order, and we will begin delivery the next morning.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Can I try before subscribing?</div>
-        <div class="faq-a">Absolutely! We offer a FREE 2-day trial (2 litres) of any product — milk, curd, buttermilk or ghee (50gmg). No payment required. Just WhatsApp us and we will deliver your trial within 24 hours.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">What if I am not satisfied with the quality?</div>
-        <div class="faq-a">We replace the product same day or refund that day's amount — no questions asked, no argument. Quality is our promise and we stand behind it completely.</div>
+        <div class="faq-a">Absolutely! We offer a FREE 2-day trial (2 litres) of any product — milk, curd, buttermilk or ghee (50gm). No payment required. Just WhatsApp us and we will deliver your trial within 24 hours.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Can I pause my subscription when I travel?</div>
@@ -1392,7 +1388,7 @@ document.getElementById('confirmRev').addEventListener('click', function() {
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Do you deliver outside Beawar city?</div>
-        <div class="faq-a">Currently we deliver across all areas of Beawar city — Subhash Nagar, Gandhi Colony, Rani Bazaar, Civil Lines, Model Town and nearby localities. WhatsApp us your address and we will confirm if we can reach you.</div>
+        <div class="faq-a">Free Home Delivery available across the entire Beawar Municipal Area.</div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Why is your ghee more expensive than market ghee?</div>
@@ -1436,7 +1432,7 @@ document.getElementById('confirmRev').addEventListener('click', function() {
         </div>
         <div class="contact-item">
           <span class="contact-item-icon">🗺️</span>
-          <div><h5>Delivery Areas</h5><p>Subhash Nagar, Gandhi Colony, Rani Bazaar, Civil Lines, Model Town &amp; all of Beawar city</p></div>
+          <div><h5>Delivery Areas</h5><p>Free Home Delivery available across the entire Beawar Municipal Area.</p></div>
         </div>
         <div class="contact-item">
           <span class="contact-item-icon">💳</span>
