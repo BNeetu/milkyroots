@@ -602,7 +602,7 @@ nav{top:42px}
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease !important;
 }
 
-.product-card:hover, .trial-step:hover, .trial-product-card:hover, .why-item:hover, .team-card:hover, .about-chapter:hover, .ah-item:hover, .hp-item:hover, .sub-card:hover, .trial-highlight:hover, .faq-item:hover {
+.product-card:hover, .trial-step:hover, .trial-product-card:hover, .why-item:hover, .team-card:hover, .about-chapter:hover, .ah-item:hover, .hp-item:hover, .sub-card:hover, .trial-highlight:hover, .faq-item:hover, .product-card.tapped, .trial-step.tapped, .trial-product-card.tapped, .why-item.tapped, .team-card.tapped, .about-chapter.tapped, .ah-item.tapped, .hp-item.tapped, .sub-card.tapped, .trial-highlight.tapped, .faq-item.tapped {
   transform: translateY(-12px) scale(1.03) !important;
   box-shadow: 0 25px 50px rgba(0, 60, 130, 0.2) !important;
   border-color: var(--gold) !important;
@@ -1777,12 +1777,10 @@ document.getElementById('confirmRev').addEventListener('click', function() {
 <script>
 // ── FINAL SOUND ACTIVATION LOGIC ──
 let audioUnlocked = false;
-const cowSound = new Audio('cow sound.wav');
+const cowSound = new Audio('cow-sound.wav');
 
 function playMoo(e) {
-  if(e) e.preventDefault();
-
-  // 1. Visual Feedback
+  // On mobile, we don't preventDefault to allow the tap to register
   const logo = document.querySelector('.nav-logo');
   const mooPop = document.createElement('div');
   mooPop.innerHTML = '🐄 Moo!';
@@ -1791,16 +1789,12 @@ function playMoo(e) {
   logo.appendChild(mooPop);
   setTimeout(() => mooPop.remove(), 1000);
 
-  // 2. Sound Logic
   cowSound.currentTime = 0;
   cowSound.volume = 1.0;
   
   cowSound.play().catch(error => {
-    console.log("Audio file blocked. Trying Voice Synthesis fallback...");
-    // Fallback 1: Google OGG
     const fallback = new Audio('https://actions.google.com/sounds/v1/animals/cow_moo.ogg');
     fallback.play().catch(err => {
-        // Fallback 2: Text to Speech (Always works on laptops)
         const msg = new SpeechSynthesisUtterance("Moo");
         msg.pitch = 0.5;
         msg.rate = 0.8;
@@ -1809,8 +1803,8 @@ function playMoo(e) {
   });
 }
 
-// Global unlock on first click anywhere
-window.addEventListener('click', () => {
+// Global unlock on first interaction (Click or Touch)
+const unlock = () => {
     if(!audioUnlocked) {
         cowSound.play().then(() => {
             cowSound.pause();
@@ -1818,7 +1812,18 @@ window.addEventListener('click', () => {
             audioUnlocked = true;
         }).catch(e => {});
     }
-}, { once: true });
+};
+window.addEventListener('click', unlock, { once: true });
+window.addEventListener('touchstart', unlock, { once: true });
+
+// Mobile Tap Float Effect
+document.addEventListener('touchstart', function(e) {
+    const target = e.target.closest('.product-card, .trial-step, .trial-product-card, .why-item, .team-card, .about-chapter, .ah-item, .hp-item, .sub-card, .trial-highlight, .faq-item');
+    if (target) {
+        target.classList.add('tapped');
+        setTimeout(() => target.classList.remove('tapped'), 600);
+    }
+}, {passive: true});
 
 // Attach CSS floating keyframes dynamically
 const style = document.createElement('style');
