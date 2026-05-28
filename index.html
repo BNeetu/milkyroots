@@ -95,6 +95,31 @@ nav{
 .nav-cta{background:var(--gold)!important;color:#fff!important;padding:8px 18px;border-radius:50px;transition:all 0.3s ease!important;border:1.5px solid var(--gold)!important}
 .nav-cta:hover{background:var(--brown)!important;border-color:var(--brown)!important;transform:translateY(-4px)!important}
 .nav-cta:active{transform:translateY(-1px)!important}
+
+/* Language Button */
+.lang-btn {
+  background: rgba(0, 119, 182, 0.1);
+  color: var(--brown);
+  border: 1.5px solid var(--gold);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+.lang-btn:hover {
+  background: var(--gold);
+  color: #fff;
+}
+.mobile-lang {
+  margin: 10px 16px;
+  width: calc(100% - 32px);
+  font-size: 0.9rem;
+  padding: 10px;
+}
+
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;transition:.3s}
 .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(234,246,255,0.98);border-bottom:1px solid var(--border);padding:1.2rem 5vw;z-index:199;flex-direction:column;gap:0}
@@ -776,12 +801,14 @@ nav.shrunk {
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#team">Our Team</a></li>
     <li><a href="#order" class="nav-cta">Order Now</a></li>
+    <li><button id="langToggle" class="lang-btn" onclick="toggleLanguage()">हिन्दी / EN</button></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
+  <button id="langToggleMobile" class="lang-btn mobile-lang" onclick="toggleLanguage()">भाषा: हिन्दी / EN</button>
   <a href="#products" onclick="toggleMenu()">Products</a>
   <a href="#trial" onclick="toggleMenu()">Free Trial</a>
   <a href="#subscription" onclick="toggleMenu()">Subscribe</a>
@@ -868,7 +895,7 @@ nav.shrunk {
             <div class="slide-caption">
               <span class="s-badge">Service</span>
               <h4>Dedicated Delivery</h4>
-              <p>Our milkmen will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur.</p>
+              <p>Our milkmen will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur.</p>
             </div>
           </div>
 
@@ -909,7 +936,7 @@ nav.shrunk {
           <strong>Product Details.</strong>
           Fat Content: 4.0–4.5% natural fat.<br>
           Milking starts at 4 AM every day.<br>
-          Delivered: We will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur.
+          Delivered: We will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur.
         </div>
         <div class="product-price">₹70 / litre <span class="badge-pure">A2 Milk</span></div>
       </div>
@@ -1142,7 +1169,7 @@ nav.shrunk {
     <div class="why-grid">
       <div class="why-item"><span class="why-icon">🐄</span><h4>Desi Cows</h4><p>Our cows are pure Indian desi breed — raised free-range on natural fodder (green rachka, green janwar, and green Bajra) with no artificial hormonal elements or antibiotics.</p></div>
       <div class="why-item"><span class="why-icon">🌿</span><h4>Zero Adulteration</h4><p>No water, no powder, no chemicals. What you get is exactly what comes from our cow — nothing added, nothing removed.</p></div>
-      <div class="why-item"><span class="why-icon">🚴</span><h4>Daily Home Delivery</h4><p>Fresh milk delivered across Beawar (we will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur).</p></div>
+      <div class="why-item"><span class="why-icon">🚴</span><h4>Daily Home Delivery</h4><p>Fresh milk delivered across Beawar (we will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur).</p></div>
       <div class="why-item"><span class="why-icon">💚</span><h4>Ethical &amp; Humane</h4><p>Our cows are never mistreated. They graze freely, eat natural fodder and live in clean shelters. Happy cows = healthiest milk.</p></div>
       <div class="why-item"><span class="why-icon">🏆</span><h4>Trusted in Beawar</h4><p>Over 300+ families in Beawar have switched to MilkyRoots. Our repeat customer rate is above 95% — because quality speaks.</p></div>
       <div class="why-item"><span class="why-icon">📲</span><h4>Easy WhatsApp Orders</h4><p>No app needed. Order, modify or cancel directly on WhatsApp. Simple, fast and always personal.</p></div>
@@ -1160,7 +1187,7 @@ nav.shrunk {
     <div class="process-steps">
       <div class="step"><span class="step-num">01</span><span class="step-icon">🌅</span><h4>4 AM Milking</h4><p>Cows are milked fresh at 4 AM daily in hygienic conditions by our experienced gawalas with clean hands and clean vessels.</p></div>
       <div class="step"><span class="step-num">02</span><span class="step-icon">🧪</span><h4>Quality Check</h4><p>Every day’s milk is tested for purity, fat content and freshness. Any milk that doesn't pass is not delivered — period.</p></div>
-      <div class="step"><span class="step-num">03</span><span class="step-icon">🛵</span><h4>Home Delivery</h4><p>We will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur.</p></div>
+      <div class="step"><span class="step-num">03</span><span class="step-icon">🛵</span><h4>Home Delivery</h4><p>We will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur.</p></div>
     </div>
   </div>
 </section>
@@ -1171,17 +1198,17 @@ nav.shrunk {
   <div class="sec-inner">
     <p class="section-label">Our Story</p>
     <h2 class="section-title">The Bhati Family Legacy</h2>
-    <p class="section-sub">From a humble polyhouse to a thriving pure dairy farm — this is the story of passion, purity and the Bhati family's unwavering commitment to natural, honest food.</p>
+    <p class="section-sub">From a humble polyhouse to a thriving pure dairy farm — this is the story of passion, purity, and the Bhati family's unwavering commitment to natural, honest food.</p>
 
     <div class="about-main">
       <div class="about-text">
-        <p>The <strong>Bhati family of Beawar, Rajasthan</strong> has always believed that the best food comes from the earth — grown with care, raised with love, and delivered with honesty. Their journey began not with dairy, but with soil.</p>
+        <p>The <strong>Bhati family of Beawar, Rajasthan</strong>, has always believed that the best food comes from the earth — grown with care, raised with love, and delivered with honesty. Their journey began not with dairy, but with soil.</p>
 
-        <p>Years ago, the Bhati family established their <strong>polyhouse farm</strong> — a climate-controlled greenhouse where they grew a wide range of fresh, organic farm products for the people of Beawar. From juicy tomatoes and leafy spinach to brinjal, capsicum and seasonal greens — every vegetable was grown <strong>without chemicals or pesticides</strong>, using only natural compost and traditional farming wisdom passed down through generations.</p>
+        <p>Years ago, the Bhati family established their <strong>polyhouse farm</strong> — a climate-controlled greenhouse where they grew a wide range of fresh, organic farm products for the people of Beawar. From juicy tomatoes and leafy spinach to brinjal, capsicum, and seasonal greens — every vegetable was grown <strong>without chemicals or pesticides</strong>, using only natural compost and traditional farming wisdom passed down through generations.</p>
 
         <p>The polyhouse became a trusted name in Beawar. Families who tasted the Bhati farm products knew the difference — the flavour, the freshness, the purity that only comes from land that is loved and respected.</p>
 
-        <p>Inspired by this success and driven by a deeper purpose, the Bhati family took their next bold step — <strong>establishing MilkyRoots</strong>, a pure desi cow dairy farm. The same values that made their farm products exceptional now guide every drop of milk: <strong>zero adulteration, zero shortcuts, and complete transparency</strong> from farm to your kitchen table.</p>
+        <p>Inspired by this success and driven by a deeper purpose, the Bhati family took their next bold step — <strong>establishing MilkyRoots</strong>, a pure desi cow dairy farm. They realized that the same holistic, chemical-free philosophy they applied to their crops could transform the quality of milk available in their community. They began by sourcing the finest indigenous cattle, ensuring that their cows lived in stress-free, open-air environments where their natural diet—rich in green rachka and native bajra—would reflect in the superior quality of the milk.</p>
 
         <p>Today, MilkyRoots stands as Beawar's most trusted pure dairy — carrying forward the Bhati family's lifetime of farming heritage, with a proud commitment to feeding the community the way nature intended.</p>
       </div>
@@ -1346,7 +1373,7 @@ nav.shrunk {
           <li>Zero water mixing — ever</li>
           <li>No milk powder, no preservatives</li>
           <li>No synthetic hormones or oxytocin injections</li>
-          <li>Fresh within 2 hours of milking — delivered as early as possible (we will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur).</li>
+          <li>Fresh within 2 hours of milking — delivered as early as possible (we will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur).</li>
         </ul>
       </div>
 
@@ -1650,7 +1677,7 @@ document.getElementById('confirmRev').addEventListener('click', function() {
       <div class="faq-col">
         <div class="faq-item" onclick="toggleFaq(this)">
           <div class="faq-q">Is your milk really pure? How can I trust it?</div>
-          <div class="faq-a">Yes — 100%. Our cows are raised on our own farm in Beawar. Milking starts at 4 AM, quality-checked for fat and purity, and delivered to you (we will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur). We have zero tolerance for water mixing or adulteration. You can visit our farm anytime — we welcome it!</div>
+          <div class="faq-a">Yes — 100%. Our cows are raised on our own farm in Beawar. Milking starts at 4 AM, quality-checked for fat and purity, and delivered to you (we will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur). We have zero tolerance for water mixing or adulteration. You can visit our farm anytime — we welcome it!</div>
         </div>
         <div class="faq-item" onclick="toggleFaq(this)">
           <div class="faq-q">Can I try before subscribing?</div>
@@ -1706,7 +1733,7 @@ document.getElementById('confirmRev').addEventListener('click', function() {
       <div class="contact-info">
         <div class="contact-item">
           <span class="contact-item-icon">📞</span>
-          <div><h5>Call / WhatsApp</h5><p>+91 89495 53581<br>+91 96363 20075<br><small style="opacity:.6">Available 6 AM – 9 PM daily</small></p></div>
+          <div><h5>Call / WhatsApp</h5><p>+91 89495 53581<br>+91 8209756996<br><small style="opacity:.6">Available 6 AM – 9 PM daily</small></p></div>
         </div>
         <div class="contact-item">
           <span class="contact-item-icon">📍</span>
@@ -1714,7 +1741,7 @@ document.getElementById('confirmRev').addEventListener('click', function() {
         </div>
         <div class="contact-item">
           <span class="contact-item-icon">🕐</span>
-          <div><h5>Delivery Timings</h5><p>Morning: We will try our best to deliver up to 7 o'clock; in rare situations beyond our capacity, such as natural or climatic conditions, slight delays may occur.<br>Evening Milk: 5:30 PM – 7:00 PM</p></div>
+          <div><h5>Delivery Timings</h5><p>Morning: We will try our best to deliver up to 7 o'clock; in rare situations beyond our control, such as natural or climatic conditions, slight delays may occur.<br>Evening Milk: 5:30 PM – 7:00 PM</p></div>
         </div>
         <div class="contact-item">
           <span class="contact-item-icon">🗺️</span>
@@ -1770,10 +1797,11 @@ document.getElementById('confirmRev').addEventListener('click', function() {
     <a href="#team">Our Team</a>
     <a href="#order">Order</a>
   </div>
-  📞 +91 89495 53581 &nbsp;|&nbsp; 📞 +91 96363 20075<br>
+  📞 +91 89495 53581 &nbsp;|&nbsp; 📞 +91 8209756996<br>
   <span style="font-size:.78rem;opacity:.4">Made with ❤️ in Beawar · © 2025 MilkyRoots. All rights reserved.</span>
 </footer>
 
+<script src="translations.js"></script>
 <script>
 // ── FINAL SOUND ACTIVATION LOGIC ──
 let audioUnlocked = false;
