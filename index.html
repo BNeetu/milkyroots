@@ -694,28 +694,29 @@ nav.shrunk {
   .hamburger{display:flex}
   .hero{padding-top:120px;min-height:auto !important;display:block !important;background:var(--warm-white) !important}
   .hero::before{display:none}
-  .hero-inner{grid-template-columns:1fr;text-align:left}
-  .hero-desc{margin:0 0 2rem}
-  .hero-btns{justify-content:flex-start}
-  .hero-stats{justify-content:flex-start}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-desc{margin:0 auto 2rem}
+  .hero-btns{justify-content:center}
+  .hero-stats{justify-content:center}
   .hero-visual{margin-top:3rem}
   .contact-grid{grid-template-columns:1fr;gap:2.5rem}
   .reviews-container{grid-template-columns:1fr !important}
-  .why-grid{grid-template-columns:repeat(3, 1fr)}
+  .why-grid{grid-template-columns:repeat(2, 1fr)}
   .health-grid{grid-template-columns:1fr;gap:2rem}
+  .sec-inner{text-align: center !important;}
+  .products-grid, .trial-intro, .sub-grid, .why-grid, .process-steps, .team-grid, .about-main, .faq-grid, .contact-grid { text-align: center !important; }
 }
 @media(max-width:768px){
   section{padding:50px 4vw}
   nav{top:54px}
   .mobile-menu{top:118px}
-  .loyalty-banner{top:118px}
+  .loyalty-banner{top:118px; flex-direction: column; gap: 4px; padding: 12px;}
   .hero{padding-top:160px !important}
   .hero h1{font-size:2.8rem}
-  .promo-banner{font-size:0.75rem;padding:8px 10px;gap:8px}
-  .loyalty-banner{font-size:0.8rem;padding:10px}
+  .promo-banner{font-size:0.75rem;padding:8px 10px;gap:8px; flex-wrap: wrap;}
   .loyalty-banner span{display:block;margin-top:3px;margin-left:0}
   .why-grid{grid-template-columns:repeat(2, 1fr)}
-  .about-chapters{grid-template-columns:repeat(2, 1fr)}
+  .about-chapters{grid-template-columns:repeat(1, 1fr)}
   .process-steps{grid-template-columns:1fr}
   .step{border-right:none;border-bottom:1px solid var(--border)}
   .step:last-child{border-bottom:none}
@@ -726,10 +727,12 @@ nav.shrunk {
 @media(max-width:480px){
   .compare-table th, .compare-table td{padding:0.75rem 0.5rem;font-size:0.75rem}
   .compare-table td.yes{font-size:1.1rem}
+  .promo-banner { font-size: 0.7rem; padding: 12px 5px; }
+  .loyalty-banner { font-size: 0.75rem; }
 }
 @media(max-width:767px){
-  .about-main{grid-template-columns:1fr;gap:2rem;text-align:left}
-  .about-text{max-width:800px;margin:0}
+  .about-main{grid-template-columns:1fr;gap:2rem;text-align:center}
+  .about-text{max-width:800px;margin:0 auto}
 }
 @media(max-width:580px){
   .hero h1{font-size:2.2rem}
@@ -747,6 +750,7 @@ nav.shrunk {
   .hero-stats{gap:1.5rem}
   .hero-stat h3{font-size:1.5rem}
   .hero-badge{font-size:.7rem;padding:4px 10px}
+  .product-emoji { height: 100px; }
 }
 @media(max-width:400px){
   nav{top:72px}
@@ -758,6 +762,8 @@ nav.shrunk {
   .logo-text span:first-child{font-size:0.95rem}
   .nav-logo .logo-img{width:50px;height:50px}
   .nav-logo .logo-img svg{width:22px;height:22px}
+  nav{height:56px}
+}
   nav{height:56px}
 }
 </style>
