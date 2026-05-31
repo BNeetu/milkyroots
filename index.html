@@ -212,7 +212,8 @@ section{padding:72px 5vw}
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 .product-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-light),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.product-emoji{font-size:3.2rem;margin-bottom:.8rem;display:block}
+.product-emoji{font-size:3.2rem;margin-bottom:.8rem;display:block;height:80px;width:auto}
+.product-emoji img{height:100%;width:auto;object-fit:contain}
 .product-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--brown-dark);margin-bottom:.25rem}
 .product-card .hindi{font-size:.82rem;color:var(--text-muted);margin-bottom:.7rem}
 .product-card p{font-size:.9rem;color:var(--text-muted);line-height:1.72;margin-bottom:1rem}
@@ -286,7 +287,8 @@ section{padding:72px 5vw}
 .trial-product-card:active{
   transform:translateY(-2px) scale(1);
 }
-.tp-emoji{font-size:2.2rem;flex-shrink:0}
+.tp-emoji{font-size:2.2rem;flex-shrink:0;height:45px;width:auto;display:flex;align-items:center}
+.tp-emoji img{height:100%;width:auto;object-fit:contain}
 .tp-info h5{font-family:'Playfair Display',serif;font-size:1rem;color:var(--brown-dark);margin-bottom:.2rem}
 .tp-info p{font-size:.8rem;color:var(--text-muted)}
 .tp-info .tp-free{font-size:.72rem;font-weight:700;color:var(--brown-dark);background:var(--cream);padding:2px 8px;border-radius:50px;margin-top:.3rem;display:inline-block}
@@ -925,7 +927,7 @@ nav.shrunk {
     <div class="products-grid">
 
       <div class="product-card">
-        <span class="product-emoji">🥛</span>
+        <span class="product-emoji"><img src="images/milk.png" alt="Milk"></span>
         <h3>Fresh Cow Milk</h3>
         <p class="hindi">ताजा गाय का दूध</p>
         <p>Pure A2 milk from our desi cows — full of natural fat, vitamins and minerals. Collected fresh every morning and evening by our trained gawalas.</p>
@@ -939,7 +941,7 @@ nav.shrunk {
       </div>
 
       <div class="product-card">
-        <span class="product-emoji">🍶</span>
+        <span class="product-emoji"><img src="images/curd.png" alt="Curd"></span>
         <h3>Homemade Curd</h3>
         <p class="hindi">घर का दही</p>
         <p>Thick, creamy dahi set overnight from whole cow milk. Rich in natural probiotics — great for digestion, immunity and taste. Just like your daadi made it.</p>
@@ -954,7 +956,7 @@ nav.shrunk {
       </div>
 
       <div class="product-card">
-        <span class="product-emoji">🥤</span>
+        <span class="product-emoji"><img src="images/buttermilk.png" alt="Buttermilk"></span>
         <h3>Fresh Buttermilk</h3>
         <p class="hindi">ताजा छाछ (मट्ठा)</p>
         <p>The classic Rajasthani chaas — chilled, naturally spiced with jeera and fresh pudina. The best summer drink straight from the matka, just like our ancestors enjoyed.</p>
@@ -969,7 +971,7 @@ nav.shrunk {
       </div>
 
       <div class="product-card">
-        <span class="product-emoji">✨</span>
+        <span class="product-emoji"><img src="images/ghee.png" alt="Ghee"></span>
         <h3>Pure Bilona Ghee</h3>
         <p class="hindi">बिलोना गाय का घी</p>
         <p>Made using the ancient bilona method — curd is hand-churned into butter, then slow-cooked over wood fire into golden, nutty, aromatic ghee. No shortcuts, ever.</p>
@@ -1028,7 +1030,7 @@ nav.shrunk {
     <p class="section-label" style="margin-bottom:1rem">Choose Your Trial Product</p>
     <div class="trial-products">
       <div class="trial-product-card">
-        <span class="tp-emoji">🥛</span>
+        <span class="tp-emoji"><img src="images/milk.png" alt="Milk"></span>
         <div class="tp-info">
           <h5>Fresh Cow Milk</h5>
           <p>Pure A2 desi cow milk</p>
@@ -1036,7 +1038,7 @@ nav.shrunk {
         </div>
       </div>
       <div class="trial-product-card">
-        <span class="tp-emoji">🍶</span>
+        <span class="tp-emoji"><img src="images/curd.png" alt="Curd"></span>
         <div class="tp-info">
           <h5>Homemade Curd</h5>
           <p>Thick probiotic dahi</p>
@@ -1044,7 +1046,7 @@ nav.shrunk {
         </div>
       </div>
       <div class="trial-product-card">
-        <span class="tp-emoji">🥤</span>
+        <span class="tp-emoji"><img src="images/buttermilk.png" alt="Buttermilk"></span>
         <div class="tp-info">
           <h5>Fresh Buttermilk</h5>
           <p>Spiced Rajasthani chaas</p>
@@ -1052,7 +1054,7 @@ nav.shrunk {
         </div>
       </div>
       <div class="trial-product-card">
-        <span class="tp-emoji">✨</span>
+        <span class="tp-emoji"><img src="images/ghee.png" alt="Ghee"></span>
         <div class="tp-info">
           <h5>Bilona Ghee</h5>
           <p>Pure wood-fire ghee</p>
