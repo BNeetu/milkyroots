@@ -17,28 +17,30 @@ body{font-family:'Lato',sans-serif;background:var(--warm-white);color:var(--text
 
 /* ── PROMO BANNER (PREMIUM REDESIGN) ── */
 .promo-banner {
-  background: linear-gradient(110deg, #997e67 0%, #ffdbbb 50%, #997e67 100%);
+  background: linear-gradient(110deg, #b38728 0%, #bf953f 20%, #fcf6ba 40%, #bf953f 60%, #b38728 80%);
   background-size: 200% auto;
-  color: #4d3d2c;
+  color: #03045E;
   text-align: center;
   padding: 10px 20px;
   font-weight: 800;
   font-size: 0.9rem;
   position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2), inset 0 0 15px rgba(255,255,255,0.3);
+  box-shadow: 0 4px 20px rgba(179, 135, 40, 0.4), inset 0 0 15px rgba(255,255,255,0.3);
   display: flex; justify-content: center; align-items: center; gap: 12px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   animation: shine 4s linear infinite;
-  border-bottom: 1px solid #997e67;
+  border-bottom: 2px solid #aa771c;
 }
 
 @keyframes shine {
   to { background-position: 200% center; }
 }
 
+.promo-banner .highlight { background: rgba(0, 119, 182, 0.15); padding: 2px 8px; border-radius: 4px; color: #03045E; font-weight: 900; border: 1px solid rgba(3, 4, 94, 0.2); }
+
 .promo-banner .tag {
-  background: var(--brown-dark);
+  background: #03045E;
   color: #fcf6ba;
   padding: 2px 10px;
   border-radius: 4px;
@@ -212,9 +214,9 @@ section{padding:72px 5vw}
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 .product-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-light),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.product-emoji{font-size:3.2rem;margin-bottom:.8rem;display:block;height:80px;width:auto}
-.product-emoji img{height:100%;width:auto;object-fit:contain}
-.product-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--brown-dark);margin-bottom:.25rem}
+.product-emoji{font-size:3.2rem;margin-bottom:.8rem;display:flex;justify-content:center;align-items:center;height:120px;width:100%}
+.product-emoji img{height:100%;width:auto;object-fit:contain;margin:0 auto}
+.product-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--brown-dark);margin-bottom:.25rem;text-align:center}
 .product-card .hindi{font-size:.82rem;color:var(--text-muted);margin-bottom:.7rem}
 .product-card p{font-size:.9rem;color:var(--text-muted);line-height:1.72;margin-bottom:1rem}
 .product-details{background:var(--cream);border-radius:10px;padding:.8rem 1rem;margin-bottom:1rem;font-size:.82rem;color:var(--text-muted);line-height:1.8}
