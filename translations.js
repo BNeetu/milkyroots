@@ -371,7 +371,7 @@ const dict = [
   { sel: '#ord-qty option:nth-child(7)', hi: '2 लीटर – दैनिक सदस्यता' },
   { sel: '#ord-qty option:nth-child(8)', hi: '3 लीटर – दैनिक सदस्यता' },
 
-  { sel: '.order-form button', hi: '🐄 WhatsApp पर ऑर्डर दें' },
+  { sel: '.order-form button', hi: '<img src="images/bhatifarm-logo.png" alt="भाटी फार्म" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px; object-fit: contain;"> WhatsApp पर ऑर्डर दें' },
 
   // Footer
   { sel: 'footer strong', hi: '<img src="images/bhatifarm-logo.png" alt="भाटी फार्म" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px; object-fit: contain;">भाटी फार्म' },
