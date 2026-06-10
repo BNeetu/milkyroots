@@ -37,7 +37,7 @@ const dict = [
   // Hero Slides
   { sel: '#heroSlide .slide:nth-child(1) .s-badge', hi: 'हमारा फार्म' },
   { sel: '#heroSlide .slide:nth-child(1) h4', hi: 'शुद्धता का अनुभव करें' },
-  { sel: '#heroSlide .slide:nth-child(1) p', hi: 'मिल्कीरूट्स फार्म पर हमारी स्वस्थ गायों को देखें।' },
+  { sel: '#heroSlide .slide:nth-child(1) p', hi: 'भाटी फार्म फार्म पर हमारी स्वस्थ गायों को देखें।' },
   { sel: '#heroSlide .slide:nth-child(2) .s-badge', hi: 'प्राकृतिक आहार' },
   { sel: '#heroSlide .slide:nth-child(2) h4', hi: 'खुले मैदान में चराई' },
   { sel: '#heroSlide .slide:nth-child(2) p', hi: 'हमारी गायें ताज़ा हरे चारे (हरा रंजका, हरा जानवर और हरा बाजरा) का आनंद लेती हैं, जिससे उच्चतम गुणवत्ता वाला दूध स्वाभाविक रूप से सुनिश्चित होता है।' },
@@ -45,7 +45,7 @@ const dict = [
   { sel: '#heroSlide .slide:nth-child(3) h4', hi: 'फार्म का ताज़ा A2 दूध' },
   { sel: '#heroSlide .slide:nth-child(3) p', hi: 'सीधे हमारे खेत से आपके दरवाजे तक — बिना किसी मिलावट के और अच्छाई से भरपूर।' },
   { sel: '#heroSlide .slide:nth-child(4) .s-badge', hi: 'हमारा परिवार' },
-  { sel: '#heroSlide .slide:nth-child(4) h4', hi: 'मिल्कीरूट्स का झुंड' },
+  { sel: '#heroSlide .slide:nth-child(4) h4', hi: 'भाटी फार्म का झुंड' },
   { sel: '#heroSlide .slide:nth-child(4) p', hi: 'स्वस्थ देसी गायें जिन्हें प्यार और पारंपरिक देखभाल के साथ पाला जाता है।' },
   { sel: '#heroSlide .slide:nth-child(5) .s-badge', hi: 'हमारा फार्म' },
   { sel: '#heroSlide .slide:nth-child(5) h4', hi: 'हरा-भरा पर्यावरण' },
@@ -161,11 +161,11 @@ const dict = [
   { sel: '.policy-item:nth-child(5) h5', hi: '🚚 डिलीवरी मिस होना' },
   { sel: '.policy-item:nth-child(5) p', hi: 'हमारी गलती के कारण डिलीवरी मिस होने की दुर्लभ स्थिति में, हम आपकी अगली डिलीवरी में अतिरिक्त मात्रा के साथ सक्रिय रूप से भरपाई करेंगे।' },
   { sel: '.policy-item:nth-child(6) h5', hi: '✅ गुणवत्ता की गारंटी' },
-  { sel: '.policy-item:nth-child(6) p', hi: 'मिल्कीरूट्स में, हम उच्चतम मानकों को सुनिश्चित करते हैं। यदि हमारा उत्पाद आपकी अपेक्षाओं पर खरा नहीं उतरता है, तो समीक्षा और समाधान के लिए हमारी टीम से संपर्क करें।' },
+  { sel: '.policy-item:nth-child(6) p', hi: 'भाटी फार्म में, हम उच्चतम मानकों को सुनिश्चित करते हैं। यदि हमारा उत्पाद आपकी अपेक्षाओं पर खरा नहीं उतरता है, तो समीक्षा और समाधान के लिए हमारी टीम से संपर्क करें।' },
 
   // Why Us
   { sel: '#why .section-label', hi: 'हमारा वादा' },
-  { sel: '#why .section-title', hi: 'मिल्कीरूट्स को क्यों चुनें?' },
+  { sel: '#why .section-title', hi: 'भाटी फार्म को क्यों चुनें?' },
   { sel: '#why .section-sub', hi: 'हम सिर्फ एक डेयरी नहीं हैं — हम राजस्थान के दिल से शुद्ध, नैतिक और स्वस्थ भोजन की एक पारिवारिक परंपरा हैं।' },
   { sel: '.why-item:nth-child(1) h4', hi: 'देसी गायें' },
   { sel: '.why-item:nth-child(1) p', hi: 'हमारी गायें शुद्ध भारतीय देसी नस्ल की हैं — बिना किसी कृत्रिम हार्मोनल तत्व या एंटीबायोटिक के प्राकृतिक चारे पर खुले में पाली जाती हैं।' },
@@ -176,7 +176,7 @@ const dict = [
   { sel: '.why-item:nth-child(4) h4', hi: 'नैतिक और मानवीय' },
   { sel: '.why-item:nth-child(4) p', hi: 'हमारी गायों के साथ कभी दुर्व्यवहार नहीं किया जाता। वे आज़ादी से चरती हैं और साफ आश्रयों में रहती हैं। खुश गायें = स्वास्थ्यप्रद दूध।' },
   { sel: '.why-item:nth-child(5) h4', hi: 'ब्यावर में विश्वसनीय' },
-  { sel: '.why-item:nth-child(5) p', hi: 'ब्यावर में 300+ परिवार मिल्कीरूट्स से जुड़ चुके हैं। हमारी पुनरावृत्ति ग्राहक दर 95% से ऊपर है।' },
+  { sel: '.why-item:nth-child(5) p', hi: 'ब्यावर में 300+ परिवार भाटी फार्म से जुड़ चुके हैं। हमारी पुनरावृत्ति ग्राहक दर 95% से ऊपर है।' },
   { sel: '.why-item:nth-child(6) h4', hi: 'आसान WhatsApp ऑर्डर' },
   { sel: '.why-item:nth-child(6) p', hi: 'किसी ऐप की आवश्यकता नहीं। सीधे WhatsApp पर ऑर्डर, संशोधन या रद्दीकरण करें। सरल, तेज़ और व्यक्तिगत।' },
 
@@ -209,7 +209,7 @@ const dict = [
   { sel: '.about-chapter:nth-child(1) ul li:nth-child(4)', hi: 'टमाटर, पालक, बैंगन, शिमला मिर्च, मेथी, धनिया और बहुत कुछ' },
   { sel: '.about-chapter:nth-child(1) ul li:nth-child(5)', hi: 'ब्यावर में परिवारों को सीधे आपूर्ति' },
 
-  { sel: '.about-chapter:nth-child(2) h3', hi: 'हमारी देसी गायें — मिल्कीरूट्स का दिल' },
+  { sel: '.about-chapter:nth-child(2) h3', hi: 'हमारी देसी गायें — भाटी फार्म का दिल' },
   { sel: '.about-chapter:nth-child(2) p', hi: 'हमने शुद्ध <strong>देसी भारतीय गायों</strong> को चुना — जो भारत की सबसे बेशकीमती स्वदेशी नस्ल है। हमारी गायें स्वाभाविक रूप से <strong>A2 बीटा-कैसिइन दूध</strong> का उत्पादन करती हैं, जो पचने में बहुत आसान है।' },
   { sel: '.about-chapter:nth-child(2) ul li:nth-child(1)', hi: 'शुद्ध देसी भारतीय नस्ल' },
   { sel: '.about-chapter:nth-child(2) ul li:nth-child(2)', hi: 'प्राकृतिक हरे चारे पर खुले में पाली गईं' },
@@ -218,7 +218,7 @@ const dict = [
   { sel: '.about-chapter:nth-child(2) ul li:nth-child(5)', hi: 'खुश गायें, स्वस्थ बछड़े, शुद्ध दूध — हमेशा' },
 
   { sel: '.about-chapter:nth-child(3) h3', hi: 'दूध की शुद्धता — हमारा पूर्ण वादा' },
-  { sel: '.about-chapter:nth-child(3) p', hi: 'मिल्कीरूट्स में, दूध की शुद्धता कोई मार्केटिंग दावा नहीं है — यह जीवन का एक तरीका है। दूध का हर बैच हमारे खेत से निकलने से पहले एक सख्त गुणवत्ता जांच से गुजरता है।' },
+  { sel: '.about-chapter:nth-child(3) p', hi: 'भाटी फार्म में, दूध की शुद्धता कोई मार्केटिंग दावा नहीं है — यह जीवन का एक तरीका है। दूध का हर बैच हमारे खेत से निकलने से पहले एक सख्त गुणवत्ता जांच से गुजरता है।' },
   { sel: '.about-chapter:nth-child(3) ul li:nth-child(1)', hi: 'वसा सामग्री: प्राकृतिक 4.0–4.5% — कभी पतला नहीं' },
   { sel: '.about-chapter:nth-child(3) ul li:nth-child(2)', hi: 'शून्य पानी मिलाने की मिलावट — कभी नहीं' },
   { sel: '.about-chapter:nth-child(3) ul li:nth-child(3)', hi: 'कोई दूध पाउडर नहीं, कोई प्रिजर्वेटिव नहीं' },
@@ -226,14 +226,14 @@ const dict = [
   { sel: '.about-chapter:nth-child(3) ul li:nth-child(5)', hi: 'दूध निकालने के 2 घंटे के भीतर ताजा — जितनी जल्दी हो सके वितरित किया जाता है।' },
 
   { sel: '.about-chapter:nth-child(4) h3', hi: 'हमारा खेत — एक जीवंत पारिस्थितिकी तंत्र' },
-  { sel: '.about-chapter:nth-child(4) p', hi: 'मिल्कीरूट्स सिर्फ एक डेयरी नहीं है — यह एक संपूर्ण फार्म पारिस्थितिकी तंत्र है जहां गाय, बछड़े, कृषि उत्पाद और पृथ्वी एक साथ पनपते हैं।' },
+  { sel: '.about-chapter:nth-child(4) p', hi: 'भाटी फार्म सिर्फ एक डेयरी नहीं है — यह एक संपूर्ण फार्म पारिस्थितिकी तंत्र है जहां गाय, बछड़े, कृषि उत्पाद और पृथ्वी एक साथ पनपते हैं।' },
   { sel: '.about-chapter:nth-child(4) ul li:nth-child(1)', hi: 'एकीकृत खेत — डेयरी + पॉलीहाउस एक साथ काम कर रहे हैं' },
   { sel: '.about-chapter:nth-child(4) ul li:nth-child(2)', hi: 'कृषि उत्पादों के लिए जैविक उर्वरक के रूप में उपयोग किया जाने वाला गाय का गोबर' },
   { sel: '.about-chapter:nth-child(4) ul li:nth-child(3)', hi: 'प्राकृतिक चारा — बाजरा, ज्वार, ताजी हरी घास' },
   { sel: '.about-chapter:nth-child(4) ul li:nth-child(4)', hi: 'स्वच्छ, विशाल गौशाला — कल्याण पहले' },
   { sel: '.about-chapter:nth-child(4) ul li:nth-child(5)', hi: 'ब्यावर, राजस्थान के पास उपजाऊ बेल्ट में स्थित' },
 
-  { sel: '.about-highlight h3', hi: 'मिल्कीरूट्स नंबरों में' },
+  { sel: '.about-highlight h3', hi: 'भाटी फार्म नंबरों में' },
   { sel: '.ah-item:nth-child(1) p', hi: 'जैविक डेयरी उत्पाद' },
   { sel: '.ah-item:nth-child(2) p', hi: 'शुद्ध A2 देसी गाय का दूध' },
   { sel: '.ah-item:nth-child(3) p', hi: 'इस्तेमाल किए गए रसायन' },
@@ -242,7 +242,7 @@ const dict = [
   { sel: '.ah-item:nth-child(6) p', hi: 'विश्वास और शुद्धता' },
 
   // Team
-  { sel: '#team .section-label', hi: 'मिल्कीरूट्स के पीछे के लोग' },
+  { sel: '#team .section-label', hi: 'भाटी फार्म के पीछे के लोग' },
   { sel: '#team .section-title', hi: 'नेतृत्व और संचालन' },
   { sel: '#team .section-sub', hi: 'हमारी टीम निर्बाध आपूर्ति श्रृंखला प्रबंधन, कृषि स्वच्छता और असाधारण ग्राहक सेवा के लिए प्रतिबद्ध है।' },
   { sel: '.team-card:nth-child(1) .team-badge', hi: '👑 निदेशक (Director)' },
@@ -283,7 +283,7 @@ const dict = [
   { sel: '#health .section-title', hi: 'हमारे दूध के स्वास्थ्य लाभ' },
   { sel: '#health .section-sub', hi: 'हमारी शुद्ध देसी गाय का दूध न केवल स्वादिष्ट है — बल्कि यह वैज्ञानिक रूप से आपके शरीर के लिए बेहतर है।' },
   { sel: '.compare-table th:nth-child(1)', hi: 'विशेषता' },
-  { sel: '.compare-table th:nth-child(2)', hi: '🐄 मिल्कीरूट्स<br><small style="font-weight:400;font-size:.72rem">शुद्ध देसी दूध</small>' },
+  { sel: '.compare-table th:nth-child(2)', hi: '<img src="images/bhatifarm-logo.png" alt="भाटी फार्म" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 5px; object-fit: contain;">भाटी फार्म<br><small style="font-weight:400;font-size:.72rem">शुद्ध देसी दूध</small>' },
   { sel: '.compare-table tr:nth-child(1) td:nth-child(1)', hi: 'A2 बीटा-कैसिइन प्रोटीन' },
   { sel: '.compare-table tr:nth-child(2) td:nth-child(1)', hi: 'शून्य पानी मिलावट' },
   { sel: '.compare-table tr:nth-child(3) td:nth-child(1)', hi: 'कोई प्रिजर्वेटिव नहीं' },
@@ -308,7 +308,7 @@ const dict = [
   // FAQ
   { sel: '#faq .section-label', hi: 'कोई सवाल है?' },
   { sel: '#faq .section-title', hi: 'अक्सर पूछे जाने वाले प्रश्न' },
-  { sel: '#faq .section-sub', hi: 'मिल्कीरूट्स के बारे में आप जो कुछ भी जानना चाहते हैं — ईमानदारी से उत्तर दिया गया।' },
+  { sel: '#faq .section-sub', hi: 'भाटी फार्म के बारे में आप जो कुछ भी जानना चाहते हैं — ईमानदारी से उत्तर दिया गया।' },
   { sel: '.faq-col:nth-child(1) .faq-item:nth-child(1) .faq-q', hi: 'क्या आपका दूध वास्तव में शुद्ध है? मैं इस पर कैसे भरोसा कर सकता हूँ?' },
   { sel: '.faq-col:nth-child(1) .faq-item:nth-child(1) .faq-a', hi: 'हां — 100%। हमारी गायें ब्यावर में हमारे अपने खेत में पाली जाती हैं। दूध निकालने का काम सुबह 4 बजे शुरू होता है, वसा और शुद्धता की जांच की जाती है, और आपको डिलीवर किया जाता है (हम सुबह 7 बजे तक डिलीवरी का पूरा प्रयास करेंगे)। पानी मिलाने या मिलावट के लिए हमारी शून्य सहनशीलता है। आप कभी भी हमारे खेत आ सकते हैं — हम आपका स्वागत करते हैं!' },
   { sel: '.faq-col:nth-child(1) .faq-item:nth-child(2) .faq-q', hi: 'क्या मैं सदस्यता लेने से पहले आज़मा सकता हूँ?' },
@@ -325,7 +325,7 @@ const dict = [
   { sel: '.faq-col:nth-child(2) .faq-item:nth-child(3) .faq-a', hi: 'संपूर्ण ब्यावर नगर परिषद क्षेत्र में मुफ्त होम डिलीवरी उपलब्ध है।' },
 
   { sel: '.offer-strip h3', hi: '🎁 विशेष लॉयल्टी ऑफर' },
-  { sel: '.offer-strip p', hi: 'आज ही मिल्कीरूट्स से जुड़ें और हमारे वफादार ग्राहकों के लिए इन विशेष लाभों का आनंद लें' },
+  { sel: '.offer-strip p', hi: 'आज ही भाटी फार्म से जुड़ें और हमारे वफादार ग्राहकों के लिए इन विशेष लाभों का आनंद लें' },
   { sel: '.offer-strip .offer-badge:nth-child(1)', hi: '🥛 20L दूध खरीदें और 1L मुफ़्त पाएं!' },
   { sel: '.offer-strip .offer-badge:nth-child(2)', hi: '🎉 पहले महीने 10% की छूट' },
   { sel: '.offer-strip .offer-badge:nth-child(3)', hi: '🏠 फ्री होम डिलीवरी' },
@@ -339,7 +339,7 @@ const dict = [
   { sel: '.contact-item:nth-child(1) h5', hi: 'कॉल / WhatsApp' },
   { sel: '.contact-item:nth-child(1) p', hi: '+91 89495 53581<br>+91 8209756996<br><small style="opacity:.6">रोजाना सुबह 6 बजे से रात 9 बजे तक उपलब्ध</small>' },
   { sel: '.contact-item:nth-child(2) h5', hi: 'हमारा डेयरी फार्म' },
-  { sel: '.contact-item:nth-child(2) p', hi: 'मिल्कीरूट्स,<br>ब्यावर – 305 901, राजस्थान' },
+  { sel: '.contact-item:nth-child(2) p', hi: 'भाटी फार्म,<br>ब्यावर – 305 901, राजस्थान' },
   { sel: '.contact-item:nth-child(3) h5', hi: 'डिलीवरी का समय' },
   { sel: '.contact-item:nth-child(3) p', hi: 'सुबह: हम सुबह 7 बजे तक डिलीवरी का पूरा प्रयास करेंगे; दुर्लभ स्थितियों में थोड़ी देरी हो सकती है।<br>शाम का दूध: शाम 5:30 से 7:00 बजे तक' },
   { sel: '.contact-item:nth-child(4) h5', hi: 'डिलीवरी क्षेत्र' },
@@ -374,11 +374,11 @@ const dict = [
   { sel: '.order-form button', hi: '🐄 WhatsApp पर ऑर्डर दें' },
 
   // Footer
-  { sel: 'footer strong', hi: '🐄 मिल्कीरूट्स' },
-  { sel: 'footer span', hi: 'ब्यावर में ❤️ के साथ निर्मित · © 2025 मिल्कीरूट्स। सर्वाधिकार सुरक्षित।' }
+  { sel: 'footer strong', hi: '<img src="images/bhatifarm-logo.png" alt="भाटी फार्म" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px; object-fit: contain;">भाटी फार्म' },
+  { sel: 'footer span', hi: 'ब्यावर में ❤️ के साथ निर्मित · © 2025 भाटी फार्म। सर्वाधिकार सुरक्षित।' }
 ];
 
-let currentLang = localStorage.getItem('milkyRootsLang') || 'en';
+let currentLang = localStorage.getItem('bhatiFarmLang') || 'en';
 let englishCacheCaptured = false;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -429,6 +429,6 @@ window.updateLanguage = function(lang) {
 
 window.toggleLanguage = function() {
   const newLang = currentLang === 'en' ? 'hi' : 'en';
-  localStorage.setItem('milkyRootsLang', newLang);
+  localStorage.setItem('bhatiFarmLang', newLang);
   updateLanguage(newLang);
 }

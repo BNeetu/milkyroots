@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhati Farm - Delivery & Attendance Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<style>
+    :root {
+        --primary: #4F46E5; 
+        --primary-hover: #4338CA;
+        --secondary: #10B981; 
+        --whatsapp: #25D366;
+        --dark: #111827;
+        --gray: #6B7280;
+        --light-gray: #F3F4F6;
+        --bg: #F9FAFB;
+        --card: #FFFFFF;
+        --border: #E5E7EB;
+        --red: #EF4444;
+        --radius: 16px;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg); color: var(--dark); padding-bottom: 40px; }
+
+    /* Modern Navbar */
+    .navbar { background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow-x: auto;}
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; min-width: max-content; gap: 20px;}
+    .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-btn { padding: 10px 16px; border: none; background: transparent; color: var(--gray); font-weight: 600; font-size: 0.95rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap;}
+    .nav-btn:hover { background: var(--light-gray); color: var(--dark); }
+    .nav-btn.active { background: var(--primary); color: white; }
+
+    /* Layout */
+    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .view { display: none; animation: fadeIn 0.3s ease-in-out; }
+    .view.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Page Headers */
+    .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+    .page-title { font-size: 1.8rem; font-weight: 800; color: var(--dark); }
+    
+    /* Buttons */
+    .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;}
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn-success { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem; transition: 0.2s; }
+    .btn-success:hover { opacity: 0.9; }
+    .btn-disabled { background: var(--border); color: var(--gray); cursor: not-allowed; width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 700; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--dark); padding: 8px 15px; border-radius: 8px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+    .btn-outline:hover { background: var(--light-gray); }
+    .btn-whatsapp { background: var(--whatsapp); color: white; border: none; }
+    .btn-whatsapp:hover { background: #1da851; color: white;}
+
+    /* Inputs & Search */
+    .date-picker { padding: 8px 15px; border: 1px solid var(--border); border-radius: 8px; font-weight: 600; color: var(--dark); background: var(--card); font-size: 0.95rem; outline: none; cursor: pointer; transition: 0.2s; box-shadow: var(--shadow); }
+    .date-picker:focus, .search-bar:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .search-bar { padding: 10px 15px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; width: 100%; max-width: 300px; outline: none; transition: 0.2s; }
+
+    /* Stock Summary Badges */
+    .stock-summary-container { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; padding: 15px; background: white; border-radius: 12px; border: 1px dashed var(--gray); }
+    .stock-badge { background: #EEF2FF; color: var(--primary); padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; border: 1px solid #C7D2FE; display:flex; align-items:center; gap:5px;}
+
+    /* Grids & Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .card { background: var(--card); border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); transition: 0.2s; position: relative; overflow: hidden; }
+    
+    .status-strip { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--red); }
+    .card.delivered .status-strip { background: var(--secondary); }
+    .card.customer-card .status-strip { background: var(--primary); }
+    .card.partial .status-strip { background: var(--primary); }
+    .card.absent .status-strip { background: var(--gray); }
+
+    /* Card Contents */
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; border-bottom: 1px solid var(--light-gray); padding-bottom: 15px; }
+    .cust-name { font-size: 1.2rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 8px;}
+    .cust-id { font-size: 0.8rem; color: var(--gray); font-weight: 600; background: var(--light-gray); padding: 2px 6px; border-radius: 4px; }
+    .cust-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; align-items: center; gap: 5px; }
+    .badge { background: #EEF2FF; color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .badge-both { background: #FAF5FF; color: #9D174D; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .badge-extra { background: #D1FAE5; color: #065F46; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; margin-left: 5px; text-transform: uppercase; }
+
+    /* Item Rows */
+    .item-row { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 10px; color: var(--dark); align-items: center;}
+    .item-qty { color: var(--gray); font-size: 0.85rem; }
+    .item-price { font-weight: 600; }
+    .grand-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin-top: 15px; padding-top: 15px; border-top: 2px dashed var(--border); color: var(--primary); }
+
+    /* Calendar Grid for Attendance */
+    .cal-wrapper { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .cal-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap:wrap; gap:15px;}
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+    .cal-header-day { text-align: center; font-weight: 700; color: var(--gray); font-size: 0.85rem; padding-bottom: 10px; }
+    .cal-cell { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; min-height: 80px; padding: 8px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;}
+    .cal-cell:hover { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(79,70,229,0.1); }
+    .cal-cell.empty { background: transparent; border: none; cursor: default; }
+    .cal-cell.today { border-color: var(--primary); background: #EEF2FF; }
+    .cell-date { font-weight: 800; font-size: 0.9rem; margin-bottom: 5px; color: var(--dark); }
+    .cell-product { font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; margin-bottom: 4px; background: #D1FAE5; color: #065F46; width: 100%; text-align:center;}
+    .cell-absent { font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; background: #FEE2E2; color: #991B1B; width: 100%; text-align:center;}
+    .cell-master { background: #EEF2FF; color: var(--primary); font-size: 0.75rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; margin-bottom: 4px; width: 100%;}
+
+    /* Modals */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--card); width: 90%; max-width: 550px; max-height: 90vh; overflow-y: auto; border-radius: var(--radius); padding: 30px; position: relative; }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: var(--light-gray); border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: bold; cursor: pointer; color: var(--gray); }
+    
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--gray); margin-bottom: 6px; }
+    .form-control { width: 100%; padding: 12px 15px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; outline: none; background: var(--bg); }
+    
+    .qty-editor { display: flex; align-items: center; gap: 15px; background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px; justify-content: space-between;}
+    .qty-btn { width: 36px; height: 36px; border-radius: 8px; border: none; background: var(--primary); color: white; font-size: 1.2rem; font-weight: bold; cursor: pointer; }
+    .qty-btn.minus { background: var(--gray); }
+    .qty-display { font-size: 1.1rem; font-weight: 800; min-width: 40px; text-align: center; }
+
+    .toast { position: fixed; bottom: 20px; right: 20px; background: var(--dark); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; display: none; z-index: 2000; box-shadow: var(--shadow-lg); }
+</style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🐄 Bhati Farm</div>
+            <div class="nav-links">
+                <button class="nav-btn active" onclick="switchTab('deliveries')" id="tab-deliveries">🛵 Route</button>
+                <button class="nav-btn" onclick="switchTab('attendance')" id="tab-attendance">📅 Attendance</button>
+                <button class="nav-btn" onclick="switchTab('customers')" id="tab-customers">👥 Customers</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div id="view-deliveries" class="view active">
+            <div class="page-header">
+                <div style="width: 100%;">
+                    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px; align-items:center;">
+                        <h1 class="page-title" id="route-title">Today's Route</h1>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <input type="date" id="route-date" class="date-picker" onchange="changeRouteDate()">
+                            <span style="font-size: 0.9rem; color: var(--gray); font-weight: 600;">Collection: <span id="grand-total-header" style="color: var(--primary); font-size: 1.05rem;">₹0</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="stock-summary-container">
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--dark); width:100%;">📊 Today's Required Stock (Gaddi):</span>
+                        <div id="stock-summary-badges" style="display:flex; gap:10px; flex-wrap:wrap;">
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 20px; background: var(--card); padding: 5px; border-radius: 10px; width: max-content; border: 1px solid var(--border);">
+                <button class="nav-btn active" id="filter-pending" onclick="filterDeliveries('pending')" style="padding: 8px 20px;">To Deliver (<span id="count-pending">0</span>)</button>
+                <button class="nav-btn" id="filter-delivered" onclick="filterDeliveries('delivered')" style="padding: 8px 20px;">Completed (<span id="count-delivered">0</span>)</button>
+            </div>
+
+            <div class="grid" id="delivery-grid"></div>
+        </div>
+
+        <div id="view-attendance" class="view">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Monthly Attendance</h1>
+                    <p style="color: var(--gray); margin-top: 5px;">Track daily product presence & aggregate business</p>
+                </div>
+            </div>
+
+            <div class="cal-wrapper">
+                <div class="cal-controls">
+                    <select id="cal-cust-select" class="form-control" style="width: 300px; font-weight: bold;" onchange="renderAttendanceCalendar()">
+                        <option value="">🌍 All Customers (Master View)</option>
+                    </select>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <button class="btn-outline" onclick="changeMonth(-1)">⬅️</button>
+                        <h3 id="cal-month-title" style="min-width: 140px; text-align: center;">Month Year</h3>
+                        <button class="btn-outline" onclick="changeMonth(1)">➡️</button>
+                    </div>
+                </div>
+                <div class="cal-grid" id="attendance-grid"></div>
+                <div style="text-align:center; font-size:0.85rem; color:var(--gray); margin-top:15px;">💡 Hint: Tap on any date in "All Customers" view to see that day's full route details.</div>
+            </div>
+        </div>
+
+        <div id="view-customers" class="view">
+            <div class="page-header" style="align-items: center;">
+                <div>
+                    <h1 class="page-title">Customer Directory</h1>
+                </div>
+                
+                <div style="flex-grow: 1; max-width: 300px; margin: 0 15px;">
+                    <input type="text" id="search-customer" class="search-bar" placeholder="🔍 Search Name or Phone..." onkeyup="handleCustomerSearch()">
+                </div>
+
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn-primary" style="background:var(--secondary);" onclick="exportFullReport()">📥 Download Full Excel</button>
+                    <button class="btn-primary" onclick="openAddCustomerModal()">➕ Add New</button>
+                </div>
+            </div>
+            <div class="grid" id="customer-grid"></div>
+        </div>
+
+    </div>
+
+    <div class="modal-overlay" id="modal-edit-attendance">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('modal-edit-attendance')">✕</button>
+            <h2 id="edit-att-title" style="color: var(--primary);">Edit Route Quantities</h2>
+            <p id="edit-att-date" style="color: var(--gray); font-size: 0.9rem; margin-bottom: 20px; font-weight:600;">Date</p>
+
+            <div id="edit-att-items"></div>
+
+            <div style="margin-top: 15px; padding: 15px; background: #F8FAFC; border-radius: 12px; border: 1px dashed var(--gray);">
+                <h4 style="font-size: 0.85rem; margin-bottom: 10px; color: var(--dark);">➕ Add Extra Item for Today</h4>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input type="text" id="extra-name" class="form-control" placeholder="Item (e.g. Curd)" style="padding: 8px; flex: 2;" list="extra-suggestions">
+                    <datalist id="extra-suggestions"><option value="Milk"><option value="Curd"><option value="Buttermilk"><option value="Ghee"><option value="Paneer"></datalist>
+                    <input type="number" id="extra-qty" class="form-control" placeholder="Qty" style="padding: 8px; flex: 1;">
+                    <select id="extra-unit" class="form-control" style="padding: 8px; flex: 1;"><option>L</option><option>ml</option><option>g</option><option>kg</option><option>Pcs</option></select>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <input type="number" id="extra-rate" class="form-control" placeholder="Rate (₹)" style="padding: 8px; flex: 1;">
+                    <button class="btn-outline" style="flex: 1; justify-content: center; background: white;" onclick="addExtraItemToBill()">Add to Bill</button>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="width: 100%; justify-content: center; padding: 15px; margin-top: 20px; font-size:1.05rem;" onclick="saveEditedAttendance()">💾 Save Updates</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-add-customer">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('modal-add-customer')">✕</button>
+            <h2>Add New Customer</h2>
+            <div class="form-group"><label>Full Name</label><input type="text" id="cust-name" class="form-control"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group"><label>Phone Number (10 digits)</label><input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 9876543210"></div>
+                <div class="form-group"><label>Shift</label>
+                    <select id="cust-shift" class="form-control">
+                        <option>Morning (6-7 AM)</option><option>Evening (5-7 PM)</option><option>Both (Morning & Evening)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"><label>Address</label><textarea id="cust-address" class="form-control" rows="2"></textarea></div>
+            
+            <h3 style="font-size: 1rem; margin: 15px 0 10px; color: var(--primary);">Routine (Per Shift)</h3>
+            <div style="display:grid; gap:10px;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <strong style="width:70px;">🥛 Milk</strong>
+                    <input type="number" id="p-milk-qty" class="form-control" placeholder="Qty" style="width:80px;">
+                    <select id="p-milk-unit" class="form-control" style="width:70px;"><option>L</option></select>
+                    <input type="number" id="p-milk-rate" class="form-control" placeholder="₹ Rate" style="width:100px;">
+                </div>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <strong style="width:70px;">🥣 Curd</strong>
+                    <input type="number" id="p-curd-qty" class="form-control" placeholder="Qty" style="width:80px;">
+                    <select id="p-curd-unit" class="form-control" style="width:70px;"><option>g</option><option>kg</option></select>
+                    <input type="number" id="p-curd-rate" class="form-control" placeholder="₹ Rate/kg" style="width:100px;">
+                </div>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <strong style="width:70px;">🥤 ButterM</strong>
+                    <input type="number" id="p-butter-qty" class="form-control" placeholder="Qty" style="width:80px;">
+                    <select id="p-butter-unit" class="form-control" style="width:70px;"><option>L</option><option>ml</option></select>
+                    <input type="number" id="p-butter-rate" class="form-control" placeholder="₹ Rate" style="width:100px;">
+                </div>
+            </div>
+            <button class="btn-primary" style="width: 100%; justify-content: center; padding: 15px; margin-top: 25px;" onclick="saveCustomer()">Save Customer</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-view-customer">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('modal-view-customer')">✕</button>
+            <h2 class="cust-name" style="margin-bottom: 5px;"><span id="view-c-name" style="color: var(--primary);">Customer Name</span> <span id="view-c-id" class="cust-id">MR-000</span></h2>
+            <p id="view-c-address" style="color: var(--gray); font-size: 0.9rem; margin-bottom: 20px;">📍 Address</p>
+
+            <div style="background: var(--bg); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border);">
+                    <span style="color: var(--gray); font-size: 0.85rem; font-weight: 600;">Phone:</span>
+                    <span style="font-weight: 600; color: var(--dark); font-size: 0.95rem;" id="view-c-phone"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border);">
+                    <span style="color: var(--gray); font-size: 0.85rem; font-weight: 600;">Delivery Shift:</span>
+                    <span class="badge" id="view-c-shift"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--gray); font-size: 0.85rem; font-weight: 600;">Start Date:</span>
+                    <span style="font-weight: 600; color: var(--dark); font-size: 0.95rem;" id="view-c-date"></span>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1rem; margin-bottom: 10px; color: var(--dark);">Total Delivery & Billing Summary</h3>
+            <div id="view-c-summary" style="background: var(--light-gray); border: 1px solid var(--border); border-radius: 12px; padding: 15px;"></div>
+
+            <div style="display:flex; gap:10px; margin-top:20px;">
+                <button class="btn-outline" style="flex:1; justify-content: center;" onclick="closeModal('modal-view-customer')">Close</button>
+                <button class="btn-primary btn-whatsapp" id="btn-share-wa" style="flex:1; justify-content: center;">💬 Share Bill</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Action completed successfully</div>
+
+<script>
+    // --- 1. DATA STATE ---
+    let customers = JSON.parse(localStorage.getItem('milky_customers_v18'));
+    let deliveries = JSON.parse(localStorage.getItem('milky_deliveries_v18'));
+
+    if (!customers || customers.length === 0) {
+        customers = [
+            { id: 'MR-001', name: 'Garvit Bhati', phone: '9876543210', address: '12 Gandhi Nagar', shift: 'Morning (6-7 AM)', startDate: '2026-05-01', products: [ { name: 'Milk', qty: 1, unit: 'L', rate: 70 }, { name: 'Curd', qty: 500, unit: 'g', rate: 80 } ] },
+            { id: 'MR-002', name: 'Vikram Singh', phone: '9871234560', address: 'Block C, Pratap Nagar', shift: 'Morning (6-7 AM)', startDate: '2026-05-26', products: [ { name: 'Milk', qty: 2, unit: 'L', rate: 70 } ] },
+            { id: 'MR-003', name: 'Neetu', phone: '9123456789', address: 'Sector 5, Main Road', shift: 'Both (Morning & Evening)', startDate: '2026-05-30', products: [ { name: 'Milk', qty: 1, unit: 'L', rate: 70 }, { name: 'Curd', qty: 500, unit: 'g', rate: 80 }, { name: 'Buttermilk', qty: 1, unit: 'L', rate: 40 } ] }
+        ];
+        localStorage.setItem('milky_customers_v18', JSON.stringify(customers));
+    }
+    if (!deliveries || deliveries.length === 0) {
+        deliveries = [];
+        localStorage.setItem('milky_deliveries_v18', JSON.stringify(deliveries));
+    }
+
+    let currentDeliveryFilter = 'pending';
+    let selectedRouteDate = new Date().toISOString().split('T')[0];
+    let calDate = new Date();
+    let currentCalMonth = calDate.getMonth();
+    let currentCalYear = calDate.getFullYear();
+
+    let editTargetDeliveryId = null;
+    let tempEditItems = [];
+
+    // --- 2. INITIALIZATION ---
+    function init() {
+        document.getElementById('route-date').value = selectedRouteDate;
+        updateRouteTitle();
+        generateDailyDeliveries(selectedRouteDate);
+        
+        let sel = document.getElementById('cal-cust-select');
+        customers.forEach(c => sel.innerHTML += `<option value="${c.id}">${c.name} (${c.id})</option>`);
+
+        renderDeliveries();
+    }
+
+    function showToast(msg) {
+        let t = document.getElementById('toast');
+        t.innerText = msg; t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 3000);
+    }
+
+    function saveData() {
+        localStorage.setItem('milky_customers_v18', JSON.stringify(customers));
+        localStorage.setItem('milky_deliveries_v18', JSON.stringify(deliveries));
+    }
+
+    function switchTab(tab) {
+        document.querySelectorAll('.navbar .nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab-' + tab).classList.add('active');
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById('view-' + tab).classList.add('active');
+
+        if(tab === 'deliveries') renderDeliveries();
+        if(tab === 'customers') renderCustomers();
+        if(tab === 'attendance') {
+            generateDeliveriesForMonth(currentCalYear, currentCalMonth);
+            renderAttendanceCalendar();
+        }
+    }
+
+    // --- 3. DELIVERY ROUTE LOGIC ---
+    function changeRouteDate() {
+        selectedRouteDate = document.getElementById('route-date').value;
+        updateRouteTitle();
+        generateDailyDeliveries(selectedRouteDate);
+        renderDeliveries();
+    }
+
+    function goToRouteDate(dateStr) {
+        selectedRouteDate = dateStr;
+        document.getElementById('route-date').value = dateStr;
+        updateRouteTitle();
+        generateDailyDeliveries(selectedRouteDate);
+        switchTab('deliveries');
+        filterDeliveries('delivered'); 
+    }
+
+    function updateRouteTitle() {
+        const todayStr = new Date().toISOString().split('T')[0];
+        document.getElementById('route-title').innerText = (selectedRouteDate === todayStr) ? "Today's Route" : "Route: " + new Date(selectedRouteDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function generateDailyDeliveries(dateStr) {
+        customers.forEach(cust => {
+            if (cust.products.length === 0 || dateStr < cust.startDate) return;
+            const exists = deliveries.find(d => d.customerId === cust.id && d.date === dateStr);
+            
+            if (!exists) {
+                let isBoth = cust.shift.includes('Both');
+                let multiplier = isBoth ? 2 : 1;
+                
+                let deliveryItems = cust.products.map(p => {
+                    let calcQty = p.unit === 'g' || p.unit === 'ml' ? p.qty / 1000 : p.qty;
+                    let itemMult = (p.name !== 'Milk' && isBoth) ? 1 : multiplier; 
+                    
+                    return { 
+                        name: p.name, unit: p.unit, rate: p.rate,
+                        qty: p.qty * itemMult, 
+                        amount: calcQty * p.rate * itemMult,
+                        baseQty: p.qty,          
+                        baseAmount: calcQty * p.rate,
+                        isExtra: false 
+                    };
+                });
+
+                deliveries.push({
+                    id: 'd_' + Date.now() + Math.random().toString(16).slice(2),
+                    customerId: cust.id, customerName: cust.name, address: cust.address, shift: cust.shift, 
+                    date: dateStr, items: deliveryItems,
+                    grandTotal: deliveryItems.reduce((s, i) => s + i.amount, 0),
+                    status: 'pending', 
+                    morningStatus: isBoth ? 'pending' : null,
+                    eveningStatus: isBoth ? 'pending' : null
+                });
+            }
+        });
+        saveData();
+    }
+
+    function filterDeliveries(status) {
+        currentDeliveryFilter = status;
+        document.getElementById('filter-pending').classList.remove('active');
+        document.getElementById('filter-delivered').classList.remove('active');
+        document.getElementById('filter-' + status).classList.add('active');
+        renderDeliveries();
+    }
+
+    function renderDeliveries() {
+        const dayDeliveries = deliveries.filter(d => d.date === selectedRouteDate);
+        const pending = dayDeliveries.filter(d => d.status === 'pending' || d.status === 'partial');
+        const delivered = dayDeliveries.filter(d => d.status === 'delivered' || d.status === 'absent'); 
+        
+        document.getElementById('count-pending').innerText = pending.length;
+        document.getElementById('count-delivered').innerText = delivered.length;
+        
+        let collected = 0;
+        let stockNeeded = {}; // NEW: Stock Calculator logic
+
+        dayDeliveries.forEach(d => {
+            if (d.status === 'delivered') collected += d.grandTotal;
+            else if (d.status === 'partial' && d.shift.includes('Both')) collected += (d.grandTotal / 2);
+
+            // Calculate total needed stock for today (ignoring absents)
+            if (d.status !== 'absent') {
+                d.items.forEach(i => {
+                    if(!stockNeeded[i.name]) stockNeeded[i.name] = { qty: 0, unit: i.unit };
+                    
+                    // If partial morning done, subtract morning baseQty from total needed for evening
+                    let q = i.qty;
+                    if (d.status === 'partial' && d.shift.includes('Both')) {
+                        q = i.baseQty; // Only counting remaining half
+                    }
+                    stockNeeded[i.name].qty += q;
+                });
+            }
+        });
+
+        document.getElementById('grand-total-header').innerText = '₹' + collected;
+
+        // Render Stock Summary Badges
+        const stockContainer = document.getElementById('stock-summary-badges');
+        stockContainer.innerHTML = '';
+        if(Object.keys(stockNeeded).length === 0) {
+            stockContainer.innerHTML = '<span style="color:var(--gray); font-size:0.85rem;">No products needed today.</span>';
+        } else {
+            for(let item in stockNeeded) {
+                if(stockNeeded[item].qty > 0) {
+                    // Convert kg/L logic cleanly
+                    let displayQty = stockNeeded[item].qty;
+                    if(stockNeeded[item].unit === 'g' && displayQty >= 1000) {
+                        displayQty = (displayQty/1000) + 'kg';
+                    } else if(stockNeeded[item].unit === 'ml' && displayQty >= 1000) {
+                        displayQty = (displayQty/1000) + 'L';
+                    } else {
+                        displayQty = displayQty + stockNeeded[item].unit;
+                    }
+                    stockContainer.innerHTML += `<div class="stock-badge"><span>${item}:</span> <span>${displayQty}</span></div>`;
+                }
+            }
+        }
+
+        const grid = document.getElementById('delivery-grid');
+        grid.innerHTML = '';
+        let listToRender = currentDeliveryFilter === 'pending' ? pending : delivered;
+
+        if (currentDeliveryFilter === 'delivered' && delivered.length > 0) {
+            let deliveredNames = [...new Set(delivered.map(d => d.customerName))].join(', ');
+            grid.innerHTML += `
+                <div style="grid-column: 1/-1; background: #D1FAE5; padding: 15px 20px; border-radius: 12px; color: #065F46; font-weight: 600; font-size: 0.95rem; border: 1px solid #6EE7B7;">
+                    ✅ Successfully delivered to ${delivered.length} users: <br><span style="font-weight:400; font-size: 0.85rem;">${deliveredNames}</span>
+                </div>
+            `;
+        }
+
+        if (listToRender.length === 0) {
+            grid.innerHTML += `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">No deliveries found in this list.</div>`; return;
+        }
+
+        listToRender.forEach(d => {
+            const isDelivered = d.status === 'delivered';
+            const isAbsent = d.status === 'absent';
+            const isPartial = d.status === 'partial';
+            const isBoth = d.shift.includes('Both');
+            
+            let itemsHTML = d.items.filter(i => i.qty > 0).map(i => {
+                let extraBadge = i.isExtra ? `<span class="badge-extra">EXTRA</span>` : '';
+                return `
+                <div class="item-row">
+                    <span>${i.name} ${extraBadge} <span class="item-qty">(${i.qty}${i.unit})</span></span>
+                    <span class="item-price">₹${i.amount}</span>
+                </div>
+                `;
+            }).join('');
+
+            let btnHTML = '';
+            if (isBoth) {
+                let mBtn = d.morningStatus === 'delivered' 
+                    ? `<button class="btn-disabled" style="flex:1;">✓ Morning Done</button>`
+                    : `<button class="btn-success" style="flex:1; font-size:0.9rem; padding:10px;" onclick="markDelivered('${d.id}', 'morning')">✅ Morning</button>`;
+                let eBtn = d.eveningStatus === 'delivered' 
+                    ? `<button class="btn-disabled" style="flex:1;">✓ Evening Done</button>`
+                    : `<button class="btn-success" style="flex:1; font-size:0.9rem; padding:10px;" onclick="markDelivered('${d.id}', 'evening')">✅ Evening</button>`;
+                btnHTML = `<div style="display:flex; gap:10px; margin-top:15px;">${mBtn}${eBtn}</div>`;
+            } else {
+                btnHTML = isDelivered ? `<button class="btn-disabled" style="margin-top:15px;">✓ Completed</button>` : 
+                          isAbsent ? `<button class="btn-disabled" style="margin-top:15px; color:var(--red);">❌ Marked Absent</button>` :
+                          `<button class="btn-success" style="margin-top:15px;" onclick="markDelivered('${d.id}')">Confirm Delivery</button>`;
+            }
+
+            let headerHTML = `
+                <div class="card-header">
+                    <div>
+                        <div class="cust-name">${d.customerName} <span class="cust-id">${d.customerId}</span></div>
+                        <div class="cust-meta">📍 ${d.address}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <span class="badge" style="display:block; margin-bottom:5px; background: ${isBoth?'#FAF5FF':'#EEF2FF'}; color: ${isBoth?'#9D174D':'var(--primary)'}">${isBoth ? 'Morn + Eve' : d.shift}</span>
+                        ${(!isDelivered && !isAbsent) ? `<button class="btn-outline" style="padding: 2px 8px; font-size:0.75rem;" onclick="openAttendanceModal('${d.id}')">✏️ Edit Qty</button>` : ''}
+                    </div>
+                </div>`;
+
+            grid.innerHTML += `
+                <div class="card ${isDelivered ? 'delivered' : isAbsent ? 'absent' : isPartial ? 'partial' : ''}">
+                    <div class="status-strip"></div>
+                    ${headerHTML}
+                    <div>
+                        ${isAbsent ? `<div style="text-align:center; padding:10px; color:var(--red); font-weight:bold;">No Products Delivered Today</div>` : itemsHTML}
+                        <div class="grand-total"><span>Total Owed</span><span>₹${d.grandTotal}</span></div>
+                    </div>
+                    ${btnHTML}
+                </div>
+            `;
+        });
+    }
+
+    function markDelivered(deliveryId, specificShift = null) {
+        let d = deliveries.find(x => x.id === deliveryId);
+        if (d) { 
+            if (d.shift.includes('Both') && specificShift) {
+                if (specificShift === 'morning') d.morningStatus = 'delivered';
+                if (specificShift === 'evening') d.eveningStatus = 'delivered';
+                if (d.morningStatus === 'delivered' && d.eveningStatus === 'delivered') d.status = 'delivered';
+                else d.status = 'partial';
+            } else {
+                d.status = 'delivered'; 
+            }
+            saveData(); renderDeliveries(); 
+        }
+    }
+
+    // --- 4. CALENDAR LOGIC ---
+    function generateDeliveriesForMonth(year, month) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const todayStr = new Date().toISOString().split('T')[0];
+        for(let day=1; day<=daysInMonth; day++) {
+            let dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+            if(dateStr <= todayStr) generateDailyDeliveries(dateStr);
+        }
+    }
+
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    function changeMonth(delta) {
+        currentCalMonth += delta;
+        if(currentCalMonth > 11) { currentCalMonth = 0; currentCalYear++; }
+        if(currentCalMonth < 0) { currentCalMonth = 11; currentCalYear--; }
+        generateDeliveriesForMonth(currentCalYear, currentCalMonth);
+        renderAttendanceCalendar();
+    }
+
+    function renderAttendanceCalendar() {
+        document.getElementById('cal-month-title').innerText = `${monthNames[currentCalMonth]} ${currentCalYear}`;
+        const custId = document.getElementById('cal-cust-select').value;
+        const grid = document.getElementById('attendance-grid');
+        
+        let html = '';
+        const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        days.forEach(d => html += `<div class="cal-header-day">${d}</div>`);
+
+        const firstDay = new Date(currentCalYear, currentCalMonth, 1).getDay();
+        const daysInMonth = new Date(currentCalYear, currentCalMonth + 1, 0).getDate();
+        for(let i=0; i<firstDay; i++) html += `<div class="cal-cell empty"></div>`;
+
+        for(let day=1; day<=daysInMonth; day++) {
+            let dateStr = `${currentCalYear}-${String(currentCalMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+            let todayStr = new Date().toISOString().split('T')[0];
+            let isToday = dateStr === todayStr;
+            let cellContent = ''; let clickAction = '';
+            
+            if (custId) {
+                let d = deliveries.find(x => x.customerId === custId && x.date === dateStr);
+                if (d) {
+                    clickAction = `openAttendanceModal('${d.id}')`;
+                    if(d.status === 'absent' || d.grandTotal === 0) cellContent = `<div class="cell-absent">❌ Absent</div>`;
+                    else d.items.forEach(i => { if(i.qty>0) cellContent += `<div class="cell-product">${i.name.charAt(0)}: ${i.qty}${i.unit}</div>`; });
+                } else {
+                    let c = customers.find(x => x.id === custId);
+                    if(dateStr >= c.startDate && dateStr <= todayStr) cellContent = `<div class="cell-absent" style="background:#F3F4F6; color:#6B7280;">No Record</div>`;
+                }
+            } else {
+                clickAction = `goToRouteDate('${dateStr}')`;
+                let dayDels = deliveries.filter(x => x.date === dateStr && (x.status === 'delivered' || x.status === 'partial'));
+                if (dayDels.length > 0) {
+                    let totalAmt = dayDels.reduce((sum, d) => sum + (d.status === 'partial' ? d.grandTotal/2 : d.grandTotal), 0);
+                    cellContent = `<div class="cell-master">✅ ${dayDels.length} Users</div><div class="cell-product" style="font-size:0.8rem; background:#D1FAE5; color:#065F46;">₹ ${totalAmt}</div>`;
+                } else if (dateStr <= todayStr) {
+                     cellContent = `<div class="cell-absent" style="background:#F3F4F6; color:#6B7280;">No Sales</div>`;
+                }
+            }
+
+            html += `<div class="cal-cell ${isToday ? 'today' : ''}" onclick="${clickAction}"><div class="cell-date">${day}</div>${cellContent}</div>`;
+        }
+        grid.innerHTML = html;
+    }
+
+    // --- 5. EDIT ATTENDANCE & ADD EXTRA ITEM ---
+    function openAttendanceModal(deliveryId) {
+        let d = deliveries.find(x => x.id === deliveryId);
+        if(!d) return;
+        editTargetDeliveryId = d.id;
+        
+        tempEditItems = JSON.parse(JSON.stringify(d.items));
+        
+        document.getElementById('edit-att-title').innerText = `Edit: ${d.customerName}`;
+        document.getElementById('edit-att-date').innerText = new Date(d.date).toLocaleDateString('en-IN') + ' • ' + d.shift;
+        renderEditItems();
+        document.getElementById('modal-edit-attendance').classList.add('active');
+    }
+
+    function renderEditItems() {
+        const container = document.getElementById('edit-att-items');
+        container.innerHTML = '';
+        tempEditItems.forEach((item, index) => {
+            let extraBadge = item.isExtra ? `<span class="badge-extra">EXTRA</span>` : '';
+            container.innerHTML += `
+                <div class="qty-editor">
+                    <div>
+                        <strong style="display:block; color:var(--dark);">${item.name} ${extraBadge}</strong>
+                        <span style="font-size:0.8rem; color:var(--gray);">₹${item.rate} / ${item.unit}</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <button class="qty-btn minus" onclick="adjTempQty(${index}, -1)">−</button>
+                        <span class="qty-display">${item.qty} ${item.unit}</span>
+                        <button class="qty-btn" onclick="adjTempQty(${index}, 1)">+</button>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function adjTempQty(index, delta) {
+        let item = tempEditItems[index];
+        let change = (item.unit === 'g' || item.unit === 'ml') ? 250 : 1;
+        item.qty += (change * delta);
+        if(item.qty < 0) item.qty = 0;
+        let calcQty = (item.unit === 'g' || item.unit === 'ml') ? item.qty / 1000 : item.qty;
+        item.amount = calcQty * item.rate;
+        renderEditItems();
+    }
+
+    function addExtraItemToBill() {
+        let name = document.getElementById('extra-name').value;
+        let qty = parseFloat(document.getElementById('extra-qty').value);
+        let unit = document.getElementById('extra-unit').value;
+        let rate = parseFloat(document.getElementById('extra-rate').value);
+
+        if (!name || !qty || !rate) { showToast("Enter Name, Qty and Rate!"); return; }
+
+        let calcQty = (unit === 'g' || unit === 'ml') ? qty / 1000 : qty;
+        let amount = calcQty * rate;
+
+        let existingItem = tempEditItems.find(i => i.name.toLowerCase() === name.toLowerCase());
+        
+        if (existingItem && existingItem.unit === unit) {
+            existingItem.qty += qty;
+            let newCalcQty = (existingItem.unit === 'g' || existingItem.unit === 'ml') ? existingItem.qty / 1000 : existingItem.qty;
+            existingItem.amount = newCalcQty * existingItem.rate; 
+            existingItem.baseQty += qty;
+            existingItem.baseAmount += amount;
+        } else {
+            tempEditItems.push({ name, unit, rate, qty, amount, baseQty: qty, baseAmount: amount, isExtra: true });
+        }
+
+        document.getElementById('extra-name').value = '';
+        document.getElementById('extra-qty').value = '';
+        document.getElementById('extra-rate').value = '';
+        renderEditItems();
+        showToast("Item added! Click 'Save Updates' below.");
+    }
+
+    function saveEditedAttendance() {
+        let extraName = document.getElementById('extra-name').value;
+        let extraQty = document.getElementById('extra-qty').value;
+        let extraRate = document.getElementById('extra-rate').value;
+        
+        if (extraName.trim() !== '' || extraQty !== '' || extraRate !== '') {
+            if (!extraName || !extraQty || !extraRate) {
+                showToast("Please complete the Extra Item details or clear them to save!");
+                return; 
+            }
+            addExtraItemToBill();
+        }
+
+        let d = deliveries.find(x => x.id === editTargetDeliveryId);
+        if(d) {
+            d.items = JSON.parse(JSON.stringify(tempEditItems));
+            d.grandTotal = d.items.reduce((s, i) => s + i.amount, 0);
+            
+            if(d.grandTotal === 0) {
+                d.status = 'absent';
+            } else if (d.status === 'absent') {
+                d.status = 'pending';
+                if(d.shift.includes('Both')) { d.morningStatus = 'pending'; d.eveningStatus = 'pending'; }
+            }
+            
+            saveData(); 
+            showToast('Updates saved successfully!'); 
+            closeModal('modal-edit-attendance');
+            
+            if(document.getElementById('view-attendance').classList.contains('active')) renderAttendanceCalendar();
+            if(document.getElementById('view-deliveries').classList.contains('active')) renderDeliveries();
+        }
+    }
+
+    // --- 6. CUSTOMER ADDING, SEARCH & FULL EXCEL REPORT ---
+    function openAddCustomerModal() {
+        document.getElementById('cust-name').value = ''; document.getElementById('cust-phone').value = ''; document.getElementById('cust-address').value = '';
+        document.getElementById('modal-add-customer').classList.add('active');
+    }
+    
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function generateNextCustId() {
+        if (customers.length === 0) return 'MR-001';
+        let maxId = 0;
+        customers.forEach(c => { let num = parseInt(c.id.split('-')[1]); if (num > maxId) maxId = num; });
+        return 'MR-' + String(maxId + 1).padStart(3, '0');
+    }
+
+    function saveCustomer() {
+        const name = document.getElementById('cust-name').value;
+        if(!name) { alert("Name required!"); return; }
+        
+        let newId = generateNextCustId();
+        let prods = [];
+        let mq = parseFloat(document.getElementById('p-milk-qty').value); let mr = parseFloat(document.getElementById('p-milk-rate').value);
+        if(mq>0 && mr>0) prods.push({name:'Milk', qty:mq, unit:document.getElementById('p-milk-unit').value, rate:mr});
+        let cq = parseFloat(document.getElementById('p-curd-qty').value); let cr = parseFloat(document.getElementById('p-curd-rate').value);
+        if(cq>0 && cr>0) prods.push({name:'Curd', qty:cq, unit:document.getElementById('p-curd-unit').value, rate:cr});
+        let bq = parseFloat(document.getElementById('p-butter-qty').value); let br = parseFloat(document.getElementById('p-butter-rate').value);
+        if(bq>0 && br>0) prods.push({name:'Buttermilk', qty:bq, unit:document.getElementById('p-butter-unit').value, rate:br});
+
+        customers.push({
+            id: newId, name: name, phone: document.getElementById('cust-phone').value,
+            address: document.getElementById('cust-address').value, shift: document.getElementById('cust-shift').value,
+            startDate: new Date().toISOString().split('T')[0], products: prods
+        });
+        saveData(); closeModal('modal-add-customer'); showToast('Customer Added!');
+        
+        let sel = document.getElementById('cal-cust-select');
+        sel.innerHTML = `<option value="">🌍 All Customers (Master View)</option>`;
+        customers.forEach(c => sel.innerHTML += `<option value="${c.id}">${c.name} (${c.id})</option>`);
+        generateDailyDeliveries(selectedRouteDate); renderCustomers();
+    }
+
+    function viewCustomer(id) {
+        let c = customers.find(x => x.id === id);
+        if(!c) return;
+
+        document.getElementById('view-c-name').innerText = c.name;
+        document.getElementById('view-c-id').innerText = c.id;
+        document.getElementById('view-c-address').innerText = "📍 " + c.address;
+        document.getElementById('view-c-phone').innerText = c.phone || 'N/A';
+        document.getElementById('view-c-shift').innerText = c.shift;
+        document.getElementById('view-c-date').innerText = c.startDate || 'N/A';
+
+        let custDeliveries = deliveries.filter(d => d.customerId === id && (d.status === 'delivered' || d.status === 'partial'));
+        let prodSummary = {}; let grandTotal = 0;
+        let deliveredDaysCount = custDeliveries.length;
+
+        custDeliveries.forEach(d => {
+            if (d.status === 'delivered') {
+                d.items.forEach(i => {
+                    if(!prodSummary[i.name]) prodSummary[i.name] = { qty: 0, amount: 0, unit: i.unit };
+                    prodSummary[i.name].qty += i.qty; prodSummary[i.name].amount += i.amount; grandTotal += i.amount;
+                });
+            } else if (d.status === 'partial') {
+                d.items.forEach(i => {
+                    if(!prodSummary[i.name]) prodSummary[i.name] = { qty: 0, amount: 0, unit: i.unit };
+                    prodSummary[i.name].qty += i.baseQty; prodSummary[i.name].amount += i.baseAmount; grandTotal += i.baseAmount;
+                });
+            }
+        });
+
+        let summaryHTML = '';
+        let waMessage = `Hello ${c.name},\nHere is your Bhati Farm delivery summary:\n\n*Total Active Days:* ${deliveredDaysCount}\n`;
+
+        if(Object.keys(prodSummary).length === 0) {
+            summaryHTML = "<div style='color:var(--gray); font-size:0.9rem; text-align:center;'>No deliveries completed yet.</div>";
+            waMessage += "\nNo completed deliveries yet.";
+        } else {
+            summaryHTML = `<table style="width:100%; border-collapse: collapse; font-size: 0.95rem;"><thead><tr style="border-bottom: 2px solid var(--border); color: var(--gray); text-align: left;"><th style="padding: 8px 0;">Item Delivered</th><th style="padding: 8px 0; text-align:center;">Total Qty</th><th style="padding: 8px 0; text-align:right;">Total Amount</th></tr></thead><tbody>`;
+            for(let pName in prodSummary) {
+                let p = prodSummary[pName]; let cleanQty = parseFloat(p.qty.toFixed(2));
+                summaryHTML += `<tr style="border-bottom: 1px solid var(--border);"><td style="padding: 12px 0; font-weight:700; color:var(--dark);">${pName}</td><td style="padding: 12px 0; text-align:center; color:var(--gray); font-weight:600;">${cleanQty} ${p.unit}</td><td style="padding: 12px 0; text-align:right; font-weight:800; color:var(--primary);">₹${p.amount}</td></tr>`;
+                waMessage += `- ${pName}: ${cleanQty} ${p.unit} (₹${p.amount})\n`;
+            }
+            summaryHTML += `</tbody><tfoot><tr><td colspan="2" style="padding-top: 15px; font-weight:800; font-size:1.1rem; text-align:right;">GRAND TOTAL:</td><td style="padding-top: 15px; font-weight:800; font-size:1.3rem; color:var(--secondary); text-align:right;">₹${grandTotal}</td></tr></tfoot></table>`;
+            waMessage += `\n*GRAND TOTAL: ₹${grandTotal}*\n\nThank you for choosing Bhati Farm! 🐄`;
+        }
+        
+        document.getElementById('view-c-summary').innerHTML = summaryHTML;
+
+        // NEW: Setup WhatsApp Button
+        let waBtn = document.getElementById('btn-share-wa');
+        if (c.phone && c.phone.length >= 10) {
+            waBtn.style.display = 'flex';
+            waBtn.onclick = () => {
+                let encodedMsg = encodeURIComponent(waMessage);
+                window.open(`https://wa.me/91${c.phone}?text=${encodedMsg}`, '_blank');
+            };
+        } else {
+            waBtn.style.display = 'none'; // Hide if no valid phone number
+        }
+
+        document.getElementById('modal-view-customer').classList.add('active');
+    }
+
+    // NEW: Handle Customer Search
+    function handleCustomerSearch() {
+        let searchTerm = document.getElementById('search-customer').value.toLowerCase();
+        renderCustomers(searchTerm);
+    }
+
+    function renderCustomers(searchTerm = '') {
+        const grid = document.getElementById('customer-grid'); grid.innerHTML = '';
+        
+        let filteredCustomers = customers;
+        if (searchTerm !== '') {
+            filteredCustomers = customers.filter(c => 
+                c.name.toLowerCase().includes(searchTerm) || 
+                (c.phone && c.phone.includes(searchTerm))
+            );
+        }
+
+        if (filteredCustomers.length === 0) {
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">No customers found matching "${searchTerm}".</div>`;
+            return;
+        }
+
+        filteredCustomers.forEach(c => {
+            let itemsSummary = c.products.map(p => `${p.name} (${p.qty}${p.unit})`).join(', ');
+            grid.innerHTML += `
+                <div class="card customer-card">
+                    <div class="status-strip"></div>
+                    <div class="card-header" style="border-bottom:none; margin-bottom:5px; padding-bottom:0;">
+                        <div class="cust-name">${c.name} <span class="cust-id">${c.id}</span></div>
+                        <span class="badge">${c.shift.includes('Both') ? 'Morn + Eve' : c.shift}</span>
+                    </div>
+                    <div class="cust-meta" style="margin-bottom: 15px;">📞 ${c.phone || 'N/A'} &nbsp; | &nbsp; 📍 ${c.address}</div>
+                    <div style="background: var(--bg); padding: 10px; border-radius: 8px; font-size: 0.85rem; color: var(--dark); margin-bottom: 15px;">
+                        <strong>Routine (Per Shift):</strong> ${itemsSummary || 'No products'}
+                    </div>
+                    <button class="btn-outline" style="width:100%; justify-content:center;" onclick="viewCustomer('${c.id}')">View Details & Share Bill</button>
+                </div>`;
+        });
+    }
+
+    function exportFullReport() {
+        if(customers.length === 0) { showToast("No data to export!"); return; }
+
+        let custData = customers.map(c => ({
+            "User ID": c.id, "Name": c.name, "Phone": c.phone, "Address": c.address, "Shift": c.shift, "Start Date": c.startDate
+        }));
+
+        let attData = [];
+        let sortedDeliveries = deliveries.slice().sort((a,b) => new Date(a.date) - new Date(b.date));
+
+        sortedDeliveries.forEach(d => {
+            if(d.status === 'pending') return; 
+
+            let row = {
+                "Date": new Date(d.date).toLocaleDateString('en-IN'),
+                "User ID": d.customerId,
+                "Customer Name": d.customerName,
+                "Shift Status": d.status === 'absent' ? 'Absent' : (d.status === 'partial' ? 'Partial (Half)' : 'Completed')
+            };
+
+            let dailyTotal = 0;
+
+            if (d.status === 'absent') {
+                row["Delivery Detail"] = "❌ No Delivery";
+                row["Grand Total (₹)"] = 0;
+            } else {
+                let isPartial = d.status === 'partial' && d.shift.includes('Both');
+                
+                d.items.forEach(item => {
+                    let finalQty = isPartial ? item.baseQty : item.qty;
+                    let finalAmt = isPartial ? item.baseAmount : item.amount;
+                    
+                    if(finalQty > 0) {
+                        row[item.name + " Delivered"] = "✅ " + finalQty + item.unit;
+                        row[item.name + " Price (₹)"] = finalAmt;
+                        dailyTotal += finalAmt;
+                    } else {
+                        row[item.name + " Delivered"] = "-";
+                        row[item.name + " Price (₹)"] = 0;
+                    }
+                });
+                row["Grand Total (₹)"] = dailyTotal;
+            }
+            attData.push(row);
+        });
+
+        let wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(custData), "Customer Details");
+        if(attData.length > 0) XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(attData), "Attendance & Billing");
+        else XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet([{"Note": "No completed deliveries yet"}]), "Attendance & Billing");
+
+        XLSX.writeFile(wb, "Bhati Farm_Full_Report.xlsx");
+        showToast("Full Excel downloaded successfully!");
+    }
+
+    init();
+</script>
+</body>
+</html>
