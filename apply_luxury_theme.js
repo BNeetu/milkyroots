@@ -60,7 +60,7 @@ html = html.replace(/background:#020B28/g, `background:${palette.brownDark}`);
 // 3. HEALTH TABLE COLOR SYNC
 html = html.replace(/background:#d4e8f6/g, `background:${palette.cream}`); // Feature header
 html = html.replace(/color:#0077B6/g, `color:${palette.brown}`); // Feature text
-html = html.replace(/background:#0077B6/g, `background:${palette.brown}`); // Bhati Farm header/yes cell
+html = html.replace(/background:#0077B6/g, `background:${palette.brown}`); // Bhati Farms header/yes cell
 html = html.replace(/color:#d4e8f6/g, `color:${palette.cream}`); // checkmarks
 
 // 4. NAV/LOGO THEME

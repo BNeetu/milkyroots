@@ -42,7 +42,7 @@ updateEl('#about .section-title', 'Our Journey & Operational Standards');
 updateEl('#about .section-sub', 'From a highly successful climate-controlled polyhouse to a premium dairy farm — built on strict quality control, hygiene, and business excellence.');
 
 updateEl('.about-text p:nth-of-type(1)', '<strong>Rooted in Quality, Driven by Excellence.</strong><br>The Bhati family’s journey began with a successful climate-controlled polyhouse, supplying chemical-free produce to Beawar. We learned early that exceptional food requires strict operational control and zero compromises.');
-updateEl('.about-text p:nth-of-type(2)', '<strong>Transition to Modern Dairy</strong><br>We applied this same operational rigor to Bhati Farm. By sourcing pure indigenous cattle and managing a stress-free, hygienic farm environment, we ensure premium milk quality day in and day out.');
+updateEl('.about-text p:nth-of-type(2)', '<strong>Transition to Modern Dairy</strong><br>We applied this same operational rigor to Bhati Farms. By sourcing pure indigenous cattle and managing a stress-free, hygienic farm environment, we ensure premium milk quality day in and day out.');
 updateEl('.about-text p:nth-of-type(3)', '<strong>Uncompromising Business Values</strong><br>Our promise isn\'t just about heritage; it\'s about reliable execution. From 4 AM hygienic milking to guaranteed morning delivery, we operate with full transparency and strict quality control.');
 
 // Remove extra fluff paragraphs to keep it crisp

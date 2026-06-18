@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhati Farm - Delivery & Attendance Manager</title>
+<title>Bhati Farms - Delivery & Attendance Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 <style>
@@ -127,7 +127,7 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">🐄 Bhati Farm</div>
+            <div class="logo">🐄 Bhati Farms</div>
             <div class="nav-links">
                 <button class="nav-btn active" onclick="switchTab('deliveries')" id="tab-deliveries">🛵 Route</button>
                 <button class="nav-btn" onclick="switchTab('attendance')" id="tab-attendance">📅 Attendance</button>
@@ -825,7 +825,7 @@
         });
 
         let summaryHTML = '';
-        let waMessage = `Hello ${c.name},\nHere is your Bhati Farm delivery summary:\n\n*Total Active Days:* ${deliveredDaysCount}\n`;
+        let waMessage = `Hello ${c.name},\nHere is your Bhati Farms delivery summary:\n\n*Total Active Days:* ${deliveredDaysCount}\n`;
 
         if(Object.keys(prodSummary).length === 0) {
             summaryHTML = "<div style='color:var(--gray); font-size:0.9rem; text-align:center;'>No deliveries completed yet.</div>";
@@ -838,7 +838,7 @@
                 waMessage += `- ${pName}: ${cleanQty} ${p.unit} (₹${p.amount})\n`;
             }
             summaryHTML += `</tbody><tfoot><tr><td colspan="2" style="padding-top: 15px; font-weight:800; font-size:1.1rem; text-align:right;">GRAND TOTAL:</td><td style="padding-top: 15px; font-weight:800; font-size:1.3rem; color:var(--secondary); text-align:right;">₹${grandTotal}</td></tr></tfoot></table>`;
-            waMessage += `\n*GRAND TOTAL: ₹${grandTotal}*\n\nThank you for choosing Bhati Farm! 🐄`;
+            waMessage += `\n*GRAND TOTAL: ₹${grandTotal}*\n\nThank you for choosing Bhati Farms! 🐄`;
         }
         
         document.getElementById('view-c-summary').innerHTML = summaryHTML;
@@ -949,7 +949,7 @@
         if(attData.length > 0) XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(attData), "Attendance & Billing");
         else XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet([{"Note": "No completed deliveries yet"}]), "Attendance & Billing");
 
-        XLSX.writeFile(wb, "Bhati Farm_Full_Report.xlsx");
+        XLSX.writeFile(wb, "Bhati Farms_Full_Report.xlsx");
         showToast("Full Excel downloaded successfully!");
     }
 
