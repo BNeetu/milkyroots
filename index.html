@@ -2067,13 +2067,13 @@ function receiveLeadResult(e) {
   activeLeadRequestId = null;
 
   if (e.data.success === true) {
-    sessionStorage.setItem('bhatiFarmsLeadSubmitted', 'true');
-    closeLeadModal();
     return;
   }
 
+  sessionStorage.removeItem('bhatiFarmsLeadSubmitted');
   status.textContent = 'We could not save your details. Please check your connection and try again.';
   submitButton.disabled = false;
+  openLeadModal();
 }
 
 function openLeadModal() {
@@ -2118,14 +2118,18 @@ function submitLeadForm(e) {
   document.getElementById('leadCaptureStatus').textContent =
     'Saving your details...';
   e.target.querySelector('button[type="submit"]').disabled = true;
+  sessionStorage.setItem('bhatiFarmsLeadSubmitted', 'true');
+  closeLeadModal();
   leadRequestTimeout = window.setTimeout(function() {
     if (activeLeadRequestId !== requestId) return;
 
     activeLeadRequestId = null;
     leadRequestTimeout = null;
+    sessionStorage.removeItem('bhatiFarmsLeadSubmitted');
     document.getElementById('leadCaptureStatus').textContent =
       'We have not received confirmation yet. Check your Visitor Leads sheet before trying again. If no row appears, the Apps Script needs its latest version deployed.';
     e.target.querySelector('button[type="submit"]').disabled = false;
+    openLeadModal();
   }, 10000);
 }
 
