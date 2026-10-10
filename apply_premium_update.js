@@ -62,7 +62,7 @@ updateEl('.team-card:nth-child(2) h3', 'Laxman Singh Bhati');
 updateEl('.team-card:nth-child(2) p', 'Ensures seamless supply chain management, daily logistics, and strict morning delivery timelines.');
 
 updateEl('.team-card:nth-child(3) .team-badge', '🎓 Strategic Advisor');
-updateEl('.team-card:nth-child(3) h3', 'D S Bhati');
+updateEl('.team-card:nth-child(3) h3', 'Commander D. S. Bhati');
 updateEl('.team-card:nth-child(3) p', 'Guides customer relations, scalable growth strategies, and ensures long-term business excellence.');
 
 // Save updated HTML
