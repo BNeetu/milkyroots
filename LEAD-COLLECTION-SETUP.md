@@ -1,6 +1,6 @@
 # Visitor lead collection setup
 
-The visitor form saves each submitted lead to a Google Sheet. The visitor must enter their name and phone number and agree to the contact notice; the site does not identify visitors automatically.
+The visitor form saves each submitted lead to a Google Sheet. The visitor must enter their name and phone number and agree to the contact notice; the site does not identify visitors automatically. The prompt is shown only once per browser and remains dismissed after the visitor closes it or submits the form.
 
 ## Create and deploy the receiver
 
