@@ -148,6 +148,25 @@ nav{
 .mobile-menu a:last-child{border-bottom:none;margin-top:8px;background:var(--gold);color:#fff;text-align:center;border-radius:50px;padding:12px;letter-spacing:0.08em}
 .mobile-menu.open{display:flex}
 
+/* ── VISITOR LEAD CAPTURE MODAL ── */
+.lead-capture-modal{position:fixed;inset:0;background:rgba(77,61,44,.66);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;z-index:4000}
+.lead-capture-modal.show{display:flex}
+.lead-capture-card{position:relative;width:min(440px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:#fff;border-radius:24px;padding:2rem 1.5rem 1.5rem;box-shadow:0 30px 80px rgba(0,0,0,.28);text-align:center}
+.lead-close{position:absolute;top:14px;right:14px;border:none;background:rgba(153,126,103,.12);color:var(--brown-dark);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.3rem;line-height:1}
+.lead-icon{font-size:3rem;margin-bottom:.6rem}
+.lead-capture-card h3{font-family:'Playfair Display',serif;font-size:2rem;color:var(--brown-dark);margin-bottom:.7rem}
+.lead-capture-card p{color:var(--text-muted);line-height:1.7;font-size:.96rem;margin-bottom:1rem}
+#leadCaptureForm{display:flex;flex-direction:column;gap:.9rem;margin-top:1rem}
+#leadCaptureForm input{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:12px;background:var(--warm-white);color:var(--brown-dark);font-size:1rem;outline:none}
+#leadCaptureForm input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(153,126,103,.12)}
+#leadCaptureForm button{background:var(--gold);color:#fff;border:none;border-radius:12px;padding:14px 16px;font-weight:700;cursor:pointer;transition:all .2s ease}
+#leadCaptureForm button:hover{background:var(--brown-dark);transform:translateY(-1px)}
+#leadCaptureForm button:disabled{opacity:.65;cursor:wait}
+#leadCaptureForm .lead-consent{display:flex;align-items:flex-start;gap:.55rem;text-align:left;color:var(--text-muted);font-size:.83rem;line-height:1.45}
+#leadCaptureForm .lead-consent input{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0;accent-color:var(--gold)}
+#leadCaptureStatus{margin:0;color:var(--brown-dark);font-size:.88rem}
+.lead-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+
 /* ── HERO ── */
 .hero{
   min-height:100vh;
@@ -795,6 +814,28 @@ nav.shrunk {
 </style>
 </head>
 <body>
+
+<iframe id="leadSubmissionFrame" name="leadSubmissionFrame" title="Lead submission" hidden></iframe>
+
+<div id="leadCaptureModal" class="lead-capture-modal" aria-hidden="true">
+  <div class="lead-capture-card">
+    <button class="lead-close" type="button" aria-label="Close">×</button>
+    <div class="lead-icon">👋</div>
+    <p class="section-label" style="margin-bottom:0.4rem">Quick Connect</p>
+    <h3>Welcome to Bhati Farms</h3>
+    <p>Share your name and mobile number. We’ll save them to our visitor leads sheet and may contact you about our products and delivery.</p>
+    <form id="leadCaptureForm" method="post" target="leadSubmissionFrame">
+      <input id="lead-name" name="name" type="text" placeholder="Your Full Name" autocomplete="name" maxlength="100" required>
+      <input id="lead-phone" name="phone" type="tel" placeholder="Your Mobile Number" autocomplete="tel" inputmode="tel" maxlength="20" title="Enter a valid phone number" required>
+      <input id="lead-page" name="page" type="hidden">
+      <input id="lead-request-id" name="requestId" type="hidden">
+      <label class="lead-honeypot" aria-hidden="true">Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+      <label class="lead-consent"><input id="lead-consent" name="consent" type="checkbox" value="yes" required> I agree that Bhati Farms may use these details to contact me.</label>
+      <p id="leadCaptureStatus" role="status" aria-live="polite"></p>
+      <button type="submit">Get a Call Back</button>
+    </form>
+  </div>
+</div>
 
 <!-- Golden Promo Banner -->
 <div class="promo-banner">
@@ -2007,6 +2048,110 @@ document.addEventListener('click', function(e){
   var ham = document.querySelector('.hamburger');
   if(menu && menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)){
     menu.classList.remove('open');
+  }
+});
+
+var VISITOR_LEADS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzL0-mBw07EKbjYI-rpkFpL3g6fMCdILVGVvkdQ6pNvhuSGBV0cf91xksGFlOamoKfh0Q/exec';
+var activeLeadRequestId = null;
+var leadRequestTimeout = null;
+
+function receiveLeadResult(e) {
+  if (e.origin !== 'https://script.google.com' && !e.origin.endsWith('.googleusercontent.com')) return;
+  if (!e.data || e.data.type !== 'bhati-farms-lead-result' ||
+      !activeLeadRequestId || e.data.requestId !== activeLeadRequestId) return;
+
+  window.clearTimeout(leadRequestTimeout);
+  leadRequestTimeout = null;
+  var status = document.getElementById('leadCaptureStatus');
+  var submitButton = document.querySelector('#leadCaptureForm button[type="submit"]');
+  activeLeadRequestId = null;
+
+  if (e.data.success === true) {
+    sessionStorage.setItem('bhatiFarmsLeadSubmitted', 'true');
+    closeLeadModal();
+    return;
+  }
+
+  status.textContent = 'We could not save your details. Please check your connection and try again.';
+  submitButton.disabled = false;
+}
+
+function openLeadModal() {
+  var modal = document.getElementById('leadCaptureModal');
+  if (!modal) return;
+  if (sessionStorage.getItem('bhatiFarmsLeadSubmitted')) return;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeLeadModal() {
+  var modal = document.getElementById('leadCaptureModal');
+  if (!modal) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+function submitLeadForm(e) {
+  if (VISITOR_LEADS_ENDPOINT === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    e.preventDefault();
+    document.getElementById('leadCaptureStatus').textContent =
+      'Lead collection is not configured yet. Please add the Google Apps Script URL as described in LEAD-COLLECTION-SETUP.md.';
+    return;
+  }
+
+  var phone = document.getElementById('lead-phone').value.trim();
+  var digits = phone.replace(/\D/g, '');
+  if (!/^[0-9+().\s-]{7,20}$/.test(phone) || digits.length < 7 || digits.length > 15) {
+    e.preventDefault();
+    document.getElementById('lead-phone').setCustomValidity('Enter a phone number with 7 to 15 digits.');
+    document.getElementById('lead-phone').reportValidity();
+    return;
+  }
+
+  document.getElementById('lead-phone').setCustomValidity('');
+  activeLeadRequestId = Array.from(window.crypto.getRandomValues(new Uint8Array(16)))
+    .map(function(value) { return value.toString(16).padStart(2, '0'); }).join('');
+  var requestId = activeLeadRequestId;
+  document.getElementById('lead-request-id').value = requestId;
+  e.target.action = VISITOR_LEADS_ENDPOINT;
+  document.getElementById('lead-page').value = window.location.origin + window.location.pathname;
+  document.getElementById('leadCaptureStatus').textContent =
+    'Saving your details...';
+  e.target.querySelector('button[type="submit"]').disabled = true;
+  leadRequestTimeout = window.setTimeout(function() {
+    if (activeLeadRequestId !== requestId) return;
+
+    activeLeadRequestId = null;
+    leadRequestTimeout = null;
+    document.getElementById('leadCaptureStatus').textContent =
+      'We have not received confirmation yet. Check your Visitor Leads sheet before trying again. If no row appears, the Apps Script needs its latest version deployed.';
+    e.target.querySelector('button[type="submit"]').disabled = false;
+  }, 10000);
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  var leadForm = document.getElementById('leadCaptureForm');
+  var leadClose = document.querySelector('.lead-close');
+
+  if (leadForm) {
+    leadForm.addEventListener('submit', submitLeadForm);
+  }
+
+  var leadPhone = document.getElementById('lead-phone');
+  if (leadPhone) {
+    leadPhone.addEventListener('input', function() {
+      leadPhone.setCustomValidity('');
+    });
+  }
+
+  if (leadClose) {
+    leadClose.addEventListener('click', closeLeadModal);
+  }
+
+  window.addEventListener('message', receiveLeadResult);
+
+  if (!sessionStorage.getItem('bhatiFarmsLeadSubmitted')) {
+    setTimeout(openLeadModal, 1500);
   }
 });
 
