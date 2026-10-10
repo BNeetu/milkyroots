@@ -12,7 +12,7 @@ The visitor form saves each submitted lead to a Google Sheet. The visitor must e
 6. Deploy, approve Google's authorization prompt, and copy the web app URL ending in `/exec`.
 7. In [`index.html`](./index.html), replace `PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE` in `VISITOR_LEADS_ENDPOINT` with that URL. Publish the website update.
 
-The first valid submission creates a `Visitor Leads` tab with submission time, name, mobile number, page, and contact consent. The website submits in a hidden frame and closes its popup only after the script confirms the row was saved. If there is no confirmation within 10 seconds, the form displays a message to check the sheet before retrying; this can happen if the latest Apps Script version has not been deployed. Test with your own details, then remove the test row from the sheet.
+The first valid submission creates a `Visitor Leads` tab with submission time, name, mobile number, page, and contact consent. The website submits in a hidden frame and closes its popup immediately on submit; the receiver's confirmation is shown as a notice after the sheet write. Apps Script responses explicitly allow framing because the site uses the returned message only to confirm success or failure; the response does not include visitor details. If there is no confirmation within 10 seconds, the form displays a message to check the sheet before retrying; this can happen if the latest Apps Script version has not been deployed. Test with your own details, then remove the test row from the sheet.
 
 ## SMS notification through MSG91 (optional)
 
