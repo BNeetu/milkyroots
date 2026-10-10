@@ -26,6 +26,7 @@ function doPost(e) {
       return resultPage(false, 'We could not save your details right now. Please return to the website and try again.', requestId);
     }
 
+    var smsResult = { configured: false, queued: false };
     try {
       if (SPREADSHEET_ID === 'PASTE_GOOGLE_SHEET_ID_HERE') {
         throw new Error('Configure SPREADSHEET_ID before deploying this web app.');
@@ -44,15 +45,18 @@ function doPost(e) {
 
       sheet.appendRow([new Date(), safeCell(name), safeCell(phone), safeCell(page), 'Yes']);
       SpreadsheetApp.flush();
+
+      smsResult.configured = hasSmsAlertConfiguration();
+      if (smsResult.configured) {
+        try {
+          queueLeadAlert(spreadsheet, requestId, name, phone);
+          smsResult.queued = true;
+        } catch (queueError) {
+          console.error('Lead was saved, but its SMS alert could not be queued:', queueError);
+        }
+      }
     } finally {
       lock.releaseLock();
-    }
-
-    var smsResult = { configured: false, sent: false };
-    try {
-      smsResult = sendLeadAlert(name, phone);
-    } catch (smsError) {
-      console.error('Lead was saved, but the MSG91 SMS alert failed:', smsError);
     }
 
     return resultPage(
@@ -67,6 +71,99 @@ function doPost(e) {
       ? e.parameter.requestId
       : '';
     return resultPage(false, 'We could not save your details. Please return to the website and try again.', failedRequestId);
+  }
+}
+
+function hasSmsAlertConfiguration() {
+  var properties = PropertiesService.getScriptProperties().getProperties();
+  var alertNumber = String(properties.MSG91_ALERT_NUMBER || '').replace(/\D/g, '');
+  return !!(properties.MSG91_AUTH_KEY && properties.MSG91_FLOW_ID &&
+    alertNumber.length >= 10 && alertNumber.length <= 15);
+}
+
+function queueLeadAlert(spreadsheet, requestId, name, phone) {
+  var sheet = spreadsheet.getSheetByName('SMS Queue');
+  if (!sheet) {
+    sheet = spreadsheet.insertSheet('SMS Queue');
+  }
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(['Request ID', 'Queued At', 'Name', 'Mobile Number', 'Status', 'Attempts', 'Updated At']);
+    sheet.setFrozenRows(1);
+  }
+  sheet.appendRow([requestId, new Date(), safeCell(name), safeCell(phone), 'Pending', 0, new Date()]);
+}
+
+function installLeadSmsTrigger() {
+  if (!hasSmsAlertConfiguration()) {
+    throw new Error('Set MSG91_AUTH_KEY, MSG91_FLOW_ID, and a valid MSG91_ALERT_NUMBER in Script Properties first.');
+  }
+
+  var exists = ScriptApp.getProjectTriggers().some(function(trigger) {
+    return trigger.getHandlerFunction() === 'processLeadSmsQueue';
+  });
+  if (!exists) {
+    ScriptApp.newTrigger('processLeadSmsQueue').timeBased().everyMinutes(1).create();
+  }
+}
+
+function processLeadSmsQueue() {
+  if (!hasSmsAlertConfiguration()) return;
+
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(1000)) return;
+
+  var spreadsheet;
+  var queue;
+  var selectedRow = 0;
+  var leadName = '';
+  var leadPhone = '';
+  var attempt = 0;
+  try {
+    spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    queue = spreadsheet.getSheetByName('SMS Queue');
+    if (!queue || queue.getLastRow() < 2) return;
+
+    var values = queue.getRange(2, 1, queue.getLastRow() - 1, 7).getValues();
+    var now = new Date();
+    for (var i = 0; i < values.length; i++) {
+      var status = values[i][4];
+      var attempts = Number(values[i][5]) || 0;
+      var updatedAt = values[i][6] instanceof Date ? values[i][6] : new Date(values[i][6]);
+      var pending = status === 'Pending';
+      var staleSending = status === 'Sending' && now.getTime() - updatedAt.getTime() > 10 * 60 * 1000;
+      if ((pending || staleSending) && attempts < 3) {
+        selectedRow = i + 2;
+        leadName = String(values[i][2]);
+        leadPhone = String(values[i][3]);
+        attempt = attempts + 1;
+        queue.getRange(selectedRow, 5, 1, 3).setValues([['Sending', attempt, now]]);
+        SpreadsheetApp.flush();
+        break;
+      }
+    }
+  } finally {
+    lock.releaseLock();
+  }
+
+  if (!selectedRow) return;
+
+  var sent = false;
+  try {
+    sent = sendLeadAlert(leadName, leadPhone).sent;
+  } catch (error) {
+    console.error('Queued MSG91 alert failed on attempt ' + attempt + ':', error);
+  }
+
+  if (!lock.tryLock(10000)) {
+    console.error('Could not update SMS queue row ' + selectedRow + ' after sending attempt ' + attempt + '.');
+    return;
+  }
+  try {
+    var newStatus = sent ? 'Sent' : (attempt < 3 ? 'Pending' : 'Failed');
+    queue.getRange(selectedRow, 5, 1, 3).setValues([[newStatus, attempt, new Date()]]);
+    SpreadsheetApp.flush();
+  } finally {
+    lock.releaseLock();
   }
 }
 
@@ -135,7 +232,7 @@ function resultPage(success, message, requestId, smsResult) {
     ? '<script>window.top.postMessage({type:"bhati-farms-lead-result",success:' +
       JSON.stringify(success) + ',requestId:' + JSON.stringify(requestId) +
       ',notificationConfigured:' + JSON.stringify(!!(smsResult && smsResult.configured)) +
-      ',notificationSent:' + JSON.stringify(!!(smsResult && smsResult.sent)) + '}, "*");</script>'
+      ',notificationQueued:' + JSON.stringify(!!(smsResult && smsResult.queued)) + '}, "*");</script>'
     : '';
 
   return HtmlService.createHtmlOutput(

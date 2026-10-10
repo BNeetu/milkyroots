@@ -24,7 +24,9 @@ After a lead has been saved to the sheet, the receiver can ask MSG91 to send an 
    - `MSG91_AUTH_KEY` — the private Auth Key from MSG91
    - `MSG91_FLOW_ID` — the Flow ID for the approved template
    - `MSG91_ALERT_NUMBER` — `918696460370` (India country code `91` + `8696460370`)
-4. Save the properties. Copy the latest [`google-apps-script/Code.gs`](./google-apps-script/Code.gs) into Apps Script, save, then go to **Deploy → Manage deployments → Edit → New version → Deploy**.
+4. Save the properties. Copy the latest [`google-apps-script/Code.gs`](./google-apps-script/Code.gs) into Apps Script and save.
+5. In the Apps Script editor, select `installLeadSmsTrigger` in the function list and click **Run** once. Approve the requested authorization. This installs a one-minute queue worker; the website can confirm the sheet save without waiting for MSG91 to send the SMS. Leads continue to save even if the SMS cannot be sent.
+6. Redeploy the existing web app as a **New version** using **Deploy → Manage deployments → Edit → New version → Deploy**.
 
 Keep the Auth Key only in Apps Script Script Properties. Never paste it into this repository, website source, GitHub, or chat. MSG91 accepts the send request before the SMS is delivered; actual delivery can take time or fail because of provider or DLT checks. MSG91 usage may incur charges. The visitor notice explains that contact details may be shared with service providers solely to contact them.
 
@@ -33,4 +35,3 @@ Keep the Auth Key only in Apps Script Script Properties. Never paste it into thi
 - The Apps Script and website code both need to be deployed for the in-page confirmation to work. If you update `Code.gs`, deploy a new version using **Deploy → Manage deployments → Edit → New version → Deploy**.
 - The web app endpoint must be publicly reachable for the form to work. Keep the spreadsheet private and do not put spreadsheet credentials or private keys in the website.
 - The endpoint is public and may receive spam; the receiver validates input and includes a basic honeypot, but it is not a full anti-abuse service.
-- Update the Apps Script deployment when you change its code: **Deploy → Manage deployments → Edit → New version → Deploy**.

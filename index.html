@@ -2068,10 +2068,10 @@ function receiveLeadResult(e) {
   activeLeadRequestId = null;
 
   if (e.data.success === true) {
-    if (e.data.notificationSent === true) {
-      showLeadSaveNotice('Thanks! Your details were saved. MSG91 accepted the SMS alert request for Bhati Farms.');
+    if (e.data.notificationQueued === true) {
+      showLeadSaveNotice('Thanks! Your details were saved. An SMS alert is queued for Bhati Farms.');
     } else if (e.data.notificationConfigured === true) {
-      showLeadSaveNotice('Your details were saved, but the SMS alert could not be sent. Bhati Farms will still see your details in the sheet.');
+      showLeadSaveNotice('Your details were saved, but the SMS alert could not be queued. Bhati Farms will still see your details in the sheet.');
     } else {
       showLeadSaveNotice('Your details were saved. SMS alerts are not set up yet.');
     }
