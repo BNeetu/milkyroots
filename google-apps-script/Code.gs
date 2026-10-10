@@ -48,7 +48,19 @@ function doPost(e) {
       lock.releaseLock();
     }
 
-    return resultPage(true, 'Your details were saved successfully. Bhati Farms may contact you about our products and delivery.', requestId);
+    var smsResult = { configured: false, sent: false };
+    try {
+      smsResult = sendLeadAlert(name, phone);
+    } catch (smsError) {
+      console.error('Lead was saved, but the MSG91 SMS alert failed:', smsError);
+    }
+
+    return resultPage(
+      true,
+      'Your details were saved successfully. Bhati Farms may contact you about our products and delivery.',
+      requestId,
+      smsResult
+    );
   } catch (error) {
     console.error('Visitor lead could not be saved:', error);
     var failedRequestId = e && e.parameter && /^[a-f0-9]{32}$/.test(e.parameter.requestId || '')
@@ -58,18 +70,72 @@ function doPost(e) {
   }
 }
 
+function sendLeadAlert(name, phone) {
+  var properties = PropertiesService.getScriptProperties().getProperties();
+  var authKey = properties.MSG91_AUTH_KEY;
+  var flowId = properties.MSG91_FLOW_ID;
+  var alertNumber = String(properties.MSG91_ALERT_NUMBER || '').replace(/\D/g, '');
+
+  if (!authKey || !flowId || !alertNumber) {
+    console.warn('Lead was saved. MSG91 SMS is not configured; set MSG91_AUTH_KEY, MSG91_FLOW_ID, and MSG91_ALERT_NUMBER in Script Properties.');
+    return { configured: false, sent: false };
+  }
+  if (alertNumber.length < 10 || alertNumber.length > 15) {
+    console.error('Lead was saved, but MSG91_ALERT_NUMBER is invalid.');
+    return { configured: true, sent: false };
+  }
+
+  var response = UrlFetchApp.fetch('https://control.msg91.com/api/v5/flow/', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { authkey: authKey },
+    payload: JSON.stringify({
+      template_id: flowId,
+      short_url: '0',
+      recipients: [{
+        mobiles: alertNumber,
+        var1: name.slice(0, 100),
+        var2: phone.slice(0, 20)
+      }]
+    }),
+    muteHttpExceptions: true
+  });
+
+  var statusCode = response.getResponseCode();
+  if (statusCode < 200 || statusCode >= 300) {
+    console.error('Lead was saved, but MSG91 rejected the SMS request with HTTP status ' + statusCode + '.');
+    return { configured: true, sent: false };
+  }
+
+  var responseBody;
+  try {
+    responseBody = JSON.parse(response.getContentText());
+  } catch (parseError) {
+    console.error('Lead was saved, but MSG91 returned an unreadable SMS response.');
+    return { configured: true, sent: false };
+  }
+  if (!responseBody || String(responseBody.type || '').toLowerCase() !== 'success') {
+    console.error('Lead was saved, but MSG91 did not accept the SMS request.');
+    return { configured: true, sent: false };
+  }
+
+  return { configured: true, sent: true };
+}
+
 function safeCell(value) {
   return /^[=+\-@]/.test(value) ? "'" + value : value;
 }
 
-function resultPage(success, message, requestId) {
+function resultPage(success, message, requestId, smsResult) {
   var heading = success ? 'Thank you!' : 'Submission not completed';
   var color = success ? '#2f6b3b' : '#9d3b2d';
   var escapedMessage = message.replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   var resultMessage = requestId
     ? '<script>window.top.postMessage({type:"bhati-farms-lead-result",success:' +
-      JSON.stringify(success) + ',requestId:' + JSON.stringify(requestId) + '}, "*");</script>'
+      JSON.stringify(success) + ',requestId:' + JSON.stringify(requestId) +
+      ',notificationConfigured:' + JSON.stringify(!!(smsResult && smsResult.configured)) +
+      ',notificationSent:' + JSON.stringify(!!(smsResult && smsResult.sent)) + '}, "*");</script>'
     : '';
 
   return HtmlService.createHtmlOutput(

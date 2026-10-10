@@ -14,6 +14,20 @@ The visitor form saves each submitted lead to a Google Sheet. The visitor must e
 
 The first valid submission creates a `Visitor Leads` tab with submission time, name, mobile number, page, and contact consent. The website submits in a hidden frame and closes its popup only after the script confirms the row was saved. If there is no confirmation within 10 seconds, the form displays a message to check the sheet before retrying; this can happen if the latest Apps Script version has not been deployed. Test with your own details, then remove the test row from the sheet.
 
+## SMS notification through MSG91 (optional)
+
+After a lead has been saved to the sheet, the receiver can ask MSG91 to send an SMS alert to `8696460370`. The alert contains the lead's name and phone number. If MSG91 is not configured or rejects the request, the lead remains saved.
+
+1. Create or verify an MSG91 account. Configure an Indian DLT entity and sender/header and get an SMS template approved for transactional use. MSG91 requires the template content and IDs to match the DLT-approved template.
+2. In MSG91, create a Flow using that approved template, with two template variables in this order: visitor name (`var1`) and visitor mobile number (`var2`). Copy its Flow ID and obtain your MSG91 Auth Key.
+3. In Apps Script, open **Project Settings → Script Properties** and add:
+   - `MSG91_AUTH_KEY` — the private Auth Key from MSG91
+   - `MSG91_FLOW_ID` — the Flow ID for the approved template
+   - `MSG91_ALERT_NUMBER` — `918696460370` (India country code `91` + `8696460370`)
+4. Save the properties. Copy the latest [`google-apps-script/Code.gs`](./google-apps-script/Code.gs) into Apps Script, save, then go to **Deploy → Manage deployments → Edit → New version → Deploy**.
+
+Keep the Auth Key only in Apps Script Script Properties. Never paste it into this repository, website source, GitHub, or chat. MSG91 accepts the send request before the SMS is delivered; actual delivery can take time or fail because of provider or DLT checks. MSG91 usage may incur charges. The visitor notice explains that contact details may be shared with service providers solely to contact them.
+
 ## Important
 
 - The Apps Script and website code both need to be deployed for the in-page confirmation to work. If you update `Code.gs`, deploy a new version using **Deploy → Manage deployments → Edit → New version → Deploy**.

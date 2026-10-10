@@ -826,14 +826,14 @@ nav.shrunk {
     <div class="lead-icon">👋</div>
     <p class="section-label" style="margin-bottom:0.4rem">Quick Connect</p>
     <h3>Welcome to Bhati Farms</h3>
-    <p>Share your name and mobile number. We’ll save them to our visitor leads sheet and may contact you about our products and delivery.</p>
+    <p>Share your name and mobile number. We’ll save them in our visitor leads sheet and may share them with service providers solely to contact you about our products and delivery.</p>
     <form id="leadCaptureForm" method="post" target="leadSubmissionFrame">
       <input id="lead-name" name="name" type="text" placeholder="Your Full Name" autocomplete="name" maxlength="100" required>
       <input id="lead-phone" name="phone" type="tel" placeholder="Your Mobile Number" autocomplete="tel" inputmode="tel" maxlength="20" title="Enter a valid phone number" required>
       <input id="lead-page" name="page" type="hidden">
       <input id="lead-request-id" name="requestId" type="hidden">
       <label class="lead-honeypot" aria-hidden="true">Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
-      <label class="lead-consent"><input id="lead-consent" name="consent" type="checkbox" value="yes" required> I agree that Bhati Farms may use these details to contact me.</label>
+      <label class="lead-consent"><input id="lead-consent" name="consent" type="checkbox" value="yes" required> I agree that Bhati Farms may store these details and share them with service providers solely to contact me.</label>
       <p id="leadCaptureStatus" role="status" aria-live="polite"></p>
       <button type="submit">Get a Call Back</button>
     </form>
@@ -2068,7 +2068,13 @@ function receiveLeadResult(e) {
   activeLeadRequestId = null;
 
   if (e.data.success === true) {
-    showLeadSaveNotice('Thanks! Your details were saved.');
+    if (e.data.notificationSent === true) {
+      showLeadSaveNotice('Thanks! Your details were saved. MSG91 accepted the SMS alert request for Bhati Farms.');
+    } else if (e.data.notificationConfigured === true) {
+      showLeadSaveNotice('Your details were saved, but the SMS alert could not be sent. Bhati Farms will still see your details in the sheet.');
+    } else {
+      showLeadSaveNotice('Your details were saved. SMS alerts are not set up yet.');
+    }
     return;
   }
 
