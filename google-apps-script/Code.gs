@@ -243,5 +243,6 @@ function resultPage(success, message, requestId, smsResult) {
     'h1{color:' + color + '}p{line-height:1.6}a{color:#765b41}</style></head>' +
     '<body><main><h1>' + heading + '</h1><p>' + escapedMessage + '</p>' +
     '<p>You can close this tab and return to Bhati Farms.</p></main>' + resultMessage + '</body></html>'
-  ).setTitle(heading + ' | Bhati Farms');
+  ).setTitle(heading + ' | Bhati Farms')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
